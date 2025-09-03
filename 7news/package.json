@@ -7,11 +7,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "seed": "node src/scripts/seed.ts"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.11",
     "bcryptjs": "^3.0.2",
+    "dotenv": "^17.2.2",
     "jose": "^6.1.0",
     "mongoose": "^8.18.0",
     "next": "15.4.6",
@@ -23,13 +25,14 @@
     "zod": "^4.1.5"
   },
   "devDependencies": {
-    "@types/node": "^20",
+    "@types/node": "^20.19.12",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/sanitize-html": "^2.16.0",
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.17",
-    "typescript": "^5"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
   }
 }
