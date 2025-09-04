@@ -1,3 +1,5 @@
+// app/articles/[slug]/page.tsx
+
 "use client";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
