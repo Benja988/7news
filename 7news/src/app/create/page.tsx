@@ -1,44 +1,46 @@
 "use client";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
 
-export default function CreateArticle() {
-  const [form, setForm] = useState({ title: "", slug: "", content: "", category: "" });
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import ArticleForm from "@/components/ArticleForm";
+
+export default function CreateArticlePage() {
   const router = useRouter();
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    await fetch("/api/articles", {
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      router.push("/login");
+    }
+  }, [router]);
+
+  const handleSubmit = async (formData: {
+    title: string;
+    content: string;
+    coverImage?: string;
+  }) => {
+    const token = localStorage.getItem("token");
+    if (!token) throw new Error("You must be logged in to create an article.");
+
+    const res = await fetch("/api/articles", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`, // assuming backend expects JWT
+      },
+      body: JSON.stringify(formData),
     });
-    router.push("/articles");
-  }
+
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message || "Failed to create article");
+
+    router.push(`/articles/${data.article._id}`);
+  };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        placeholder="Title"
-        value={form.title}
-        onChange={(e) => setForm({ ...form, title: e.target.value })}
-      />
-      <input
-        placeholder="Slug"
-        value={form.slug}
-        onChange={(e) => setForm({ ...form, slug: e.target.value })}
-      />
-      <textarea
-        placeholder="Content"
-        value={form.content}
-        onChange={(e) => setForm({ ...form, content: e.target.value })}
-      />
-      <input
-        placeholder="Category"
-        value={form.category}
-        onChange={(e) => setForm({ ...form, category: e.target.value })}
-      />
-      <button type="submit">Create</button>
-    </form>
+    <div className="max-w-2xl mx-auto mt-10 border p-6 rounded-lg shadow">
+      <h1 className="text-2xl font-bold mb-6">Create New Article</h1>
+      <ArticleForm onSubmit={handleSubmit} />
+    </div>
   );
 }
