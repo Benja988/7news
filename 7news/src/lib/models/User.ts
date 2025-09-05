@@ -12,15 +12,30 @@ export interface IUser {
   isActive: boolean;
   createdAt: Date;
   updatedAt: Date;
+  comparePassword(candidate: string): Promise<boolean>;
 }
 
-const UserSchema = new Schema<IUser>({
-  name: { type: String, required: true, trim: true, maxlength: 80 },
-  email: { type: String, required: true, unique: true, lowercase: true, index: true },
-  password: { type: String, required: true },
-  role: { type: String, default: "user", enum: ["admin", "editor", "writer", "user"], index: true },
-  isActive: { type: Boolean, default: true },
-}, { timestamps: true });
+const UserSchema = new Schema<IUser>(
+  {
+    name: { type: String, required: true, trim: true, maxlength: 80 },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      lowercase: true,
+      index: true,
+    },
+    password: { type: String, required: true, select: false },
+    role: {
+      type: String,
+      default: "user",
+      enum: ["admin", "editor", "writer", "user"],
+      index: true,
+    },
+    isActive: { type: Boolean, default: true },
+  },
+  { timestamps: true }
+);
 
 UserSchema.pre("save", async function (next) {
   const doc = this as any;
@@ -33,7 +48,5 @@ UserSchema.pre("save", async function (next) {
 UserSchema.methods.comparePassword = function (candidate: string) {
   return bcrypt.compare(candidate, this.password);
 };
-
-UserSchema.index({ email: 1 });
 
 export default models.User || model<IUser>("User", UserSchema);

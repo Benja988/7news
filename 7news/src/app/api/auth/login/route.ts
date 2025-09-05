@@ -3,31 +3,60 @@ import { connectDB } from "@/lib/mongodb";
 import User from "@/lib/models/User";
 import { loginSchema } from "@/lib/validations";
 import { badRequest, ok, unauthorized, error500 } from "@/lib/response";
-import { logger } from "@/lib/logger";
 import { signAccessToken, signRefreshToken, setAuthCookies } from "@/lib/auth";
 import bcrypt from "bcryptjs";
+import logger from "@/lib/logger";
 
 export async function POST(req: NextRequest) {
   try {
     await connectDB();
     const json = await req.json();
+
+    // validate request body
     const parsed = loginSchema.safeParse(json);
-    if (!parsed.success) return badRequest("Invalid credentials");
+    if (!parsed.success) {
+      logger.warn("Invalid login attempt: bad input");
+      return badRequest("Invalid credentials");
+    }
 
+    // find user
     const user = await User.findOne({ email: parsed.data.email }).select("+password");
-    if (!user) return unauthorized("Invalid credentials");
+    if (!user) {
+      logger.warn(`Invalid login attempt: email not found (${parsed.data.email})`);
+      return unauthorized("Invalid credentials");
+    }
 
+    // verify password
     const valid = await bcrypt.compare(parsed.data.password, user.password);
-    if (!valid) return unauthorized("Invalid credentials");
+    if (!valid) {
+      logger.warn(`Invalid login attempt: wrong password for user ${user._id}`);
+      return unauthorized("Invalid credentials");
+    }
 
-    const at = await signAccessToken(user);
-    const rt = await signRefreshToken(user);
-    setAuthCookies(at, rt);
+    // create tokens
+    const accessToken = await signAccessToken(user);
+    const refreshToken = await signRefreshToken(user);
 
-    logger.info({ userId: user._id }, "User logged in");
-    return ok({ id: user._id, email: user.email, name: user.name, role: user.role });
+    // set cookies
+    await setAuthCookies(accessToken, refreshToken);
+
+    logger.info({ userId: user._id, email: user.email }, "User logged in");
+
+    // return tokens + user info
+    return ok({
+      user: {
+        id: user._id,
+        email: user.email,
+        name: user.name,
+        role: user.role,
+      },
+      tokens: {
+        accessToken,
+        refreshToken,
+      },
+    });
   } catch (e) {
-    logger.error(e, "Login error");
+    logger.error({ err: e }, "Login error");
     return error500();
   }
 }

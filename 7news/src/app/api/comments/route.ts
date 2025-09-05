@@ -4,7 +4,8 @@ import Comment from "@/lib/models/Comment";
 import { commentCreateSchema } from "@/lib/validations";
 import { ok, created, badRequest, error500, unauthorized } from "@/lib/response";
 import { getUserFromCookies } from "@/lib/auth";
-import { logger } from "@/lib/logger";
+import logger from "@/lib/logger";
+
 
 export async function GET(req: NextRequest) {
   await connectDB();
@@ -30,7 +31,7 @@ export async function POST(req: NextRequest) {
     logger.info({ commentId: doc._id, by: user.sub }, "Comment created");
     return created(doc);
   } catch (e) {
-    logger.error(e, "Comment create error");
+    logger.error("Comment create error");
     return error500();
   }
 }

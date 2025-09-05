@@ -4,7 +4,7 @@ import { connectDB } from "@/lib/mongodb";
 import User from "@/lib/models/User";
 import { registerSchema } from "@/lib/validations";
 import { badRequest, created } from "@/lib/response";
-import { logger } from "@/lib/logger";
+import logger from "@/lib/logger";
 
 export async function POST(req: NextRequest) {
   try {
@@ -38,6 +38,7 @@ export async function POST(req: NextRequest) {
       id: user._id,
       email: user.email,
       name: user.name,
+      role: user.role,
     });
   } catch (e: any) {
     // log error

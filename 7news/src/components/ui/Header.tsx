@@ -1,21 +1,43 @@
+// app/components/ui/Header.tsx
+
 "use client";
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
+type User = {
+  id: string;
+  email: string;
+  name: string;
+  role: string;
+};
+
 export default function Header() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
   const router = useRouter();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    setIsLoggedIn(!!token);
+    async function fetchUser() {
+      try {
+        const res = await fetch("/api/me", { credentials: "include" });
+        if (!res.ok) return; // not logged in
+        const data = await res.json();
+        setUser(data.data); // because your ok() helper likely wraps in { data }
+      } catch (err) {
+        console.error("❌ Error fetching user:", err);
+      }
+    }
+    fetchUser();
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    setIsLoggedIn(false);
+  const handleLogout = async () => {
+    try {
+      await fetch("/api/auth/logout", { method: "POST", credentials: "include" });
+    } catch {
+      // ignore logout error
+    }
+    setUser(null);
     router.push("/");
   };
 
@@ -30,11 +52,12 @@ export default function Header() {
           Articles
         </Link>
 
-        {isLoggedIn ? (
+        {user ? (
           <>
             <Link href="/create" className="hover:text-blue-400">
               Create
             </Link>
+            <span className="text-sm italic">Hi, {user.name}</span>
             <button
               onClick={handleLogout}
               className="bg-red-600 px-3 py-1 rounded hover:bg-red-700"
