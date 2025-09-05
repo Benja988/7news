@@ -1,44 +1,21 @@
-// app/components/ui/Header.tsx
-
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-
-type User = {
-  id: string;
-  email: string;
-  name: string;
-  role: string;
-};
+import { useAuth } from "@/context/AuthContext"; // import our hook
 
 export default function Header() {
-  const [user, setUser] = useState<User | null>(null);
+  const { user, logout } = useAuth();
   const router = useRouter();
-
-  useEffect(() => {
-    async function fetchUser() {
-      try {
-        const res = await fetch("/api/me", { credentials: "include" });
-        if (!res.ok) return; // not logged in
-        const data = await res.json();
-        setUser(data.data); // because your ok() helper likely wraps in { data }
-      } catch (err) {
-        console.error("❌ Error fetching user:", err);
-      }
-    }
-    fetchUser();
-  }, []);
 
   const handleLogout = async () => {
     try {
-      await fetch("/api/auth/logout", { method: "POST", credentials: "include" });
-    } catch {
-      // ignore logout error
+      await fetch("/api/logout", { method: "POST", credentials: "include" });
+      logout();
+      router.push("/");
+    } catch (err) {
+      console.error("❌ Error logging out:", err);
     }
-    setUser(null);
-    router.push("/");
   };
 
   return (

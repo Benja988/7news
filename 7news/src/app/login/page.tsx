@@ -18,17 +18,20 @@ export default function LoginPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
+        credentials: "include", // ✅ make sure cookies are saved
       });
 
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Login failed");
 
-      // store token if returned
+      // if API returns token in body (optional)
       if (data.token) {
         localStorage.setItem("token", data.token);
       }
 
+      // ✅ Redirect and reload user state
       router.push("/");
+      router.refresh();
     } catch (err: any) {
       setError(err.message);
     } finally {
