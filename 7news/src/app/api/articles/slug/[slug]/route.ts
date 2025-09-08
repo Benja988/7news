@@ -1,13 +1,15 @@
-import { NextRequest } from "next/server";
-import { connectDB } from "@/lib/mongodb";
+// app/api/articles/slug/[slug]/route.ts
 import Article from "@/lib/models/Article";
-import { ok, notFound } from "@/lib/response";
+import { connectDB } from "@/lib/mongodb";
 
-export async function GET(_: NextRequest, { params }: { params: { slug: string } }) {
+export async function GET(_: Request, { params }: { params: { slug: string } }) {
   await connectDB();
-  const doc = await Article.findOne({ slug: params.slug, status: "published" })
-    .populate("author", "name")
-    .populate("category", "name slug");
-  if (!doc) return notFound();
-  return ok(doc);
+  const article = await Article.findOneAndUpdate(
+    { slug: params.slug, status: "published" },
+    { $inc: { views: 1 } }, // 🔹 increment views
+    { new: true }
+  ).populate("author", "name");
+
+  if (!article) return Response.json({ message: "Not found" }, { status: 404 });
+  return Response.json(article);
 }

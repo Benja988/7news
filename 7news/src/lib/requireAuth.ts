@@ -1,3 +1,5 @@
+// src/lib/requireAuth.ts
+
 import { cookies } from "next/headers";
 import { verifyToken } from "@/lib/auth";
 

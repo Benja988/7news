@@ -1,3 +1,5 @@
+// app/articles/page.tsx
+
 "use client";
 import { useEffect, useState } from "react";
 import NewsCard from "@/components/ui/NewsCard";
