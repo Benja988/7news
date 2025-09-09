@@ -1,6 +1,8 @@
 // models/Article.ts
 import { Schema, model, models, Types } from "mongoose";
 import slugify from "slugify";
+import User from "./User";
+import Category from "./Category";
 
 export interface IArticle {
   _id: Types.ObjectId;
@@ -22,12 +24,12 @@ export interface IArticle {
 const ArticleSchema = new Schema<IArticle>(
   {
     title: { type: String, required: true, trim: true, maxlength: 160 },
-    slug: { type: String, required: true, unique: true, lowercase: true, index: true },
+    slug: { type: String, required: true, unique: true, lowercase: true},
     excerpt: { type: String, maxlength: 300 },
     content: { type: String, required: true },
     coverImage: { type: String },
-    author: { type: Schema.Types.ObjectId, ref: "User", required: true, index: true },
-    category: { type: Schema.Types.ObjectId, ref: "Category", required: true, index: true },
+    author: { type: Schema.Types.ObjectId, ref: User, required: true, index: true },
+    category: { type: Schema.Types.ObjectId, ref: Category, required: true, index: true },
     tags: [{ type: String, lowercase: true, trim: true }],
     status: { type: String, enum: ["draft", "published"], default: "draft", index: true },
     publishedAt: { type: Date },

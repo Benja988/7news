@@ -4,7 +4,8 @@ import Category from "@/lib/models/Category";
 import { categoryCreateSchema } from "@/lib/validations";
 import { ok, created, badRequest, error500, unauthorized, forbidden } from "@/lib/response";
 import { getUserFromCookies, requireRole } from "@/lib/auth";
-import { logger } from "@/lib/logger";
+import logger from "@/lib/logger";
+
 
 export async function GET() {
   await connectDB();
@@ -30,7 +31,7 @@ export async function POST(req: NextRequest) {
     logger.info({ categoryId: cat._id, by: user.sub }, "Category created");
     return created(cat);
   } catch (e) {
-    logger.error(e, "Category create error");
+    logger.error("Category create error");
     return error500();
   }
 }
