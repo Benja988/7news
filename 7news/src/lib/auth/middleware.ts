@@ -35,30 +35,30 @@
 //   matcher: ["/api/:path*"],
 // };
 
-import { cookies } from "next/headers";
-import { verifyToken } from "./index";
+// import { cookies } from "next/headers";
+// import { verifyToken } from "./index";
 
-export function requireAuth(roles: string[] = []) {
-  return (handler: Function) => {
-    return async (req: any, ...args: any[]) => {
-      const cookieStore = await cookies();
-const token = cookieStore.get("accessToken")?.value;
-      if (!token) {
-        return new Response(JSON.stringify({ message: "Unauthorized" }), { status: 401 });
-      }
+// export function requireAuth(roles: string[] = []) {
+//   return (handler: Function) => {
+//     return async (req: any, ...args: any[]) => {
+//       const cookieStore = await cookies();
+// const token = cookieStore.get("accessToken")?.value;
+//       if (!token) {
+//         return new Response(JSON.stringify({ message: "Unauthorized" }), { status: 401 });
+//       }
 
-      const payload = verifyToken(token, process.env.ACCESS_TOKEN_SECRET!);
-      if (!payload) {
-        return new Response(JSON.stringify({ message: "Invalid or expired token" }), { status: 401 });
-      }
+//       const payload = verifyToken(token, process.env.ACCESS_TOKEN_SECRET!);
+//       if (!payload) {
+//         return new Response(JSON.stringify({ message: "Invalid or expired token" }), { status: 401 });
+//       }
 
-      if (roles.length && !roles.includes((payload as any).role)) {
-        return new Response(JSON.stringify({ message: "Forbidden" }), { status: 403 });
-      }
+//       if (roles.length && !roles.includes((payload as any).role)) {
+//         return new Response(JSON.stringify({ message: "Forbidden" }), { status: 403 });
+//       }
 
-      // attach user to request for later use
-      req.user = payload;
-      return handler(req, ...args);
-    };
-  };
-}
+//       // attach user to request for later use
+//       req.user = payload;
+//       return handler(req, ...args);
+//     };
+//   };
+// }
