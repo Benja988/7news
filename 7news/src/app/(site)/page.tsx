@@ -17,27 +17,22 @@ export default function HomePage() {
   const [loading, setLoading] = useState(true);
 
   const fetchArticles = async (url: string) => {
-  try {
-    setLoading(true);
-    const res = await fetch(url, { cache: "no-store" });
-
-    if (!res.ok) {
-      const text = await res.text(); // try to read error response
-      console.error("API Error:", res.status, text);
-      setArticles([]);
-      return;
+    try {
+      setLoading(true);
+      const res = await fetch(url, { cache: "no-store" });
+      const data = await res.json();
+      setArticles(data.articles || []);
+    } catch (err) {
+      console.error("Failed to load articles:", err);
+    } finally {
+      setLoading(false);
     }
+  };
 
-    const data = await res.json();
-    setArticles(data.articles || []);
-  } catch (err) {
-    console.error("Failed to load articles:", err);
-    setArticles([]);
-  } finally {
-    setLoading(false);
-  }
-};
-
+  // 🔹 Initial load
+  useEffect(() => {
+    fetchArticles("/api/articles?page=1&limit=6");
+  }, []);
 
   // 🔍 Handle search
   const handleSearch = (query: string) => {
