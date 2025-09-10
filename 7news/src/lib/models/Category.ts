@@ -15,6 +15,6 @@ const CategorySchema = new Schema<ICategory>({
   description: { type: String, maxlength: 200 },
 }, { timestamps: true });
 
-CategorySchema.index({ slug: 1 });
+// CategorySchema.index({ slug: 1 });
 
 export default models.Category || model<ICategory>("Category", CategorySchema);

@@ -1,4 +1,5 @@
 import { Schema, model, models, Types } from "mongoose";
+import User from "./User";
 
 export interface IComment {
   _id: any;
@@ -12,7 +13,7 @@ export interface IComment {
 
 const CommentSchema = new Schema<IComment>({
   article: { type: Schema.Types.ObjectId, ref: "Article", required: true, index: true },
-  user: { type: Schema.Types.ObjectId, ref: "User", required: true, index: true },
+  user: { type: Schema.Types.ObjectId, ref: User, required: true, index: true },
   content: { type: String, required: true, maxlength: 2000 },
   isApproved: { type: Boolean, default: false, index: true },
 }, { timestamps: true });

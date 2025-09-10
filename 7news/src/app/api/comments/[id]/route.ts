@@ -1,9 +1,12 @@
+// app/api/[slug]/route.ts
+
 import { NextRequest } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import Comment from "@/lib/models/Comment";
 import { ok, notFound, unauthorized, forbidden, error500 } from "@/lib/response";
 import { getUserFromCookies, requireRole } from "@/lib/auth";
-import { logger } from "@/lib/logger";
+import logger from "@/lib/logger";
+
 
 export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
   try {

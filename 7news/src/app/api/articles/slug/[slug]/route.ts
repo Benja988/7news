@@ -1,12 +1,14 @@
-// app/api/articles/slug/[slug]/route.ts
 import Article from "@/lib/models/Article";
 import { connectDB } from "@/lib/mongodb";
 
-export async function GET(_: Request, { params }: { params: { slug: string } }) {
+export async function GET(_: Request, context: { params: Promise<{ slug: string }> }) {
   await connectDB();
+
+  const { slug } = await context.params; 
+
   const article = await Article.findOneAndUpdate(
-    { slug: params.slug, status: "published" },
-    { $inc: { views: 1 } }, // 🔹 increment views
+    { slug, status: "published" },
+    { $inc: { views: 1 } }, 
     { new: true }
   ).populate("author", "name");
 

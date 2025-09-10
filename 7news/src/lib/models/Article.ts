@@ -57,6 +57,6 @@ ArticleSchema.pre("save", function (next) {
 // 🔹 Indexes
 ArticleSchema.index({ title: "text", excerpt: "text", content: "text", tags: 1 });
 ArticleSchema.index({ createdAt: -1 });
-ArticleSchema.index({ slug: 1 });
+// ArticleSchema.index({ slug: 1 });
 
 export default models.Article || model<IArticle>("Article", ArticleSchema);
