@@ -22,9 +22,10 @@ export default function CommentList({ articleId }: CommentListProps) {
         setLoading(true);
         const res = await fetch(`/api/comments?articleId=${articleId}`);
         const data = await res.json();
-        setComments(data.comments || []);
+        setComments(Array.isArray(data.comments) ? data.comments : []); // ✅ safe
       } catch (err) {
         console.error("Failed to load comments:", err);
+        setComments([]);
       } finally {
         setLoading(false);
       }

@@ -3,7 +3,8 @@ import { connectDB } from "@/lib/mongodb";
 import Category from "@/lib/models/Category";
 import { ok, notFound, badRequest, error500, unauthorized, forbidden } from "@/lib/response";
 import { getUserFromCookies, requireRole } from "@/lib/auth";
-import { logger } from "@/lib/logger";
+import logger from "@/lib/logger";
+
 
 export async function GET(_: NextRequest, { params }: { params: { id: string } }) {
   await connectDB();
@@ -25,7 +26,7 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
     logger.info({ categoryId: cat._id, by: user.sub }, "Category updated");
     return ok(cat);
   } catch (e) {
-    logger.error(e, "Category update error");
+    logger.error("Category update error");
     return error500();
   }
 }
@@ -42,7 +43,7 @@ export async function DELETE(_: NextRequest, { params }: { params: { id: string 
     logger.warn({ categoryId: params.id, by: user.sub }, "Category deleted");
     return ok({ deleted: true });
   } catch (e) {
-    logger.error(e, "Category delete error");
+    logger.error("Category delete error");
     return error500();
   }
 }
