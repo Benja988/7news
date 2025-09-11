@@ -29,11 +29,9 @@ export default function RootLayout({
     <html lang="en">
       <body className="flex flex-col min-h-screen">
         <AuthProvider>
-          <Header />
-          <main className="flex-grow container mx-auto px-4 py-6">
+          <main className="">
             {children}
           </main>
-          <Footer />
         </AuthProvider>
       </body>
     </html>

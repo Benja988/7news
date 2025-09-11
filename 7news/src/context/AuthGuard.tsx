@@ -13,12 +13,14 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
       if (!user) {
         router.push("/login");
       } else if (!["admin", "editor"].includes(user.role)) {
-        router.push("/");
+        router.push("/403");
       }
     }
   }, [user, loading, router]);
 
-  if (loading) return <p className="text-center mt-10">Checking authentication...</p>;
+  if (loading || !user) {
+    return <p className="text-center mt-10">Checking authentication...</p>;
+  }
 
   return <>{children}</>;
 }
