@@ -1,5 +1,4 @@
-// models/Article.ts
-import { Schema, model, models, Types } from "mongoose";
+import { Schema, model, models, Types, Model } from "mongoose";
 import slugify from "slugify";
 import User from "./User";
 import Category from "./Category";
@@ -24,7 +23,7 @@ export interface IArticle {
 const ArticleSchema = new Schema<IArticle>(
   {
     title: { type: String, required: true, trim: true, maxlength: 160 },
-    slug: { type: String, required: true, unique: true, lowercase: true},
+    slug: { type: String, required: true, unique: true, lowercase: true },
     excerpt: { type: String, maxlength: 300 },
     content: { type: String, required: true },
     coverImage: { type: String },
@@ -38,7 +37,6 @@ const ArticleSchema = new Schema<IArticle>(
   { timestamps: true }
 );
 
-// 🔹 Auto slugify title if not provided
 ArticleSchema.pre("validate", function (next) {
   if (!this.slug && this.title) {
     this.slug = slugify(this.title, { lower: true, strict: true });
@@ -46,7 +44,6 @@ ArticleSchema.pre("validate", function (next) {
   next();
 });
 
-// 🔹 Auto set publishedAt
 ArticleSchema.pre("save", function (next) {
   if (this.isModified("status") && this.status === "published" && !this.publishedAt) {
     this.publishedAt = new Date();
@@ -54,9 +51,10 @@ ArticleSchema.pre("save", function (next) {
   next();
 });
 
-// 🔹 Indexes
 ArticleSchema.index({ title: "text", excerpt: "text", content: "text", tags: 1 });
 ArticleSchema.index({ createdAt: -1 });
-// ArticleSchema.index({ slug: 1 });
 
-export default models.Article || model<IArticle>("Article", ArticleSchema);
+const Article: Model<IArticle> =
+  (models.Article as Model<IArticle>) || model<IArticle>("Article", ArticleSchema);
+
+export default Article;

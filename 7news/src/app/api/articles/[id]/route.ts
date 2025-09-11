@@ -1,7 +1,7 @@
 // app/api/articles/[id]/route.ts
-import Article from "@/lib/models/Article";
 import { connectDB } from "@/lib/mongodb";
 import { requireAuth } from "@/lib/requireAuth";
+import Article from "@/lib/models/Article";
 
 export async function GET(_: Request, { params }: { params: { id: string } }) {
   await connectDB();
@@ -10,16 +10,17 @@ export async function GET(_: Request, { params }: { params: { id: string } }) {
   return Response.json(article);
 }
 
-export const PUT = requireAuth(["admin", "editor"])(async (req: any, { params }: { params: { id: string } }) => {
+export const PUT = requireAuth(["admin", "editor"])(async (req: Request, { params }: { params: { id: string } }) => {
   await connectDB();
   const body = await req.json();
-  const article = await Article.findByIdAndUpdate(params.id, body, { new: true });
+  const article = await Article.findByIdAndUpdate(params.id as string, body, { new: true });
   if (!article) return Response.json({ message: "Not found" }, { status: 404 });
   return Response.json(article);
 });
 
-export const DELETE = requireAuth(["admin"])(async (_: any, { params }: { params: { id: string } }) => {
+export const DELETE = requireAuth(["admin"])(async (_: Request, { params }: { params: { id: string } }) => {
   await connectDB();
-  await Article.findByIdAndDelete(params.id);
+  await Article.findByIdAndDelete(params.id as string);
   return Response.json({ message: "Deleted" });
 });
+

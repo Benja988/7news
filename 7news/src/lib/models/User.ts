@@ -1,10 +1,11 @@
-import { Schema, model, models } from "mongoose";
+// models/User.ts
+import { Schema, model, models, Types, Model } from "mongoose";
 import bcrypt from "bcryptjs";
 
 export type UserRole = "admin" | "editor" | "writer" | "user";
 
 export interface IUser {
-  _id: any;
+  _id: Types.ObjectId;
   name: string;
   email: string;
   password: string;
@@ -38,8 +39,8 @@ const UserSchema = new Schema<IUser>(
 );
 
 UserSchema.pre("save", async function (next) {
-  const doc = this as any;
-  if (!doc.isModified("password")) return next();
+  const doc = this as IUser;
+  if (!this.isModified("password")) return next();
   const salt = await bcrypt.genSalt(10);
   doc.password = await bcrypt.hash(doc.password, salt);
   next();
@@ -49,4 +50,6 @@ UserSchema.methods.comparePassword = function (candidate: string) {
   return bcrypt.compare(candidate, this.password);
 };
 
-export default models.User || model<IUser>("User", UserSchema);
+const User = (models.User as Model<IUser>) || model<IUser>("User", UserSchema);
+
+export default User;
