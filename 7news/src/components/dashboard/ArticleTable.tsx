@@ -45,7 +45,7 @@ export default function ArticleTable({ articles }: { articles: Article[] }) {
               </td>
               <td className="p-3 text-right space-x-2">
                 <Link
-                  href={`/articles/${article._id}/edit`}
+                  href={`/admin/articles/${article._id}/edit`}
                   className="text-blue-600 hover:underline"
                 >
                   Edit

@@ -7,42 +7,77 @@ type Props = {
 
 export default function ArticleForm({ initialData }: Props) {
   const [form, setForm] = useState(
-    initialData || {
-      title: "",
-      excerpt: "",
-      content: "",
-      coverImage: "",
-      category: "",
-      tags: "",
-      status: "draft",
-    }
+    initialData
+      ? {
+          ...initialData,
+          tags: Array.isArray(initialData.tags)
+            ? initialData.tags.join(", ")
+            : initialData.tags || "",
+        }
+      : {
+          title: "",
+          excerpt: "",
+          content: "",
+          coverImage: "",
+          category: "",
+          tags: "",
+          status: "draft",
+        }
   );
-  const [categories, setCategories] = useState([]);
+
+  const [categories, setCategories] = useState<any[]>([]);
 
   useEffect(() => {
     fetch("/api/categories")
       .then((res) => res.json())
-      .then((data) => setCategories(data));
+      .then((data) => {
+        // If your API response is wrapped like { data: [...] }, unwrap it
+        const cats = Array.isArray(data) ? data : data.data || [];
+        setCategories(cats);
+      })
+      .catch((err) => {
+        console.error("Failed to fetch categories", err);
+        setCategories([]);
+      });
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const tagsArray = Array.isArray(form.tags)
+      ? form.tags
+      : form.tags
+          .split(",")
+          .map((t) => t.trim())
+          .filter(Boolean);
+
     const method = initialData ? "PUT" : "POST";
-    const url = initialData ? `/api/articles/${initialData._id}` : "/api/articles";
+    const url = initialData
+      ? `/api/articles/${initialData._id}`
+      : "/api/articles";
+
     await fetch(url, {
       method,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...form, tags: form.tags.split(",") }),
+      body: JSON.stringify({ ...form, tags: tagsArray }),
     });
-    window.location.href = "/articles";
+
+    window.location.href = "/admin/articles";
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded shadow">
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-4 bg-white p-6 rounded shadow"
+    >
       <input
         name="title"
         value={form.title}
