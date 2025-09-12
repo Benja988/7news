@@ -8,22 +8,26 @@ import { getUserFromCookies, requireRole } from "@/lib/auth";
 import logger from "@/lib/logger";
 
 
-export async function GET(_: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(_: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   await connectDB();
-  const cat = await Category.findById(params.id);
+
+  const { id } = await params;
+  const cat = await Category.findById(id);
   if (!cat) return notFound();
   return ok(cat);
 }
 
-export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     await connectDB();
+
+    const { id } = await params;
     const user = await getUserFromCookies();
     if (!user) return unauthorized();
     if (!requireRole(["admin", "editor"], user.role)) return forbidden();
 
     const json = await req.json();
-    const cat = await Category.findByIdAndUpdate(params.id, json, { new: true });
+    const cat = await Category.findByIdAndUpdate(id, json, { new: true });
     if (!cat) return notFound();
     logger.info({ categoryId: cat._id, by: user.sub }, "Category updated");
     return ok(cat);
@@ -33,16 +37,18 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
   }
 }
 
-export async function DELETE(_: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(_: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     await connectDB();
+
+    const { id } = await params;
     const user = await getUserFromCookies();
     if (!user) return unauthorized();
     if (!requireRole(["admin"], user.role)) return forbidden();
 
-    const del = await Category.findByIdAndDelete(params.id);
+    const del = await Category.findByIdAndDelete(id);
     if (!del) return notFound();
-    logger.warn({ categoryId: params.id, by: user.sub }, "Category deleted");
+    logger.warn({ categoryId: id, by: user.sub }, "Category deleted");
     return ok({ deleted: true });
   } catch (e) {
     logger.error("Category delete error");

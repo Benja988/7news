@@ -56,7 +56,7 @@ export default function ArticleForm({ initialData }: Props) {
       ? form.tags
       : form.tags
           .split(",")
-          .map((t) => t.trim())
+          .map((t: string) => t.trim())
           .filter(Boolean);
 
     const method = initialData ? "PUT" : "POST";

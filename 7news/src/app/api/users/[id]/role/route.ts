@@ -4,8 +4,10 @@ import User from "@/lib/models/User";
 import { requireAuth } from "@/lib/requireAuth";
 import { badRequest } from "@/lib/response";
 
-export const PATCH = requireAuth(["admin"])(async (req: any, { params }: { params: { id: string } }) => {
+export const PATCH = requireAuth(["admin"])(async (req: any, { params }: { params: Promise<{ id: string }> }) => {
   await connectDB();
+
+  const { id } = await params;
   const { role } = await req.json();
 
   if (!["user", "writer", "editor", "admin"].includes(role)) {
@@ -14,7 +16,7 @@ export const PATCH = requireAuth(["admin"])(async (req: any, { params }: { param
 
   // prevent removing the last admin
   if (role !== "admin") {
-    const target = await User.findById(params.id);
+    const target = await User.findById(id);
     if (target?.role === "admin") {
       const adminCount = await User.countDocuments({ role: "admin" });
       if (adminCount <= 1) {
@@ -23,7 +25,7 @@ export const PATCH = requireAuth(["admin"])(async (req: any, { params }: { param
     }
   }
 
-  const updated = await User.findByIdAndUpdate(params.id, { role }, { new: true });
+  const updated = await User.findByIdAndUpdate(id, { role }, { new: true });
   if (!updated) return badRequest("User not found");
 
   return Response.json({
