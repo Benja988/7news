@@ -15,6 +15,7 @@ export async function GET(req: Request) {
 
   const articles = await Article.find(filter)
     .populate("author", "name")
+    .populate("category", "name")
     .sort({ createdAt: -1 })
     .skip((page - 1) * limit)
     .limit(limit)
