@@ -110,3 +110,44 @@ CastError: Cast to ObjectId failed for value "undefined" (type string) at path "
 2025-09-13 11:05:04 [INFO] [users] Users retrieved
 2025-09-13 11:07:58 [INFO] [users] Users retrieved
 2025-09-13 11:08:26 [INFO] [user:single] User retrieved: benjaminokumu12@gmail.com
+2025-09-13 12:21:11 [WARN] [5aa53104-4775-4375-8936-9d555b5a2e71] [Auth] No access token found in cookies
+2025-09-13 12:21:11 [WARN] [user:me] Unauthenticated access attempt
+2025-09-13 12:21:12 [INFO] [articles:list-create] Fetched articles list
+2025-09-13 12:21:36 [INFO] [articles:list-create] Fetched articles list
+2025-09-13 12:21:37 [INFO] [articles:list-create] Fetched articles list
+2025-09-13 12:21:48 [INFO] [articles:list-create] Fetched articles list
+2025-09-13 12:21:48 [INFO] [articles:list-create] Fetched articles list
+2025-09-13 12:22:05 [INFO] [5e20f2f3-759c-4963-8250-b278cbaaa047] [Auth] Signing access token for user: benjaminokumu12@gmail.com
+2025-09-13 12:22:05 [INFO] [48e12bd6-3ab9-40bd-b750-199dab8b4aa2] [Auth] Signing refresh token for user: benjaminokumu12@gmail.com
+2025-09-13 12:22:05 [INFO] [f540c592-d1f0-41ef-a867-5c37ad6ae290] [Auth] Setting auth cookies
+2025-09-13 12:22:05 [INFO] [auth:login] User logged in: benjaminokumu12@gmail.com
+2025-09-13 12:22:05 [INFO] [articles:list-create] Fetched articles list
+2025-09-13 12:22:05 [INFO] [articles:list-create] Fetched articles list
+2025-09-13 12:22:10 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-09-13 12:22:10 [INFO] [articles:list-create] Fetched articles list
+2025-09-13 12:22:23 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-09-13 12:23:06 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-09-13 12:23:07 [INFO] [articles:list-create] Fetched articles list
+2025-09-13 12:23:58 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-09-13 12:23:58 [INFO] [articles:list-create] Fetched articles list
+2025-09-13 12:25:04 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-09-13 12:25:04 [INFO] [articles:list-create] Fetched articles list
+2025-09-13 12:25:08 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-09-13 12:25:08 [INFO] [articles:list-create] Fetched articles list
+2025-09-13 12:25:39 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-09-13 12:25:40 [INFO] [articles:list-create] Fetched articles list
+2025-09-13 12:28:32 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-09-13 12:28:32 [INFO] [articles:list-create] Fetched articles list
+2025-09-13 12:30:50 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-09-13 12:30:50 [INFO] [articles:list-create] Fetched articles list
+2025-09-13 12:31:43 [INFO] [articles:list-create] Fetched articles list
+2025-09-13 12:32:26 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-09-13 12:32:26 [INFO] [articles:list-create] Fetched articles list
+2025-09-13 12:32:55 [INFO] [articles:list-create] Fetched articles list
+2025-09-13 12:32:55 [INFO] [articles:list-create] Fetched articles list
+2025-09-13 12:33:19 [INFO] [articles:list-create] Fetched articles list
+2025-09-13 12:33:19 [INFO] [articles:list-create] Fetched articles list
+2025-09-13 12:33:20 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-09-13 12:33:20 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-09-13 12:33:54 [INFO] [articles:by-slug] Fetched article by slug
+2025-09-13 12:33:54 [INFO] [articles:by-slug] Fetched article by slug

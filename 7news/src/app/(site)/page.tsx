@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import NewsCard from "@/components/ui/NewsCard";
 import CategorySearchBar from "@/components/ui/CategorySearchBar";
 
@@ -16,7 +16,7 @@ export default function HomePage() {
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchArticles = async (url: string) => {
+  const fetchArticles = useCallback(async (url: string) => {
     try {
       setLoading(true);
       const res = await fetch(url, { cache: "no-store" });
@@ -24,47 +24,65 @@ export default function HomePage() {
       setArticles(data.articles || []);
     } catch (err) {
       console.error("Failed to load articles:", err);
+      setArticles([]);
     } finally {
       setLoading(false);
     }
-  };
-
-  // 🔹 Initial load
-  useEffect(() => {
-    fetchArticles("/api/articles?page=1&limit=6");
   }, []);
 
-  // 🔍 Handle search
-  const handleSearch = (query: string) => {
-    if (query.trim()) {
-      fetchArticles(`/api/articles/search?q=${encodeURIComponent(query)}&page=1&limit=6`);
-    } else {
-      fetchArticles("/api/articles?page=1&limit=6");
-    }
-  };
+  // Initial load
+  useEffect(() => {
+    fetchArticles("/api/articles?page=1&limit=6");
+  }, [fetchArticles]);
 
-  // 📂 Handle category filter
-  const handleCategorySelect = (slug: string) => {
-    if (slug) {
-      fetchArticles(`/api/articles/category/${slug}?page=1&limit=6`);
-    } else {
-      fetchArticles("/api/articles?page=1&limit=6");
-    }
-  };
+  // Search
+  const handleSearch = useCallback(
+    (query: string) => {
+      if (query.trim()) {
+        fetchArticles(
+          `/api/articles/search?q=${encodeURIComponent(query)}&page=1&limit=6`
+        );
+      } else {
+        fetchArticles("/api/articles?page=1&limit=6");
+      }
+    },
+    [fetchArticles]
+  );
 
-  if (loading) return <p className="text-center mt-10">Loading latest news...</p>;
+  // Category
+  const handleCategorySelect = useCallback(
+    (slug: string) => {
+      if (slug) {
+        fetchArticles(`/api/articles/category/${slug}?page=1&limit=6`);
+      } else {
+        fetchArticles("/api/articles?page=1&limit=6");
+      }
+    },
+    [fetchArticles]
+  );
 
   return (
-    <section>
-      <h1 className="text-3xl font-bold mb-6">Latest News</h1>
+    <section className="container mx-auto px-4 py-10">
+      <h1 className="text-4xl font-bold mb-8 text-gray-900 dark:text-white">
+        📰 Latest News
+      </h1>
 
-      {/* 🔹 Category + Search Component */}
-      <CategorySearchBar onSearch={handleSearch} onCategorySelect={handleCategorySelect} />
+      {/* Category + Search */}
+      <CategorySearchBar
+        onSearch={handleSearch}
+        onCategorySelect={handleCategorySelect}
+      />
 
-      {articles.length === 0 ? (
-        <p>No articles found.</p>
+      {loading ? (
+        <div className="flex justify-center items-center h-40">
+          <p className="text-gray-500 animate-pulse">Loading latest news...</p>
+        </div>
+      ) : articles.length === 0 ? (
+        <div className="text-center mt-16 text-gray-500">
+          <p>No articles found.</p>
+        </div>
       ) : (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
           {articles.map((article) => (
             <NewsCard
               key={article._id}
