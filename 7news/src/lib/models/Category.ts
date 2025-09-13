@@ -19,9 +19,6 @@ const CategorySchema = new Schema<ICategory>(
   { timestamps: true }
 );
 
-// Optional: add text index if needed later
-// CategorySchema.index({ slug: 1 });
-
 const Category = (models.Category as Model<ICategory>) || model<ICategory>("Category", CategorySchema);
 
 export default Category;

@@ -1,22 +1,34 @@
-// app/api/articles/slug/[slug]/route.ts (Enhanced with related articles population)
-
+// app/api/articles/slug/[slug]/route.ts
 import Article from "@/lib/models/Article";
 import { connectDB } from "@/lib/mongodb";
+import { error500 } from "@/lib/response";
+import logger from "@/lib/logger";
 
-export async function GET(_: Request, context: { params: Promise<{ slug: string }> }) {
+const articleLogger = logger.child("articles:by-slug");
+
+export async function GET(req: Request, { params }: { params: { slug: string } }) {
   await connectDB();
+  const requestId = req.headers.get("x-request-id") || undefined;
 
-  const { slug } = await context.params;
+  try {
+    const article = await Article.findOneAndUpdate(
+      { slug: params.slug, status: "published" },
+      { $inc: { views: 1 } },
+      { new: true }
+    )
+      .populate("author", "name")
+      .populate("category", "name")
+      .populate("relatedArticles", "title slug coverImage excerpt");
 
-  const article = await Article.findOneAndUpdate(
-    { slug, status: "published" },
-    { $inc: { views: 1 } },
-    { new: true }
-  )
-    .populate("author", "name")
-    .populate("category", "name")
-    .populate("relatedArticles", "title slug coverImage excerpt"); // Populate related for display
+    if (!article) {
+      articleLogger.warn("Article not found by slug", { requestId, slug: params.slug });
+      return Response.json({ message: "Not found" }, { status: 404 });
+    }
 
-  if (!article) return Response.json({ message: "Not found" }, { status: 404 });
-  return Response.json(article);
+    articleLogger.info("Fetched article by slug", { requestId, slug: params.slug });
+    return Response.json(article);
+  } catch (err: unknown) {
+    articleLogger.error("Error fetching article by slug", { err, requestId });
+    return error500("Failed to fetch article");
+  }
 }

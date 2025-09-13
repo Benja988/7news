@@ -1,4 +1,4 @@
-// lib/models/Comment.ts (New model for comments feature)
+// lib/models/Comment.ts
 
 import { Schema, model, models, Types, Model } from "mongoose";
 import User from "./User";

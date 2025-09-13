@@ -3,7 +3,6 @@ import fs from "fs";
 import path from "path";
 import winston from "winston";
 import { v4 as uuidv4 } from "uuid";
-import { ObjectId } from "mongoose";
 
 // Define log directory
 const logDir = path.join(process.cwd(), "logs");
