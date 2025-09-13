@@ -1,39 +1,41 @@
 // src/app/api/auth/register/route.ts
+
+
 import { NextRequest } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import User from "@/lib/models/User";
 import { registerSchema } from "@/lib/validations";
-import { badRequest, created } from "@/lib/response";
+import { badRequest, created, error500 } from "@/lib/response";
 import logger from "@/lib/logger";
 
-export async function POST(req: NextRequest) {
-  try {
-    // connect to DB
-    await connectDB();
+const authLogger = logger.child("auth:register");
 
-    // parse request body
+export async function POST(req: NextRequest) {
+  const requestId = req.headers.get("x-request-id") || undefined;
+  try {
+    await connectDB();
     const json = await req.json();
 
-    // validate with Zod
+    // Validate with Zod
     const parsed = registerSchema.safeParse(json);
     if (!parsed.success) {
       const errors = parsed.error.flatten().formErrors.join(", ");
+      authLogger.warn(`Invalid registration attempt: ${errors}`, { requestId });
       return badRequest(errors || "Invalid input");
     }
 
-    // check for existing user
+    // Check for existing user
     const exists = await User.findOne({ email: parsed.data.email });
     if (exists) {
+      authLogger.warn(`Registration failed: Email already in use (${parsed.data.email})`, { requestId });
       return badRequest("Email already in use");
     }
 
-    // create user
+    // Create user
     const user = await User.create({ ...parsed.data, role: "user" });
 
-    // log success
-    logger.info({ userId: user._id }, "✅ User registered");
+    authLogger.info(`User registered: ${user.email}`, { userId: user._id.toString(), requestId });
 
-    // return response
     return created({
       id: user._id,
       email: user.email,
@@ -41,16 +43,7 @@ export async function POST(req: NextRequest) {
       role: user.role,
     });
   } catch (e: any) {
-    // log error
-    logger.error(e, "❌ Register error");
-
-    // return detailed error in JSON
-    return new Response(
-      JSON.stringify({
-        error: e.message || "Internal Server Error",
-        stack: process.env.NODE_ENV === "development" ? e.stack : undefined,
-      }),
-      { status: 500 }
-    );
+    authLogger.error(e, { requestId, context: "Register error" });
+    return error500(e.message || "Internal server error");
   }
 }

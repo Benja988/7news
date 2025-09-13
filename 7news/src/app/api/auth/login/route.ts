@@ -1,48 +1,56 @@
+// src/app/api/auth/login/route.ts
+
 import { NextRequest } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import User from "@/lib/models/User";
 import { loginSchema } from "@/lib/validations";
 import { badRequest, ok, unauthorized, error500 } from "@/lib/response";
 import { signAccessToken, signRefreshToken, setAuthCookies } from "@/lib/auth";
-import bcrypt from "bcryptjs";
 import logger from "@/lib/logger";
 
+const authLogger = logger.child("auth:login");
+
 export async function POST(req: NextRequest) {
+  const requestId = req.headers.get("x-request-id") || undefined;
   try {
     await connectDB();
     const json = await req.json();
 
-    // validate request body
+    // Validate request body
     const parsed = loginSchema.safeParse(json);
     if (!parsed.success) {
-      logger.warn("Invalid login attempt: bad input");
+      authLogger.warn("Invalid login attempt: bad input", { requestId });
       return badRequest("Invalid credentials");
     }
 
-    // find user
+    // Find user
     const user = await User.findOne({ email: parsed.data.email }).select("+password");
     if (!user) {
-      logger.warn(`Invalid login attempt: email not found (${parsed.data.email})`);
+      authLogger.warn(`Invalid login attempt: email not found (${parsed.data.email})`, { requestId });
       return unauthorized("Invalid credentials");
     }
 
-    // verify password
-    const valid = await bcrypt.compare(parsed.data.password, user.password);
+    // Verify password
+    const valid = await user.comparePassword(parsed.data.password);
     if (!valid) {
-      logger.warn(`Invalid login attempt: wrong password for user ${user._id}`);
+      authLogger.warn(`Invalid login attempt: wrong password for user ${user._id}`, { requestId });
       return unauthorized("Invalid credentials");
     }
 
-    // create tokens
+    // Update last login
+    user.lastLogin = new Date();
+    await user.save();
+
+    // Create tokens
     const accessToken = await signAccessToken(user);
     const refreshToken = await signRefreshToken(user);
 
-    // set cookies
+    // Set cookies
     await setAuthCookies(accessToken, refreshToken);
 
-    logger.info({ userId: user._id, email: user.email }, "User logged in");
+    authLogger.info(`User logged in: ${user.email}`, { userId: user._id.toString(), requestId });
 
-    // return tokens + user info
+    // Return tokens + user info
     return ok({
       user: {
         id: user._id,
@@ -56,7 +64,7 @@ export async function POST(req: NextRequest) {
       },
     });
   } catch (e) {
-    logger.error({ err: e }, "Login error");
-    return error500();
+    authLogger.error(`Login error: ${e instanceof Error ? e.message : String(e)}`, { requestId });
+    return error500("Internal server error");
   }
 }

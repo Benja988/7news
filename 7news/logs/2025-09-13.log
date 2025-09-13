@@ -1,0 +1,112 @@
+2025-09-13 10:54:17 [WARN] [auth:register] Registration failed: Email already in use (benjaminokumu12@gmail.com)
+2025-09-13 10:54:26 [INFO] [auth:register] User registered: benjaminokumu13@gmail.com
+2025-09-13 10:54:50 [INFO] [85ce907e-6a62-47b5-b8e8-5577fad6a15e] [Auth] Signing access token for user: benjaminokumu13@gmail.com
+2025-09-13 10:54:50 [INFO] [27db9f5c-7467-443c-acca-173c084e4a7e] [Auth] Signing refresh token for user: benjaminokumu13@gmail.com
+2025-09-13 10:54:50 [INFO] [b525c96e-a4ed-4395-9d63-37c8ba450024] [Auth] Setting auth cookies
+2025-09-13 10:54:50 [INFO] [auth:login] User logged in: benjaminokumu13@gmail.com
+2025-09-13 10:55:11 [INFO] [d55cd656-18f1-4029-a36a-a84e663173d2] [Auth] Signing access token for user: benjaminokumu12@gmail.com
+2025-09-13 10:55:11 [INFO] [34998592-d087-4197-9fbf-f2ee5620b1c7] [Auth] Signing refresh token for user: benjaminokumu12@gmail.com
+2025-09-13 10:55:11 [INFO] [f63f21f7-55eb-4bbb-b5b6-73b4b98810f4] [Auth] Setting auth cookies
+2025-09-13 10:55:11 [INFO] [auth:login] User logged in: benjaminokumu12@gmail.com
+2025-09-13 10:55:39 [INFO] [affb722d-7e21-4611-ac07-1c59f716720e] [Auth] Clearing auth cookies
+2025-09-13 10:55:39 [INFO] [auth:logout] User logged out
+2025-09-13 10:56:47 [WARN] [abcfb5b8-52d6-47fa-a8a6-3b66da30afc5] [Auth] No access token found in cookies
+2025-09-13 10:56:47 [WARN] [user:me] Unauthenticated access attempt
+2025-09-13 10:56:59 [INFO] [894d8871-4d12-45ed-902c-1127df184713] [Auth] Signing access token for user: benjaminokumu12@gmail.com
+2025-09-13 10:56:59 [INFO] [f82e214e-f2dd-4e80-8949-5730639fdcc5] [Auth] Signing refresh token for user: benjaminokumu12@gmail.com
+2025-09-13 10:56:59 [INFO] [3863ce16-aa1a-4919-ac3c-1fd45109efe7] [Auth] Setting auth cookies
+2025-09-13 10:56:59 [INFO] [auth:login] User logged in: benjaminokumu12@gmail.com
+2025-09-13 10:57:25 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-09-13 10:58:56 [INFO] [user:role] User role updated: benjaminokumu13@gmail.com to admin
+2025-09-13 10:59:10 [INFO] [user:role] User role updated: benjaminokumu13@gmail.com to admin
+2025-09-13 10:59:46 [INFO] [user:role] User role updated: benjaminokumu13@gmail.com to writer
+2025-09-13 11:01:15 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-09-13 11:01:17 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-09-13 11:01:19 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-09-13 11:02:23 [INFO] [3ce5c3cb-a701-4e96-8638-3b263d95e6ba] [Auth] Clearing auth cookies
+2025-09-13 11:02:23 [INFO] [auth:logout] User logged out
+2025-09-13 11:02:29 [WARN] [29e3a258-54e9-432f-9977-302913795ca0] [Auth] No access token found in cookies
+2025-09-13 11:02:29 [WARN] [user:me] Unauthenticated access attempt
+2025-09-13 11:02:51 [INFO] [631afcac-fb9f-43ae-95c4-009edaad9903] [Auth] Signing access token for user: benjaminokumu12@gmail.com
+2025-09-13 11:02:51 [INFO] [122f9f4f-1f21-4a25-82b0-09319b95d4f6] [Auth] Signing refresh token for user: benjaminokumu12@gmail.com
+2025-09-13 11:02:51 [INFO] [becbd284-aba9-4d8a-8692-ccf71c1fb912] [Auth] Setting auth cookies
+2025-09-13 11:02:51 [INFO] [auth:login] User logged in: benjaminokumu12@gmail.com
+2025-09-13 11:02:58 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-09-13 11:03:08 [INFO] [user:role] User role updated: benjaminokumu13@gmail.com to writer
+2025-09-13 11:04:19 [WARN] [c67e6909-7e5c-4bc3-a3e9-6e17b691b68d] [Auth] No access token found in cookies
+2025-09-13 11:04:19 [WARN] [user:me] Unauthenticated access attempt
+2025-09-13 11:04:24 [INFO] [c3c78d6d-abe9-41dd-9fed-bdc2cdeceeec] [Auth] Signing access token for user: benjaminokumu12@gmail.com
+2025-09-13 11:04:24 [INFO] [25ef575b-72df-4db3-9f08-b64375e254f3] [Auth] Signing refresh token for user: benjaminokumu12@gmail.com
+2025-09-13 11:04:24 [INFO] [a4f3d3c0-bdd4-4e9e-8077-ce53549d91f6] [Auth] Setting auth cookies
+2025-09-13 11:04:24 [INFO] [auth:login] User logged in: benjaminokumu12@gmail.com
+2025-09-13 11:04:35 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-09-13 11:04:38 [INFO] [users] Users retrieved
+2025-09-13 11:04:39 [INFO] [users] Users retrieved
+2025-09-13 11:04:48 [ERROR] [Error retrieving user] Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "User"
+CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "User"
+    at SchemaObjectId.cast (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\schema\objectId.js:251:11)
+    at SchemaType.applySetters (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\schemaType.js:1258:12)
+    at SchemaType.castForQuery (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\schemaType.js:1694:17)
+    at cast (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\cast.js:390:32)
+    at Query.cast (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\query.js:5060:12)
+    at Query._castConditions (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._findOne (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\query.js:2697:8)
+    at model.Query.exec (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\query.js:4627:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async eval (webpack-internal:///(rsc)/./src/app/api/users/[id]/route.ts:26:22)
+    at async AppRouteRouteModule.do (D:\WProjects\bbprodnews\7news\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:5:38782)
+    at async AppRouteRouteModule.handle (D:\WProjects\bbprodnews\7news\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:5:45984)
+    at async responseGenerator (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader/index.js?name=app%2Fapi%2Fusers%2F%5Bid%5D%2Froute&page=%2Fapi%2Fusers%2F%5Bid%5D%2Froute&appPaths=&pagePath=private-next-app-dir%2Fapi%2Fusers%2F%5Bid%5D%2Froute.ts&appDir=D%3A%5CWProjects%5Cbbprodnews%5C7news%5Csrc%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=D%3A%5CWProjects%5Cbbprodnews%5C7news&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D&isGlobalNotFoundEnabled=!:203:38)
+    at async AppRouteRouteModule.handleResponse (D:\WProjects\bbprodnews\7news\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:1:183692)
+    at async handleResponse (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader/index.js?name=app%2Fapi%2Fusers%2F%5Bid%5D%2Froute&page=%2Fapi%2Fusers%2F%5Bid%5D%2Froute&appPaths=&pagePath=private-next-app-dir%2Fapi%2Fusers%2F%5Bid%5D%2Froute.ts&appDir=D%3A%5CWProjects%5Cbbprodnews%5C7news%5Csrc%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=D%3A%5CWProjects%5Cbbprodnews%5C7news&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D&isGlobalNotFoundEnabled=!:265:32)
+    at async handler (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader/index.js?name=app%2Fapi%2Fusers%2F%5Bid%5D%2Froute&page=%2Fapi%2Fusers%2F%5Bid%5D%2Froute&appPaths=&pagePath=private-next-app-dir%2Fapi%2Fusers%2F%5Bid%5D%2Froute.ts&appDir=D%3A%5CWProjects%5Cbbprodnews%5C7news%5Csrc%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=D%3A%5CWProjects%5Cbbprodnews%5C7news&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D&isGlobalNotFoundEnabled=!:317:13)
+    at async doRender (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:1592:34)
+    at async DevServer.renderToResponseWithComponentsImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:1934:13)
+    at async DevServer.renderPageComponent (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:2400:24)
+    at async DevServer.renderToResponseImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:2440:32)
+    at async DevServer.pipeImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:1035:25)
+    at async NextNodeServer.handleCatchallRenderRequest (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\next-server.js:393:17)
+    at async DevServer.handleRequestImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:925:17)
+    at async D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\dev\next-dev-server.js:398:20
+    at async Span.traceAsyncFn (D:\WProjects\bbprodnews\7news\node_modules\next\dist\trace\trace.js:157:20)
+    at async DevServer.handleRequest (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\dev\next-dev-server.js:394:24)
+    at async invokeRender (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\lib\router-server.js:239:21)
+    at async handleRequest (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\lib\router-server.js:436:24)
+    at async requestHandlerImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\lib\router-server.js:464:13)
+    at async Server.requestListener (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\lib\start-server.js:218:13)
+2025-09-13 11:04:48 [ERROR] [Error retrieving user] Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "User"
+CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "User"
+    at SchemaObjectId.cast (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\schema\objectId.js:251:11)
+    at SchemaType.applySetters (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\schemaType.js:1258:12)
+    at SchemaType.castForQuery (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\schemaType.js:1694:17)
+    at cast (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\cast.js:390:32)
+    at Query.cast (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\query.js:5060:12)
+    at Query._castConditions (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._findOne (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\query.js:2697:8)
+    at model.Query.exec (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\query.js:4627:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async eval (webpack-internal:///(rsc)/./src/app/api/users/[id]/route.ts:26:22)
+    at async AppRouteRouteModule.do (D:\WProjects\bbprodnews\7news\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:5:38782)
+    at async AppRouteRouteModule.handle (D:\WProjects\bbprodnews\7news\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:5:45984)
+    at async responseGenerator (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader/index.js?name=app%2Fapi%2Fusers%2F%5Bid%5D%2Froute&page=%2Fapi%2Fusers%2F%5Bid%5D%2Froute&appPaths=&pagePath=private-next-app-dir%2Fapi%2Fusers%2F%5Bid%5D%2Froute.ts&appDir=D%3A%5CWProjects%5Cbbprodnews%5C7news%5Csrc%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=D%3A%5CWProjects%5Cbbprodnews%5C7news&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D&isGlobalNotFoundEnabled=!:203:38)
+    at async AppRouteRouteModule.handleResponse (D:\WProjects\bbprodnews\7news\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:1:183692)
+    at async handleResponse (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader/index.js?name=app%2Fapi%2Fusers%2F%5Bid%5D%2Froute&page=%2Fapi%2Fusers%2F%5Bid%5D%2Froute&appPaths=&pagePath=private-next-app-dir%2Fapi%2Fusers%2F%5Bid%5D%2Froute.ts&appDir=D%3A%5CWProjects%5Cbbprodnews%5C7news%5Csrc%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=D%3A%5CWProjects%5Cbbprodnews%5C7news&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D&isGlobalNotFoundEnabled=!:265:32)
+    at async handler (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader/index.js?name=app%2Fapi%2Fusers%2F%5Bid%5D%2Froute&page=%2Fapi%2Fusers%2F%5Bid%5D%2Froute&appPaths=&pagePath=private-next-app-dir%2Fapi%2Fusers%2F%5Bid%5D%2Froute.ts&appDir=D%3A%5CWProjects%5Cbbprodnews%5C7news%5Csrc%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=D%3A%5CWProjects%5Cbbprodnews%5C7news&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D&isGlobalNotFoundEnabled=!:317:13)
+    at async doRender (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:1592:34)
+    at async DevServer.renderToResponseWithComponentsImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:1934:13)
+    at async DevServer.renderPageComponent (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:2400:24)
+    at async DevServer.renderToResponseImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:2440:32)
+    at async DevServer.pipeImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:1035:25)
+    at async NextNodeServer.handleCatchallRenderRequest (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\next-server.js:393:17)
+    at async DevServer.handleRequestImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:925:17)
+    at async D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\dev\next-dev-server.js:398:20
+    at async Span.traceAsyncFn (D:\WProjects\bbprodnews\7news\node_modules\next\dist\trace\trace.js:157:20)
+    at async DevServer.handleRequest (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\dev\next-dev-server.js:394:24)
+    at async invokeRender (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\lib\router-server.js:239:21)
+    at async handleRequest (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\lib\router-server.js:436:24)
+    at async requestHandlerImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\lib\router-server.js:464:13)
+    at async Server.requestListener (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\lib\start-server.js:218:13)
+2025-09-13 11:05:04 [INFO] [users] Users retrieved
+2025-09-13 11:05:04 [INFO] [users] Users retrieved
+2025-09-13 11:07:58 [INFO] [users] Users retrieved
+2025-09-13 11:08:26 [INFO] [user:single] User retrieved: benjaminokumu12@gmail.com

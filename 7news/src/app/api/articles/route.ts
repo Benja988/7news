@@ -1,16 +1,27 @@
-// app/api/articles/route.ts
+// app/api/articles/route.ts (Enhanced with search, filters, and featured)
+
 import Article from "@/lib/models/Article";
 import { connectDB } from "@/lib/mongodb";
 import { requireAuth } from "@/lib/requireAuth";
-import User from "@/lib/models/User";
 
 export async function GET(req: Request) {
   await connectDB();
   const { searchParams } = new URL(req.url);
   const page = Math.max(1, parseInt(searchParams.get("page") || "1", 10));
   const limit = Math.min(50, parseInt(searchParams.get("limit") || "6", 10));
+  const search = searchParams.get("search") || "";
+  const category = searchParams.get("category") || "";
+  const tag = searchParams.get("tag") || "";
+  const sort = searchParams.get("sort") || "createdAt"; // Options: createdAt, views, likes
+  const order = searchParams.get("order") || "-1"; // -1 desc, 1 asc
+  const featuredOnly = searchParams.get("featured") === "true";
 
-  const filter = { status: "published" };
+  const filter: any = { status: "published" };
+  if (search) filter.$text = { $search: search };
+  if (category) filter.category = category;
+  if (tag) filter.tags = { $in: [tag] };
+  if (featuredOnly) filter.isFeatured = true;
+
   const total = await Article.countDocuments(filter);
 
   const articles = await Article.find(filter)
@@ -28,12 +39,10 @@ export async function GET(req: Request) {
   });
 }
 
-// 🔹 Protected: create article
+// 🔹 Protected: create article (unchanged, but can add validation for new fields)
 export const POST = requireAuth(["admin", "editor"])(async (req: any) => {
   await connectDB();
   const body = await req.json();
   const article = await Article.create({ ...body, author: req.user.sub });
-  console.log("REQ USER:", req.user.sub);
-  // const article = await Article.create({ ...body, author: "68c025ef605cf538a476381a" });
   return Response.json(article, { status: 201 });
 });

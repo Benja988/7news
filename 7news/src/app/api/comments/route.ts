@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
       content: parsed.data.content,
     });
 
-    logger.info({ commentId: doc._id, by: user.sub }, "Comment created");
+    // logger.info({ commentId: doc._id, by: user.sub }, "Comment created");
     return created(doc);
   } catch (e) {
     logger.error("Comment create error");

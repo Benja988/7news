@@ -29,7 +29,7 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
     const json = await req.json();
     const cat = await Category.findByIdAndUpdate(id, json, { new: true });
     if (!cat) return notFound();
-    logger.info({ categoryId: cat._id, by: user.sub }, "Category updated");
+    // logger.in/fo({ categoryId: cat._id, by: user.sub }, "Category updated");
     return ok(cat);
   } catch (e) {
     logger.error("Category update error");
@@ -48,7 +48,7 @@ export async function DELETE(_: NextRequest, { params }: { params: Promise<{ id:
 
     const del = await Category.findByIdAndDelete(id);
     if (!del) return notFound();
-    logger.warn({ categoryId: id, by: user.sub }, "Category deleted");
+    // logger.warn({ categoryId: id, by: user.sub }, "Category deleted");
     return ok({ deleted: true });
   } catch (e) {
     logger.error("Category delete error");
