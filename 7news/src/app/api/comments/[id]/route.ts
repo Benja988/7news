@@ -1,4 +1,4 @@
-// app/api/[slug]/route.ts
+// app/api/comments/[id]/route.ts
 
 import { NextRequest } from "next/server";
 import { connectDB } from "@/lib/mongodb";

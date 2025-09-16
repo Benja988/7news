@@ -151,3 +151,5 @@ CastError: Cast to ObjectId failed for value "undefined" (type string) at path "
 2025-09-13 12:33:20 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
 2025-09-13 12:33:54 [INFO] [articles:by-slug] Fetched article by slug
 2025-09-13 12:33:54 [INFO] [articles:by-slug] Fetched article by slug
+2025-09-13 12:34:00 [INFO] [articles:list-create] Fetched articles list
+2025-09-13 12:34:00 [INFO] [articles:list-create] Fetched articles list
