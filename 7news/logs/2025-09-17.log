@@ -1,0 +1,20 @@
+2025-09-17 12:25:25 [INFO] [a264f70d-30e1-4f2e-a21a-3114c08a9ad8] [Auth] Signing access token for user: benjaminokumu12@gmail.com
+2025-09-17 12:25:25 [INFO] [75d9097f-e707-4e89-87a9-0c4cd0668447] [Auth] Signing refresh token for user: benjaminokumu12@gmail.com
+2025-09-17 12:25:25 [INFO] [c2ee0884-95e4-4aa5-9ea3-dfba2f75c43c] [Auth] Setting auth cookies
+2025-09-17 12:25:25 [INFO] [auth:login] User logged in: benjaminokumu12@gmail.com
+2025-09-17 12:37:56 [INFO] [articles:list-create] Created article
+2025-09-17 12:38:28 [INFO] [articles:list-create] Fetched articles list
+2025-09-17 12:39:37 [INFO] [articles:by-id] Fetched article by ID
+2025-09-17 12:41:06 [WARN] [c4d9a853-b708-4252-91f1-b0fc5f94cebb] [Auth] No access token found in cookies
+2025-09-17 12:41:33 [WARN] [1c7ec49d-fce7-44b1-a7bd-5e094252751a] [Auth] No access token found in cookies
+2025-09-17 12:41:44 [INFO] [a708da30-a1a5-4973-b40f-39769c087a44] [Auth] Signing access token for user: benjaminokumu12@gmail.com
+2025-09-17 12:41:44 [INFO] [a4074ce7-ecee-4411-ac49-894373e46b72] [Auth] Signing refresh token for user: benjaminokumu12@gmail.com
+2025-09-17 12:41:44 [INFO] [d694d040-ceea-4abe-a87f-7f90c5366341] [Auth] Setting auth cookies
+2025-09-17 12:41:44 [INFO] [auth:login] User logged in: benjaminokumu12@gmail.com
+2025-09-17 12:42:43 [ERROR] Comment create error
+2025-09-17 13:21:02 [WARN] [c70cbcf9-8d9e-4143-b28b-581012938bf8] [Auth] No access token found in cookies
+2025-09-17 14:02:13 [INFO] [8354218c-c66c-493d-b29b-2fbcb87eac79] [Auth] Signing access token for user: benjaminokumu12@gmail.com
+2025-09-17 14:02:13 [INFO] [17ed191e-991f-46da-8365-4ebf9d4f0e8e] [Auth] Signing refresh token for user: benjaminokumu12@gmail.com
+2025-09-17 14:02:13 [INFO] [915b2fc2-5910-4225-8bea-3012623e64b2] [Auth] Setting auth cookies
+2025-09-17 14:02:13 [INFO] [auth:login] User logged in: benjaminokumu12@gmail.com
+2025-09-17 14:09:40 [ERROR] Comment create error
