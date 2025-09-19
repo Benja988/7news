@@ -38,7 +38,7 @@ export default function CreateArticlePage() {
       const res = await fetch("/api/articles", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        credentials: "include", // ✅ sends cookies
+        credentials: "include", 
         body: JSON.stringify(formData),
       });
 
