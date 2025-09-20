@@ -6,10 +6,13 @@ import logger from "@/lib/logger";
 
 const articleLogger = logger.child("articles:by-slug");
 
-export async function GET(req: Request, { params }: { params: Promise<{ slug: string }> }) {
+export async function GET(
+  req: Request,
+  { params }: { params: Promise<{ slug: string }> }
+) {
   await connectDB();
+  const { slug } = await params;
   const requestId = req.headers.get("x-request-id") || undefined;
-  const slug = await params;
 
   try {
     const article = await Article.findOneAndUpdate(

@@ -1,13 +1,16 @@
 "use client";
 import { useState } from "react";
+import type { Comment } from "@/types/comment";
 
 type CommentFormProps = {
   articleId: string;
+  onCommentPosted?: (newComment: Comment) => void;
 };
 
-export default function CommentForm({ articleId }: CommentFormProps) {
+export default function CommentForm({ articleId, onCommentPosted }: CommentFormProps) {
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -15,14 +18,30 @@ export default function CommentForm({ articleId }: CommentFormProps) {
 
     try {
       setLoading(true);
-      await fetch("/api/comments", {
+      setError(null);
+
+      const res = await fetch("/api/comments", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        credentials: "include", // ✅ include cookies/session
         body: JSON.stringify({ articleId, content }),
       });
+
+      if (!res.ok) {
+        if (res.status === 401) {
+          throw new Error("You must be logged in to comment.");
+        }
+        throw new Error("Failed to post comment.");
+      }
+
+      const data = await res.json();
       setContent("");
-    } catch (err) {
+
+      // Call parent to update comment list
+      if (onCommentPosted) onCommentPosted(data.comment as Comment);
+    } catch (err: any) {
       console.error("Failed to post comment:", err);
+      setError(err.message || "Something went wrong.");
     } finally {
       setLoading(false);
     }
@@ -30,6 +49,7 @@ export default function CommentForm({ articleId }: CommentFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="mb-6">
+      {error && <p className="text-red-600 mb-2">{error}</p>}
       <textarea
         value={content}
         onChange={(e) => setContent(e.target.value)}

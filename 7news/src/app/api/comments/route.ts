@@ -18,7 +18,7 @@ export async function GET(req: NextRequest) {
     const comments = await Comment.find(query)
       .sort({ createdAt: -1 })
       .limit(100)
-      .populate("author", "name"); // ✅ correct field
+      .populate("author", "name"); 
 
     return Response.json({ comments });
   } catch (e) {

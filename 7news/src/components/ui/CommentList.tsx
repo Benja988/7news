@@ -1,19 +1,14 @@
 "use client";
+import { Comment } from "@/types/comment";
 import { useEffect, useState } from "react";
-
-type Comment = {
-  _id: string;
-  content: string;
-  createdAt: string;
-  user?: { name: string };
-};
 
 type CommentListProps = {
   articleId: string;
+  initialComments?: Comment[];
 };
 
-export default function CommentList({ articleId }: CommentListProps) {
-  const [comments, setComments] = useState<Comment[]>([]);
+export default function CommentList({ articleId, initialComments = [] }: CommentListProps) {
+  const [comments, setComments] = useState<Comment[]>(initialComments);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -22,7 +17,7 @@ export default function CommentList({ articleId }: CommentListProps) {
         setLoading(true);
         const res = await fetch(`/api/comments?articleId=${articleId}`);
         const data = await res.json();
-        setComments(Array.isArray(data.comments) ? data.comments : []); // ✅ safe
+        setComments(Array.isArray(data.comments) ? data.comments : []);
       } catch (err) {
         console.error("Failed to load comments:", err);
         setComments([]);
@@ -42,7 +37,7 @@ export default function CommentList({ articleId }: CommentListProps) {
         <div key={comment._id} className="border-b pb-2">
           <p className="text-gray-800">{comment.content}</p>
           <p className="text-sm text-gray-500">
-            By {comment.user?.name || "Anonymous"} ·{" "}
+            By {comment.author?.name || "Anonymous"} ·{" "}
             {new Date(comment.createdAt).toLocaleDateString()}
           </p>
         </div>
