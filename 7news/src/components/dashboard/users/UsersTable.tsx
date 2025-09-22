@@ -5,30 +5,39 @@ import Link from 'next/link';
 
 export default function UsersTable({ users }: { users: any[] }) {
   return (
-    <table className="min-w-full border">
-      <thead>
-        <tr className="bg-gray-100 text-left">
-          <th className="p-2 border">Name</th>
-          <th className="p-2 border">Email</th>
-          <th className="p-2 border">Role</th>
-          <th className="p-2 border">Status</th>
-          <th className="p-2 border">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {users.map(u => (
-          <tr key={u._id}>
-            <td className="p-2 border">{u.name}</td>
-            <td className="p-2 border">{u.email}</td>
-            <td className="p-2 border">{u.role}</td>
-            <td className="p-2 border">{u.isActive ? 'Active' : 'Inactive'}</td>
-            <td className="p-2 border">
-              <Link href={`/admin/users/${u._id}`} className="text-blue-600 hover:underline">View</Link> |{' '}
-              <Link href={`/admin/users/edit/${u._id}`} className="text-green-600 hover:underline">Edit</Link>
-            </td>
+    <div className="card overflow-x-auto">
+      <table className="min-w-full text-sm border-collapse">
+        <thead>
+          <tr className="bg-light-bg dark:bg-dark-surface text-light-heading dark:text-dark-heading">
+            <th className="p-3 text-left border-b">Name</th>
+            <th className="p-3 text-left border-b">Email</th>
+            <th className="p-3 text-left border-b">Role</th>
+            <th className="p-3 text-left border-b">Status</th>
+            <th className="p-3 text-left border-b">Actions</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {users.map(u => (
+            <tr
+              key={u._id}
+              className="hover:bg-light-bg/50 dark:hover:bg-dark-bg/50 transition"
+            >
+              <td className="p-3 border-b">{u.name}</td>
+              <td className="p-3 border-b">{u.email}</td>
+              <td className="p-3 border-b capitalize">{u.role}</td>
+              <td className="p-3 border-b">
+                <span className={`tag ${u.isActive ? '' : 'bg-secondary/10 text-secondary dark:bg-secondary-light/10 dark:text-secondary-light'}`}>
+                  {u.isActive ? 'Active' : 'Inactive'}
+                </span>
+              </td>
+              <td className="p-3 border-b space-x-2">
+                <Link href={`/admin/users/${u._id}`} className="btn-outline px-2 py-1">View</Link>
+                <Link href={`/admin/users/edit/${u._id}`} className="btn-primary px-2 py-1">Edit</Link>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }

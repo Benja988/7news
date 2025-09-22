@@ -1,45 +1,58 @@
 // app/admin/categories/CategoryForm.tsx
+
+
 "use client";
 
 import { useState } from "react";
 
-export default function CategoryForm({ initialData = {}, onSubmit }: any) {
+type CategoryFormProps = {
+  initialData?: { name?: string; slug?: string };
+  onSubmit: (data: { name: string; slug: string }) => void;
+};
+
+export default function CategoryForm({ initialData = {}, onSubmit }: CategoryFormProps) {
   const [name, setName] = useState(initialData.name || "");
   const [slug, setSlug] = useState(initialData.slug || "");
 
-  function handleSubmit(e: any) {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     onSubmit({ name, slug });
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-5 card">
+      {/* Name */}
       <div>
-        <label className="block text-sm font-medium">Name</label>
+        <label htmlFor="name" className="block text-sm font-medium mb-1">
+          Name
+        </label>
         <input
+          id="name"
           type="text"
-          className="mt-1 w-full border rounded p-2"
+          className="input"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
         />
       </div>
+
+      {/* Slug */}
       <div>
-        <label className="block text-sm font-medium">Slug</label>
+        <label htmlFor="slug" className="block text-sm font-medium mb-1">
+          Slug
+        </label>
         <input
+          id="slug"
           type="text"
-          className="mt-1 w-full border rounded p-2"
+          className="input"
           value={slug}
           onChange={(e) => setSlug(e.target.value)}
           required
         />
       </div>
 
-      <button
-        type="submit"
-        className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-      >
-        Save
+      <button type="submit" className="btn-primary w-full">
+        {initialData?.name ? "Update Category" : "Create Category"}
       </button>
     </form>
   );
