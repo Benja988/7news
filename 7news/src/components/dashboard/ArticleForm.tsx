@@ -31,7 +31,6 @@ export default function ArticleForm({ initialData }: Props) {
     fetch("/api/categories")
       .then((res) => res.json())
       .then((data) => {
-        // If your API response is wrapped like { data: [...] }, unwrap it
         const cats = Array.isArray(data) ? data : data.data || [];
         setCategories(cats);
       })
@@ -74,23 +73,20 @@ export default function ArticleForm({ initialData }: Props) {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="space-y-4 bg-white p-6 rounded shadow"
-    >
+    <form onSubmit={handleSubmit} className="space-y-4">
       <input
         name="title"
         value={form.title}
         onChange={handleChange}
         placeholder="Title"
-        className="w-full border rounded px-3 py-2"
+        className="input"
       />
       <textarea
         name="excerpt"
         value={form.excerpt}
         onChange={handleChange}
         placeholder="Excerpt"
-        className="w-full border rounded px-3 py-2"
+        className="input"
       />
       <textarea
         name="content"
@@ -98,20 +94,20 @@ export default function ArticleForm({ initialData }: Props) {
         onChange={handleChange}
         placeholder="Content"
         rows={6}
-        className="w-full border rounded px-3 py-2"
+        className="input"
       />
       <input
         name="coverImage"
         value={form.coverImage}
         onChange={handleChange}
         placeholder="Cover Image URL"
-        className="w-full border rounded px-3 py-2"
+        className="input"
       />
       <select
         name="category"
         value={form.category}
         onChange={handleChange}
-        className="w-full border rounded px-3 py-2"
+        className="input"
       >
         <option value="">Select Category</option>
         {categories.map((c: any) => (
@@ -125,21 +121,18 @@ export default function ArticleForm({ initialData }: Props) {
         value={form.tags}
         onChange={handleChange}
         placeholder="Tags (comma separated)"
-        className="w-full border rounded px-3 py-2"
+        className="input"
       />
       <select
         name="status"
         value={form.status}
         onChange={handleChange}
-        className="w-full border rounded px-3 py-2"
+        className="input"
       >
         <option value="draft">Draft</option>
         <option value="published">Published</option>
       </select>
-      <button
-        type="submit"
-        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-      >
+      <button type="submit" className="btn-primary">
         {initialData ? "Update Article" : "Create Article"}
       </button>
     </form>
