@@ -206,3 +206,5 @@ CastError: Cast to ObjectId failed for value "undefined" (type string) at path "
 2025-09-22 14:22:50 [INFO] [users] Users retrieved
 2025-09-22 14:22:59 [INFO] [articles:list-create] Fetched articles list
 2025-09-22 14:22:59 [INFO] [articles:list-create] Fetched articles list
+2025-09-25 11:20:54 [WARN] [aad63b98-a168-4101-a4c6-c6bd562838df] [Auth] No access token found in cookies
+2025-09-25 11:20:54 [WARN] [user:me] Unauthenticated access attempt
