@@ -4,23 +4,9 @@ import CategorySearchBar from "@/components/ui/CategorySearchBar";
 import { SkeletonCard } from "@/components/ui/SkeletonLoader";
 import { FeaturedNewsCard, TrendingNewsCard } from "@/components/ui/EnhancedNewsCards";
 import { NewsCard } from "@/components/ui/NewsCard";
+import { Article } from "@/types/article";
 
-// Import the new card components
 
-type Article = {
-  _id: string;
-  slug: string;
-  title: string;
-  coverImage?: string;
-  publishedAt: string;
-  excerpt?: string;
-  category?: string;
-  author?: {
-    name: string;
-    avatar?: string;
-  };
-  readTime?: number;
-};
 
 type FeaturedArticle = Article & {
   isFeatured: boolean;

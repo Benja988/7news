@@ -3,7 +3,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import NewsCard from "@/components/ui/NewsCard";
+import { NewsCard } from "@/components/ui/NewsCard";
 
 type Article = {
   _id: string;
@@ -48,15 +48,7 @@ export default function CategoryPage() {
       <h1 className="text-3xl font-bold mb-6 capitalize">{slug} News</h1>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {articles.map((article) => (
-          <NewsCard
-            key={article._id}
-            id={article._id}
-            slug={article.slug}
-            title={article.title}
-            coverImage={article.coverImage}
-            publishedAt={article.publishedAt}
-            excerpt={article.excerpt}
-          />
+          <NewsCard key={article._id} article={article} />
         ))}
       </div>
     </section>

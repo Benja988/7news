@@ -5,3 +5,20 @@
 2025-09-25 14:38:33 [ERROR] [articles:by-id] Error fetching article by ID
 2025-09-25 14:38:33 [ERROR] [articles:by-id] Error fetching article by ID
 2025-09-25 14:38:33 [INFO] [articles:list-create] Fetched articles list
+2025-09-25 15:17:09 [ERROR] [articles:by-id] Error fetching article by ID
+2025-09-25 15:17:09 [ERROR] [articles:by-id] Error fetching article by ID
+2025-09-25 15:17:09 [WARN] [7ba46135-1a27-4377-b147-f0c0efa3df1a] [Auth] No access token found in cookies
+2025-09-25 15:17:09 [WARN] [user:me] Unauthenticated access attempt
+2025-09-25 15:17:10 [INFO] [articles:list-create] Fetched articles list
+2025-09-25 15:41:47 [ERROR] [articles:by-id] Error fetching article by ID
+2025-09-25 15:41:47 [ERROR] [articles:by-id] Error fetching article by ID
+2025-09-25 15:42:08 [INFO] [articles:list-create] Fetched articles list
+2025-09-25 15:43:03 [ERROR] [articles:by-id] Error fetching article by ID
+2025-09-25 15:43:03 [ERROR] [articles:by-id] Error fetching article by ID
+2025-09-25 15:43:04 [INFO] [articles:list-create] Fetched articles list
+2025-09-25 15:43:10 [ERROR] [articles:by-id] Error fetching article by ID
+2025-09-25 15:43:10 [ERROR] [articles:by-id] Error fetching article by ID
+2025-09-25 15:43:10 [INFO] [articles:list-create] Fetched articles list
+2025-09-25 15:43:18 [ERROR] [articles:by-id] Error fetching article by ID
+2025-09-25 15:43:18 [ERROR] [articles:by-id] Error fetching article by ID
+2025-09-25 15:43:18 [INFO] [articles:list-create] Fetched articles list

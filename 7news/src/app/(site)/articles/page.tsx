@@ -2,8 +2,8 @@
 
 "use client";
 import { useEffect, useState } from "react";
-import NewsCard from "@/components/ui/NewsCard";
 import Pagination from "@/components/ui/Pagination";
+import { NewsCard } from "@/components/ui/NewsCard";
 
 type Article = {
   _id: string;
@@ -50,15 +50,7 @@ export default function ArticlesPage() {
         <>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {articles.map((article) => (
-              <NewsCard
-                key={article._id}
-                id={article._id}
-                slug={article.slug}
-                title={article.title}
-                coverImage={article.coverImage}
-                publishedAt={article.publishedAt}
-                excerpt={article.excerpt}
-              />
+              <NewsCard key={article._id} article={article} />
             ))}
           </div>
           <div className="mt-8 flex justify-center">

@@ -1,20 +1,7 @@
 import Link from "next/link";
 import { Clock, User, ArrowRight } from "lucide-react";
+import { Article } from "@/types/article";
 
-type Article = {
-  _id: string;
-  slug: string;
-  title: string;
-  coverImage?: string;
-  publishedAt: string;
-  excerpt?: string;
-  category?: string;
-  author?: {
-    name: string;
-    avatar?: string;
-  };
-  readTime?: number;
-};
 
 // Featured NewsCard
 export function FeaturedNewsCard({ article, priority = false }: { article: Article; priority?: boolean }) {
@@ -46,7 +33,7 @@ export function FeaturedNewsCard({ article, priority = false }: { article: Artic
         <div className="p-6">
           <div className="flex items-center gap-3 text-sm text-gray-500 dark:text-gray-400 mb-3">
             <span className="bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 px-2 py-1 rounded">
-              {article.category || "General"}
+              {article.category?.name || "General"}
             </span>
             <span>{new Date(article.publishedAt).toLocaleDateString()}</span>
           </div>
@@ -140,7 +127,7 @@ export function EnhancedNewsCard({ article }: { article: Article }) {
         {/* Category Badge */}
         {article.category && (
           <span className="absolute top-3 left-3 bg-blue-600 text-white px-2 py-1 rounded-full text-xs font-medium">
-            {article.category}
+            {article.category.name}
           </span>
         )}
       </div>
