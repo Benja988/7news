@@ -5,10 +5,14 @@ import { useState, useEffect } from "react";
 import { useAuth } from "@/context/AuthContext";
 import HeaderMobile from "./HeaderMobile";
 import HeaderDesktop from "./HeaderDesktop";
+import { Category } from "@/types/category";
 export default function Header() {
+
+
   const { user } = useAuth();
   const [scrolled, setScrolled] = useState(false);
-  const [categories, setCategories] = useState([]);
+  // const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState<Category[]>([]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,7 +20,7 @@ export default function Header() {
     };
 
     // Fetch categories
-    const fetchCategories = async () => {
+    /*const fetchCategories = async () => {
       try {
         const res = await fetch("/api/categories");
         const data = await res.json();
@@ -24,7 +28,25 @@ export default function Header() {
       } catch (error) {
         console.error("Failed to fetch categories:", error);
       }
-    };
+    };*/
+
+    const fetchCategories = async () => {
+      try{
+        const res = await fetch("/api/categories");
+        const data = await res.json();
+
+        if (Array.isArray(data)) {
+          setCategories(data);
+        } else if (Array.isArray(data.categories)) {
+          setCategories(data.categories);
+        } else {
+          setCategories([]);
+        }
+      } catch(error) {
+        console.error("Failed to fetch categories:", error);
+        setCategories([])
+      }
+    }
 
     window.addEventListener('scroll', handleScroll);
     fetchCategories();

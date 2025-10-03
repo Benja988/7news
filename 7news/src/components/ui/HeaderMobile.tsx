@@ -235,14 +235,14 @@ export default function HeaderMobile({ user, scrolled, categories }: HeaderMobil
               <div className="border-t border-gray-200 dark:border-gray-700 pt-4 mt-4">
                 {user ? (
                   <>
-                    <Link
+                    {/* <Link
                       href="/create"
                       className="flex items-center space-x-3 px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-medium mb-2"
                       onClick={() => setMenuOpen(false)}
                     >
                       <Edit3 className="w-5 h-5" />
                       <span>Write Article</span>
-                    </Link>
+                    </Link> */}
                     <Link
                       href="/profile"
                       className="flex items-center space-x-3 px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 rounded-lg"

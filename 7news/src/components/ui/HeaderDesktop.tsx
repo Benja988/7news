@@ -16,13 +16,8 @@ import {
   Menu
 } from "lucide-react";
 import { useState } from "react";
+import { Category } from "@/types/category";
 
-interface Category {
-  _id: string;
-  name: string;
-  slug: string;
-  articleCount?: number;
-}
 
 interface User {
   id: string;
@@ -111,7 +106,7 @@ export default function HeaderDesktop({ user, scrolled, categories }: HeaderDesk
                       <Menu className="w-4 h-4" />
                     </Link>
                     <div className="h-px bg-gray-200 dark:bg-gray-700 my-2"></div>
-                    {categories.slice(0, 8).map((category) => (
+                    {Array.isArray(categories) && categories.slice(0, 8).map((category) => (
                       <Link
                         key={category._id}
                         href={`/category/${category.slug}`}
@@ -203,7 +198,8 @@ export default function HeaderDesktop({ user, scrolled, categories }: HeaderDesk
                         <User className="w-4 h-4" />
                         <span>Profile</span>
                       </Link>
-                      <Link
+                      {/* UPDATE LATER */}
+                      {/* <Link
                         href="/my-articles"
                         className="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-sm"
                       >
@@ -216,7 +212,7 @@ export default function HeaderDesktop({ user, scrolled, categories }: HeaderDesk
                       >
                         <Edit3 className="w-4 h-4" />
                         <span>Write Article</span>
-                      </Link>
+                      </Link> */}
                       <div className="h-px bg-gray-200 dark:bg-gray-700 my-1"></div>
                       <button
                         onClick={handleLogout}
