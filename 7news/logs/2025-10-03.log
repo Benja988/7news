@@ -22,3 +22,29 @@
 2025-10-03 06:22:24 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
 2025-10-03 06:22:25 [INFO] [articles:list-create] Fetched articles list
 2025-10-03 06:22:25 [INFO] [articles:list-create] Fetched articles list
+2025-10-03 06:35:01 [WARN] [bbc88911-2f68-4a10-91ea-867e0cf60062] [Auth] No access token found in cookies
+2025-10-03 06:35:01 [WARN] [user:me] Unauthenticated access attempt
+2025-10-03 06:35:01 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-03 06:35:01 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-03 06:35:01 [INFO] [articles:list-create] Fetched articles list
+2025-10-03 06:36:23 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-03 06:36:23 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-03 06:36:24 [INFO] [articles:list-create] Fetched articles list
+2025-10-03 06:36:37 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-03 06:36:37 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-03 06:36:37 [WARN] [9fc2982f-fbff-4b21-b855-a1f5d84f579e] [Auth] No access token found in cookies
+2025-10-03 06:36:37 [WARN] [user:me] Unauthenticated access attempt
+2025-10-03 06:36:38 [INFO] [articles:list-create] Fetched articles list
+2025-10-03 06:41:25 [WARN] [a0d7da46-2892-4a4a-adb5-6f50374616b4] [Auth] No access token found in cookies
+2025-10-03 06:41:25 [WARN] [user:me] Unauthenticated access attempt
+2025-10-03 06:41:25 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-03 06:41:25 [INFO] [articles:list-create] Fetched articles list
+2025-10-03 06:41:25 [INFO] [articles:list-create] Fetched articles list
+2025-10-03 06:41:46 [INFO] [articles:by-slug] Fetched article by slug
+2025-10-03 06:41:46 [INFO] [articles:by-slug] Fetched article by slug
+2025-10-03 06:41:57 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-03 06:41:57 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-03 06:41:57 [INFO] [articles:list-create] Fetched articles list
+2025-10-03 06:41:57 [INFO] [articles:list-create] Fetched articles list
+2025-10-03 06:41:57 [INFO] [articles:list-create] Fetched articles list
+2025-10-03 06:41:58 [INFO] [articles:list-create] Fetched articles list

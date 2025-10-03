@@ -10,3 +10,6 @@ export type Article = {
   author?: { _id: string; name: string; avatar?: string };
   readTime?: number;
 };
+
+
+
