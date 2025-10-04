@@ -1,39 +1,277 @@
 // components/home/HeroSection.tsx
+"use client";
+
+import { useState, useEffect } from "react";
 import CategorySearchBar from "@/components/ui/CategorySearchBar";
+import { NewsCard } from "@/components/ui/NewsCard";
+import { SkeletonCard } from "@/components/ui/SkeletonLoader";
+import { Article } from "@/types/article";
+import { Play, Volume2, VolumeX } from "lucide-react";
 
 interface HeroSectionProps {
   onSearch: (query: string) => void;
   onCategorySelect: (slug: string) => void;
   activeCategory: string;
+  featuredArticles: Article[];
+  loading: boolean;
 }
 
 export default function HeroSection({ 
   onSearch, 
   onCategorySelect, 
-  activeCategory 
+  activeCategory,
+  featuredArticles,
+  loading 
 }: HeroSectionProps) {
+  const [randomArticle, setRandomArticle] = useState<Article | null>(null);
+  const [relatedArticles, setRelatedArticles] = useState<Article[]>([]);
+  const [isMuted, setIsMuted] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  // Select random article and find related ones
+  useEffect(() => {
+    if (featuredArticles.length > 0) {
+      const randomIndex = Math.floor(Math.random() * featuredArticles.length);
+      const selectedArticle = featuredArticles[randomIndex];
+      setRandomArticle(selectedArticle);
+      
+      // Find related articles (same category)
+      const related = featuredArticles
+        .filter(article => 
+          article._id !== selectedArticle._id && 
+          article.category?._id === selectedArticle.category?._id
+        )
+        .slice(0, 4);
+      setRelatedArticles(related);
+    }
+  }, [featuredArticles]);
+
+  const handleVideoPlay = () => {
+    setIsPlaying(!isPlaying);
+  };
+
+  const handleVideoEnd = () => {
+    setIsPlaying(false);
+  };
+
   return (
-    <section className="relative bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 text-white py-20">
-      <div className="absolute inset-0 bg-black/20"></div>
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-            Stay Informed with{" "}
-            <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
-              Latest News
-            </span>
-          </h1>
-          <p className="text-xl md:text-2xl mb-8 text-blue-100">
-            Discover trending stories, in-depth analysis, and breaking news from trusted sources
-          </p>
+    <section className="relative bg-white dark:bg-gray-900 py-12 border-b border-gray-200 dark:border-gray-800">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 h-auto">
           
-          {/* Enhanced Search Bar */}
-          <div className="max-w-2xl mx-auto">
-            <CategorySearchBar
-              onSearch={onSearch}
-              onCategorySelect={onCategorySelect}
-              activeCategory={activeCategory}
-            />
+          {/* Left Section - Categories & Search (1/4) */}
+          <div className="lg:col-span-1 space-y-6">
+            {/* Search Bar */}
+            <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 shadow-sm">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                Discover News
+              </h3>
+              <CategorySearchBar
+                onSearch={onSearch}
+                onCategorySelect={onCategorySelect}
+                activeCategory={activeCategory}
+                compact={true}
+              />
+            </div>
+
+            {/* Quick Categories */}
+            <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 shadow-sm">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                Trending Categories
+              </h3>
+              <div className="space-y-3">
+                {[
+                  { name: "Technology", slug: "technology", count: 24 },
+                  { name: "Politics", slug: "politics", count: 18 },
+                  { name: "Sports", slug: "sports", count: 32 },
+                  { name: "Entertainment", slug: "entertainment", count: 15 },
+                  { name: "Business", slug: "business", count: 21 }
+                ].map((category) => (
+                  <button
+                    key={category.slug}
+                    onClick={() => onCategorySelect(category.slug)}
+                    className={`flex items-center justify-between w-full p-3 rounded-xl transition-all duration-200 ${
+                      activeCategory === category.slug
+                        ? "bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400"
+                        : "hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300"
+                    }`}
+                  >
+                    <span className="font-medium">{category.name}</span>
+                    <span className="text-xs bg-gray-200 dark:bg-gray-600 px-2 py-1 rounded-full">
+                      {category.count}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Middle Section - Video (1/4) */}
+          <div className="lg:col-span-1">
+            <div className="bg-gray-900 rounded-2xl overflow-hidden shadow-lg h-full">
+              {/* Video Player */}
+              <div className="relative aspect-[9/16] bg-black rounded-2xl overflow-hidden">
+                {/* Placeholder for video - replace with actual video source */}
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 flex items-center justify-center">
+                  <div className="text-center text-white p-6">
+                    <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-4 mx-auto backdrop-blur-sm">
+                      <Play className="w-8 h-8 ml-1" />
+                    </div>
+                    <h3 className="text-xl font-bold mb-2">Breaking News Coverage</h3>
+                    <p className="text-white/70 text-sm">
+                      Live updates and analysis
+                    </p>
+                  </div>
+                </div>
+                
+                {/* Video Controls */}
+                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+                  <button
+                    onClick={handleVideoPlay}
+                    className="bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-colors rounded-full p-3"
+                  >
+                    {isPlaying ? (
+                      <div className="w-6 h-6 bg-white rounded-sm"></div>
+                    ) : (
+                      <Play className="w-6 h-6 text-white ml-0.5" />
+                    )}
+                  </button>
+                  
+                  <button
+                    onClick={() => setIsMuted(!isMuted)}
+                    className="bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-colors rounded-full p-3"
+                  >
+                    {isMuted ? (
+                      <VolumeX className="w-6 h-6 text-white" />
+                    ) : (
+                      <Volume2 className="w-6 h-6 text-white" />
+                    )}
+                  </button>
+                </div>
+              </div>
+
+              {/* Video Info */}
+              <div className="p-4">
+                <div className="flex items-center space-x-2 mb-2">
+                  <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+                  <span className="text-sm font-semibold text-white">LIVE</span>
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2">
+                  Global Summit Updates
+                </h3>
+                <p className="text-gray-300 text-sm">
+                  Watch live coverage of the international climate summit with expert analysis
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Section - Random News & Related (1/2) */}
+          <div className="lg:col-span-2">
+            <div className="grid grid-cols-1 gap-6 h-full">
+              
+              {/* Random Featured Article */}
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-800 dark:to-blue-900/20 rounded-2xl p-6 shadow-sm">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                    Featured Story
+                  </h3>
+                  <span className="text-xs bg-blue-500 text-white px-2 py-1 rounded-full">
+                    TRENDING
+                  </span>
+                </div>
+
+                {loading ? (
+                  <SkeletonCard type="featured" />
+                ) : randomArticle ? (
+                  <div className="space-y-4">
+                    {/* Main Featured Article */}
+                    <div className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md">
+                      {randomArticle.coverImage ? (
+                        <img
+                          src={randomArticle.coverImage}
+                          alt={randomArticle.title}
+                          className="w-full h-48 object-cover"
+                        />
+                      ) : (
+                        <div className="w-full h-48 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                          <span className="text-gray-500 dark:text-gray-400">No Image</span>
+                        </div>
+                      )}
+                      <div className="p-4">
+                        <div className="flex items-center space-x-2 mb-2">
+                          <span className="text-xs font-medium text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-900/30 px-2 py-1 rounded">
+                            {randomArticle.category?.name || "General"}
+                          </span>
+                          <span className="text-xs text-gray-500 dark:text-gray-400">
+                            {randomArticle.publishedAt ? new Date(randomArticle.publishedAt).toLocaleDateString() : "Recently"}
+                          </span>
+                        </div>
+                        <h4 className="font-bold text-gray-900 dark:text-white line-clamp-2 mb-2">
+                          {randomArticle.title}
+                        </h4>
+                        {randomArticle.excerpt && (
+                          <p className="text-sm text-gray-600 dark:text-gray-300 line-clamp-2">
+                            {randomArticle.excerpt}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Related Articles */}
+                    {relatedArticles.length > 0 && (
+                      <div>
+                        <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+                          Related in {randomArticle.category?.name || "This Category"}
+                        </h4>
+                        <div className="grid grid-cols-2 gap-3">
+                          {relatedArticles.map((article) => (
+                            <div
+                              key={article._id}
+                              className="bg-white dark:bg-gray-800 rounded-lg p-3 shadow-sm hover:shadow-md transition-shadow"
+                            >
+                              {article.coverImage && (
+                                <img
+                                  src={article.coverImage}
+                                  alt={article.title}
+                                  className="w-full h-20 object-cover rounded mb-2"
+                                />
+                              )}
+                              <h5 className="text-sm font-medium text-gray-900 dark:text-white line-clamp-2">
+                                {article.title}
+                              </h5>
+                              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                                {article.publishedAt ? new Date(article.publishedAt).toLocaleDateString() : "Recently"}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <div className="text-center py-8 text-gray-500 dark:text-gray-400">
+                    No featured articles available
+                  </div>
+                )}
+              </div>
+
+              {/* Quick Stats */}
+              <div className="grid grid-cols-3 gap-4">
+                <div className="bg-white dark:bg-gray-800 rounded-xl p-4 text-center shadow-sm">
+                  <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">24</div>
+                  <div className="text-xs text-gray-500 dark:text-gray-400">Breaking</div>
+                </div>
+                <div className="bg-white dark:bg-gray-800 rounded-xl p-4 text-center shadow-sm">
+                  <div className="text-2xl font-bold text-green-600 dark:text-green-400">156</div>
+                  <div className="text-xs text-gray-500 dark:text-gray-400">Today</div>
+                </div>
+                <div className="bg-white dark:bg-gray-800 rounded-xl p-4 text-center shadow-sm">
+                  <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">12</div>
+                  <div className="text-xs text-gray-500 dark:text-gray-400">Live</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

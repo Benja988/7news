@@ -32,6 +32,8 @@ export default function HomePage() {
         onSearch={handleSearch}
         onCategorySelect={handleCategorySelect}
         activeCategory={activeCategory}
+        featuredArticles={featuredArticles}
+        loading={loading.featured}
       />
 
       {/* Featured Articles Section */}

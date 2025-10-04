@@ -13,6 +13,7 @@ type Props = {
   onSearch: (query: string, page?: number) => void;
   onCategorySelect: (slug: string, page?: number) => void;
   activeCategory?: string;
+  compact?: boolean;
 };
 
 export default function CategorySearchBar({ onSearch, onCategorySelect, activeCategory }: Props) {
