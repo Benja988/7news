@@ -10,6 +10,6 @@ declare global {
   } | undefined;
 }
 
-declare module "*.css";
+
 
 export {};
