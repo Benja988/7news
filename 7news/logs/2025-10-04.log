@@ -135,3 +135,83 @@
 2025-10-04 11:42:25 [INFO] [articles:list-create] Fetched articles list
 2025-10-04 11:42:25 [INFO] [articles:list-create] Fetched articles list
 2025-10-04 11:42:25 [INFO] [articles:list-create] Fetched articles list
+2025-10-04 11:50:23 [WARN] [5ced37bc-86d3-4d67-b2b5-82777077be3f] [Auth] No access token found in cookies
+2025-10-04 11:50:23 [WARN] [user:me] Unauthenticated access attempt
+2025-10-04 11:50:29 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-04 11:50:29 [WARN] [847354a6-2593-4729-a5e5-7b9fcee5fc25] [Auth] No access token found in cookies
+2025-10-04 11:50:30 [WARN] [user:me] Unauthenticated access attempt
+2025-10-04 11:50:30 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-04 11:50:30 [WARN] [dcaa239d-9e32-4e4b-a46c-a724b83010ca] [Auth] No access token found in cookies
+2025-10-04 11:50:30 [WARN] [user:me] Unauthenticated access attempt
+2025-10-04 11:50:30 [INFO] [articles:list-create] Fetched articles list
+2025-10-04 11:50:30 [INFO] [articles:list-create] Fetched articles list
+2025-10-04 11:50:30 [INFO] [articles:list-create] Fetched articles list
+2025-10-04 11:50:30 [INFO] [articles:list-create] Fetched articles list
+2025-10-04 11:51:53 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-04 11:51:53 [WARN] [c2639997-5d6c-4601-b3f1-67ec534b8a0f] [Auth] No access token found in cookies
+2025-10-04 11:51:53 [WARN] [user:me] Unauthenticated access attempt
+2025-10-04 11:51:54 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-04 11:51:54 [WARN] [0be793bf-0cca-4136-be2e-2d4b3e54e023] [Auth] No access token found in cookies
+2025-10-04 11:51:54 [WARN] [user:me] Unauthenticated access attempt
+2025-10-04 11:51:54 [INFO] [articles:list-create] Fetched articles list
+2025-10-04 11:51:54 [INFO] [articles:list-create] Fetched articles list
+2025-10-04 11:51:54 [INFO] [articles:list-create] Fetched articles list
+2025-10-04 11:51:54 [INFO] [articles:list-create] Fetched articles list
+2025-10-04 11:52:15 [WARN] [95353674-a7cd-4317-8eb7-9a96cde3d234] [Auth] No access token found in cookies
+2025-10-04 11:52:15 [WARN] [user:me] Unauthenticated access attempt
+2025-10-04 11:52:16 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-04 11:52:16 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-04 11:52:16 [WARN] [70db2526-002e-4000-bbfe-508a8a447cd3] [Auth] No access token found in cookies
+2025-10-04 11:52:16 [WARN] [user:me] Unauthenticated access attempt
+2025-10-04 11:52:16 [INFO] [articles:list-create] Fetched articles list
+2025-10-04 11:52:16 [INFO] [articles:list-create] Fetched articles list
+2025-10-04 11:52:16 [INFO] [articles:list-create] Fetched articles list
+2025-10-04 11:52:16 [INFO] [articles:list-create] Fetched articles list
+2025-10-04 11:52:27 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-04 11:52:28 [WARN] [d32e08a8-8c58-4256-84ee-f0d930323c72] [Auth] No access token found in cookies
+2025-10-04 11:52:28 [WARN] [user:me] Unauthenticated access attempt
+2025-10-04 11:52:28 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-04 11:52:28 [WARN] [fe7c98f9-ce50-4bc2-8bf9-8fe337d8c0d1] [Auth] No access token found in cookies
+2025-10-04 11:52:28 [WARN] [user:me] Unauthenticated access attempt
+2025-10-04 11:52:28 [INFO] [articles:list-create] Fetched articles list
+2025-10-04 11:52:28 [INFO] [articles:list-create] Fetched articles list
+2025-10-04 11:52:28 [INFO] [articles:list-create] Fetched articles list
+2025-10-04 11:52:28 [INFO] [articles:list-create] Fetched articles list
+2025-10-04 11:55:00 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-04 11:55:00 [INFO] [articles:list-create] Fetched articles list
+2025-10-04 11:55:00 [INFO] [articles:list-create] Fetched articles list
+2025-10-04 11:55:02 [WARN] [d20bc9eb-d6bf-4397-adbd-5ce8da1789eb] [Auth] No access token found in cookies
+2025-10-04 11:55:02 [WARN] [user:me] Unauthenticated access attempt
+2025-10-04 11:55:02 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-04 11:55:02 [WARN] [7088aa34-13a5-4474-8134-e6dee8b98076] [Auth] No access token found in cookies
+2025-10-04 11:55:02 [WARN] [user:me] Unauthenticated access attempt
+2025-10-04 11:55:03 [INFO] [articles:list-create] Fetched articles list
+2025-10-04 11:55:03 [INFO] [articles:list-create] Fetched articles list
+2025-10-04 11:55:14 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-04 11:55:14 [WARN] [306dfbc4-7086-464e-ba15-549f1a077338] [Auth] No access token found in cookies
+2025-10-04 11:55:14 [WARN] [user:me] Unauthenticated access attempt
+2025-10-04 11:55:14 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-04 11:55:14 [WARN] [7518c501-56a1-49e9-b004-c90c4e0f998c] [Auth] No access token found in cookies
+2025-10-04 11:55:14 [WARN] [user:me] Unauthenticated access attempt
+2025-10-04 11:55:14 [INFO] [articles:list-create] Fetched articles list
+2025-10-04 11:55:14 [INFO] [articles:list-create] Fetched articles list
+2025-10-04 11:55:14 [INFO] [articles:list-create] Fetched articles list
+2025-10-04 11:55:14 [INFO] [articles:list-create] Fetched articles list
+2025-10-04 11:56:14 [INFO] [e6838385-6ed8-4f0c-85e6-d042fbefa08c] [Auth] Signing access token for user: benjaminokumu12@gmail.com
+2025-10-04 11:56:14 [INFO] [f29f9595-1aa0-44dd-8a4f-f68f83cbf79b] [Auth] Signing refresh token for user: benjaminokumu12@gmail.com
+2025-10-04 11:56:14 [INFO] [0c80714d-8886-41f9-980e-f5154a40e6eb] [Auth] Setting auth cookies
+2025-10-04 11:56:14 [INFO] [auth:login] User logged in: benjaminokumu12@gmail.com
+2025-10-04 11:56:15 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-04 11:56:15 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-04 11:56:15 [INFO] [articles:list-create] Fetched articles list
+2025-10-04 11:56:15 [INFO] [articles:list-create] Fetched articles list
+2025-10-04 11:56:15 [INFO] [articles:list-create] Fetched articles list
+2025-10-04 11:56:15 [INFO] [articles:list-create] Fetched articles list
+2025-10-04 11:57:33 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-04 11:57:33 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-10-04 11:57:33 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-04 11:57:33 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-10-04 11:57:33 [INFO] [articles:list-create] Fetched articles list
+2025-10-04 11:57:33 [INFO] [articles:list-create] Fetched articles list
+2025-10-04 11:57:34 [INFO] [articles:list-create] Fetched articles list
+2025-10-04 11:57:34 [INFO] [articles:list-create] Fetched articles list
