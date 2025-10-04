@@ -13,6 +13,7 @@ type Category = {
 type Props = {
   categories: Category[];
   onDeleted?: () => void;
+  onEdited?: () => void; 
 };
 
 export default function CategoryTable({ categories, onDeleted }: Props) {

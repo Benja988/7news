@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import ArticleForm from "@/components/ArticleForm";
+// import ArticleForm from "@/components/ArticleForm";
 import { useAuth } from "@/context/AuthContext";
 
 export default function CreateArticlePage() {
@@ -60,7 +60,7 @@ export default function CreateArticlePage() {
     <div className="max-w-2xl mx-auto mt-10 border p-6 rounded-lg shadow">
       <h1 className="text-2xl font-bold mb-6">Create New Article</h1>
       {error && <p className="text-red-600 mb-4">{error}</p>}
-      <ArticleForm onSubmit={handleSubmit} disabled={submitting} />
+      {/* <ArticleForm onSubmit={handleSubmit} disabled={submitting} /> */}
     </div>
   );
 }

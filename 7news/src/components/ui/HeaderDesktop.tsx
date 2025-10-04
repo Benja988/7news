@@ -13,11 +13,11 @@ import {
   Edit3, 
   Search,
   ChevronDown,
-  Menu
+  Menu,
+  Grid3X3
 } from "lucide-react";
 import { useState } from "react";
 import { Category } from "@/types/category";
-
 
 interface User {
   id: string;
@@ -47,6 +47,12 @@ export default function HeaderDesktop({ user, scrolled, categories }: HeaderDesk
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
+  };
+
+  // Generate random image URL from Picsum
+  const getRandomImage = (id: string) => {
+    const seed = id.replace(/[^a-zA-Z0-9]/g, '');
+    return `https://picsum.photos/seed/${seed}/300/200`;
   };
 
   return (
@@ -96,37 +102,69 @@ export default function HeaderDesktop({ user, scrolled, categories }: HeaderDesk
               </button>
               
               {activeDropdown === 'categories' && (
-                <div className="absolute top-full left-0 mt-2 w-64 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 z-50">
-                  <div className="p-2">
-                    <Link
-                      href="/categories"
-                      className="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors font-medium text-blue-600 dark:text-blue-400"
-                    >
-                      <span>All Categories</span>
-                      <Menu className="w-4 h-4" />
-                    </Link>
-                    <div className="h-px bg-gray-200 dark:bg-gray-700 my-2"></div>
-                    {Array.isArray(categories) && categories.slice(0, 8).map((category) => (
-                      <Link
-                        key={category._id}
-                        href={`/category/${category.slug}`}
-                        className="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-                      >
-                        <span className="text-gray-700 dark:text-gray-300">{category.name}</span>
-                        {category.articleCount && (
-                          <span className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 px-2 py-1 rounded-full">
-                            {category.articleCount}
-                          </span>
-                        )}
-                      </Link>
-                    ))}
-                    {categories.length > 8 && (
+                <div className="absolute top-full left-0 mt-2 w-[800px] bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 z-50 overflow-hidden">
+                  <div className="p-6">
+                    {/* Header */}
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                        Article Categories
+                      </h3>
                       <Link
                         href="/categories"
-                        className="flex items-center justify-center px-3 py-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-sm text-gray-500 dark:text-gray-400"
+                        className="flex items-center space-x-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-sm font-medium transition-colors"
                       >
-                        View all {categories.length} categories
+                        <Grid3X3 className="w-4 h-4" />
+                        <span>View All Categories</span>
                       </Link>
+                    </div>
+
+                    {/* Categories Grid */}
+                    <div className="grid grid-cols-4 gap-4">
+                      {Array.isArray(categories) && categories.slice(0, 8).map((category) => (
+                        <Link
+                          key={category._id}
+                          href={`/category/${category.slug}`}
+                          className="group block rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600"
+                          onClick={() => setActiveDropdown(null)}
+                        >
+                          {/* Category Image */}
+                          <div className="aspect-video relative overflow-hidden bg-gray-100 dark:bg-gray-700">
+                            <img
+                              src={getRandomImage(category._id)}
+                              alt={category.name}
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                            <div className="absolute inset-0 bg-black/10 group-hover:bg-black/5 transition-colors" />
+                          </div>
+                          
+                          {/* Category Info */}
+                          <div className="p-3">
+                            <div className="flex items-center justify-between">
+                              <span className="font-medium text-gray-900 dark:text-white text-sm group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-1">
+                                {category.name}
+                              </span>
+                              {category.articleCount && (
+                                <span className="text-xs bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 px-2 py-1 rounded-full min-w-[20px] text-center">
+                                  {category.articleCount}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+
+                    {/* Footer */}
+                    {categories.length > 8 && (
+                      <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                        <Link
+                          href="/categories"
+                          className="flex items-center justify-center w-full py-2 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm font-medium"
+                          onClick={() => setActiveDropdown(null)}
+                        >
+                          View all {categories.length} categories
+                        </Link>
+                      </div>
                     )}
                   </div>
                 </div>
@@ -148,7 +186,7 @@ export default function HeaderDesktop({ user, scrolled, categories }: HeaderDesk
             </Link>
           </nav>
 
-          {/* Right Side Actions */}
+          {/* Right Side Actions - Rest of the code remains the same */}
           <div className="flex items-center space-x-4 flex-shrink-0">
             {/* Search */}
             <button className="p-2 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
@@ -198,21 +236,6 @@ export default function HeaderDesktop({ user, scrolled, categories }: HeaderDesk
                         <User className="w-4 h-4" />
                         <span>Profile</span>
                       </Link>
-                      {/* UPDATE LATER */}
-                      {/* <Link
-                        href="/my-articles"
-                        className="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-sm"
-                      >
-                        <Edit3 className="w-4 h-4" />
-                        <span>My Articles</span>
-                      </Link>
-                      <Link
-                        href="/create"
-                        className="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-sm"
-                      >
-                        <Edit3 className="w-4 h-4" />
-                        <span>Write Article</span>
-                      </Link> */}
                       <div className="h-px bg-gray-200 dark:bg-gray-700 my-1"></div>
                       <button
                         onClick={handleLogout}

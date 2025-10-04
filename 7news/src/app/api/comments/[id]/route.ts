@@ -6,10 +6,10 @@ import Comment from "@/lib/models/Comment";
 import { ok, notFound, unauthorized, forbidden, error500 } from "@/lib/response";
 import { getUserFromCookies, requireRole } from "@/lib/auth";
 
-export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     await connectDB();
-    const { id } = params;
+    const { id } = await params;
     const user = await getUserFromCookies();
     if (!user) return unauthorized();
 

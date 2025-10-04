@@ -16,7 +16,8 @@ import {
   X,
   ChevronRight,
   Home,
-  TrendingUp
+  TrendingUp,
+  Grid3X3
 } from "lucide-react";
 import { useState } from "react";
 
@@ -164,7 +165,7 @@ export default function HeaderMobile({ user, scrolled, categories }: HeaderMobil
                   className="flex items-center justify-between w-full px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800"
                 >
                   <div className="flex items-center space-x-3">
-                    <Menu className="w-5 h-5" />
+                    <Grid3X3 className="w-5 h-5" />
                     <span>Categories</span>
                   </div>
                   <ChevronRight className={`w-4 h-4 transition-transform ${
@@ -173,36 +174,39 @@ export default function HeaderMobile({ user, scrolled, categories }: HeaderMobil
                 </button>
                 
                 {activeSubmenu === 'categories' && (
-                  <div className="ml-8 mt-1 space-y-1 animate-in slide-in-from-left duration-200">
+                  <div className="ml-4 mt-1 space-y-1 animate-in slide-in-from-left duration-200">
                     <Link
                       href="/categories"
-                      className="flex items-center justify-between px-3 py-2 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors rounded-lg"
+                      className="flex items-center justify-between px-4 py-3 text-blue-600 dark:text-blue-400 font-medium rounded-lg bg-blue-50 dark:bg-blue-900/20"
                       onClick={() => setMenuOpen(false)}
                     >
                       <span>All Categories</span>
+                      <Grid3X3 className="w-4 h-4" />
                     </Link>
-                    {categories.slice(0, 6).map((category) => (
-                      <Link
-                        key={category._id}
-                        href={`/category/${category.slug}`}
-                        className="flex items-center justify-between px-3 py-2 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors rounded-lg"
-                        onClick={() => setMenuOpen(false)}
-                      >
-                        <span>{category.name}</span>
-                        {category.articleCount && (
-                          <span className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 px-2 py-1 rounded-full">
-                            {category.articleCount}
-                          </span>
-                        )}
-                      </Link>
-                    ))}
-                    {categories.length > 6 && (
+                    <div className="grid grid-cols-2 gap-2 mt-2">
+                      {categories.slice(0, 8).map((category) => (
+                        <Link
+                          key={category._id}
+                          href={`/category/${category.slug}`}
+                          className="flex items-center justify-between px-3 py-2 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors rounded-lg bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700"
+                          onClick={() => setMenuOpen(false)}
+                        >
+                          <span className="text-sm">{category.name}</span>
+                          {category.articleCount && (
+                            <span className="text-xs bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 px-1.5 py-0.5 rounded-full min-w-[20px] text-center">
+                              {category.articleCount}
+                            </span>
+                          )}
+                        </Link>
+                      ))}
+                    </div>
+                    {categories.length > 8 && (
                       <Link
                         href="/categories"
-                        className="flex items-center justify-center px-3 py-2 text-blue-600 dark:text-blue-400 text-sm font-medium"
+                        className="flex items-center justify-center px-3 py-2 text-blue-600 dark:text-blue-400 text-sm font-medium mt-2"
                         onClick={() => setMenuOpen(false)}
                       >
-                        View all categories
+                        View all {categories.length} categories
                       </Link>
                     )}
                   </div>
@@ -235,14 +239,6 @@ export default function HeaderMobile({ user, scrolled, categories }: HeaderMobil
               <div className="border-t border-gray-200 dark:border-gray-700 pt-4 mt-4">
                 {user ? (
                   <>
-                    {/* <Link
-                      href="/create"
-                      className="flex items-center space-x-3 px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-medium mb-2"
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      <Edit3 className="w-5 h-5" />
-                      <span>Write Article</span>
-                    </Link> */}
                     <Link
                       href="/profile"
                       className="flex items-center space-x-3 px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 rounded-lg"

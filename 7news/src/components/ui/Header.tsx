@@ -19,16 +19,7 @@ export default function Header() {
       setScrolled(window.scrollY > 10);
     };
 
-    // Fetch categories
-    /*const fetchCategories = async () => {
-      try {
-        const res = await fetch("/api/categories");
-        const data = await res.json();
-        setCategories(data.categories || data);
-      } catch (error) {
-        console.error("Failed to fetch categories:", error);
-      }
-    };*/
+   
 
     const fetchCategories = async () => {
       try{
