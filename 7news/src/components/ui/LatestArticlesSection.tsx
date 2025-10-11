@@ -4,6 +4,7 @@ import { NewsCard } from "@/components/ui/NewsCard";
 import { Article } from "@/types/article";
 import { EmptyState } from "./EmptyState";
 import { Grid3X3, ChevronRight, FolderOpen, Hash } from "lucide-react";
+import Link from "next/link";
 
 interface LatestArticlesSectionProps {
   articles: Article[];
@@ -291,13 +292,17 @@ function CategorySection({
 function LoadMoreButton() {
   return (
     <div className="text-center mt-16">
-      <button className="group relative bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-10 py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl overflow-hidden">
+      <Link
+        href="/articles"
+        className="inline-block group relative bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-10 py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl overflow-hidden"
+      >
         <span className="relative z-10 flex items-center space-x-2">
           <span>Load More Articles</span>
           <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
         </span>
         <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-      </button>
+      </Link>
+
       <p className="text-gray-500 dark:text-gray-400 text-sm mt-4">
         Discover more stories across all categories
       </p>

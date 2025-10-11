@@ -1,6 +1,7 @@
 // hooks/useHomePageData.ts
 import { useState, useCallback } from "react";
 import { Article } from "@/types/article";
+import { Category } from "@/types/category";
 
 type FeaturedArticle = Article & {
   isFeatured: boolean;
@@ -10,43 +11,49 @@ type LoadingState = {
   main: boolean;
   featured: boolean;
   trending: boolean;
+  categories: boolean;
 };
 
 export function useHomePageData() {
   const [articles, setArticles] = useState<Article[]>([]);
   const [featuredArticles, setFeaturedArticles] = useState<FeaturedArticle[]>([]);
   const [trendingArticles, setTrendingArticles] = useState<Article[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState<LoadingState>({
     main: true,
     featured: true,
-    trending: true
+    trending: true,
+    categories: true
   });
   const [activeCategory, setActiveCategory] = useState<string>("all");
 
   // Fetch all data in parallel
   const fetchHomepageData = useCallback(async () => {
     try {
-      setLoading({ main: true, featured: true, trending: true });
+      setLoading({ main: true, featured: true, trending: true, categories: true });
       
-      const [articlesRes, featuredRes, trendingRes] = await Promise.all([
+      const [articlesRes, featuredRes, trendingRes, categoriesRes] = await Promise.all([
         fetch("/api/articles?page=1&limit=8", { cache: "no-store" }),
         fetch("/api/articles?featured=true&limit=3", { cache: "no-store" }),
-        fetch("/api/articles/trending?limit=4", { cache: "no-store" })
+        fetch("/api/articles/trending?limit=4", { cache: "no-store" }),
+        fetch("/api/categories", { cache: "no-store" }),
       ]);
 
-      const [articlesData, featuredData, trendingData] = await Promise.all([
+      const [articlesData, featuredData, trendingData, categoriesData] = await Promise.all([
         articlesRes.json(),
         featuredRes.json(),
-        trendingRes.json()
+        trendingRes.json(),
+        categoriesRes.json(),
       ]);
 
       setArticles(articlesData.articles || []);
       setFeaturedArticles(featuredData.articles || []);
       setTrendingArticles(trendingData.articles || []);
+      setCategories(categoriesData.categories || categoriesData.data || []);
     } catch (err) {
       console.error("Failed to load homepage data:", err);
     } finally {
-      setLoading({ main: false, featured: false, trending: false });
+      setLoading({ main: false, featured: false, trending: false, categories: true });
     }
   }, []);
 
@@ -93,6 +100,7 @@ export function useHomePageData() {
     articles,
     featuredArticles,
     trendingArticles,
+    categories,
     loading,
     activeCategory,
     fetchHomepageData,

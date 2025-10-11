@@ -17,7 +17,8 @@ export default function HomePage() {
     activeCategory,
     fetchHomepageData,
     handleSearch,
-    handleCategorySelect
+    handleCategorySelect,
+    categories
   } = useHomePageData();
 
   // Initial load
@@ -35,6 +36,7 @@ export default function HomePage() {
         activeCategory={activeCategory}
         featuredArticles={featuredArticles}
         loading={loading.featured}
+        categories={categories}
       />
 
       {/* Featured Articles Section */}

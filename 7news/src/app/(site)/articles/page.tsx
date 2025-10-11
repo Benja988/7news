@@ -56,9 +56,11 @@ export default function ArticlesPage() {
         const articlesData = await articlesRes.json();
         const categoriesData = await categoriesRes.json();
 
+        // console.log("Categories API result:", categoriesData);
+
         setArticles(articlesData.articles || []);
         setTotalPages(articlesData.totalPages || 1);
-        setCategories(categoriesData.categories || []);
+        setCategories(categoriesData.data || []);
       } catch (err) {
         console.error("Error fetching data:", err);
       } finally {
