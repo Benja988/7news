@@ -152,12 +152,12 @@ export default function CategorySearchBar({
       {/* Enhanced Categories Filter */}
       <div className="flex flex-col sm:flex-row sm:items-center gap-4">
         {/* Filter Label */}
-        <div className="flex items-center gap-3 text-gray-700 dark:text-gray-300">
+        {/* <div className="flex items-center gap-3 text-gray-700 dark:text-gray-300">
           <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
             <Filter className="w-4 h-4 text-blue-600 dark:text-blue-400" />
           </div>
           <span className="font-semibold text-sm uppercase tracking-wide">Browse Categories</span>
-        </div>
+        </div> */}
         
         {/* Mobile Category Dropdown */}
         <div className="sm:hidden relative" ref={dropdownRef}>
@@ -214,73 +214,105 @@ export default function CategorySearchBar({
         </div>
 
         {/* Desktop Category Buttons */}
-        <div className="hidden sm:flex items-center gap-3 flex-wrap">
-          {/* All Categories Button */}
+        <div className="hidden sm:flex flex-col gap-4 w-64 bg-white dark:bg-gray-900 rounded-2xl shadow-md p-4 overflow-y-auto max-h-[80vh]">
+  {/* All Categories Button */}
+  <button
+    onClick={() => handleCategoryChange("")}
+    className={`group flex items-center justify-between px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 border ${
+      !activeCategory || activeCategory === "all"
+        ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg border-transparent"
+        : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-400 dark:hover:border-gray-500 hover:shadow-md"
+    }`}
+  >
+    <div className="flex items-center gap-2">
+      <Grid3X3 className="w-4 h-4" />
+      <span>All</span>
+    </div>
+    <span className="text-xs font-medium opacity-80">All Posts</span>
+  </button>
+
+  {/* Popular Categories */}
+  {!isLoading && popularCategories.length > 0 && (
+    <div className="mt-2 border-t border-gray-200 dark:border-gray-700 pt-3">
+      <div className="flex items-center gap-2 mb-2">
+        <Sparkles className="w-4 h-4 text-yellow-500" />
+        <span className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400 font-semibold">
+          Trending Categories
+        </span>
+      </div>
+
+      <div className="flex flex-col gap-2">
+        {popularCategories.map((cat) => (
           <button
-            onClick={() => handleCategoryChange("")}
-            className={`group flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 border ${
-              !activeCategory || activeCategory === "all"
-                ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg border-transparent"
-                : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-400 dark:hover:border-gray-500 hover:shadow-md"
+            key={cat._id}
+            onClick={() => handleCategoryChange(cat.slug)}
+            className={`group flex items-center justify-between px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 border ${
+              activeCategory === cat.slug
+                ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-md border-transparent"
+                : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-400 dark:hover:border-gray-500 hover:shadow-sm"
             }`}
           >
-            <Grid3X3 className="w-4 h-4" />
-            <span>All</span>
+            <span>{cat.name}</span>
+            <span
+              className={`text-xs px-2 py-0.5 rounded-full ${
+                activeCategory === cat.slug
+                  ? "bg-white/20 text-white/90"
+                  : "bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400"
+              }`}
+            >
+              {cat.articleCount ?? 0}
+            </span>
           </button>
+        ))}
+      </div>
+    </div>
+  )}
 
-          {/* Popular Categories */}
-          {!isLoading && popularCategories.length > 0 && (
-            <>
-              <div className="w-px h-6 bg-gray-300 dark:bg-gray-600"></div>
-              <div className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-yellow-500" />
-                <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">Popular:</span>
-              </div>
-              {popularCategories.map((cat) => (
-                <button
-                  key={cat._id}
-                  onClick={() => handleCategoryChange(cat.slug)}
-                  className={`group flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 border ${
-                    activeCategory === cat.slug
-                      ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg border-transparent"
-                      : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-400 dark:hover:border-gray-500 hover:shadow-md"
-                  }`}
-                >
-                  <span>{cat.name}</span>
-                  <span className={`text-xs px-1.5 py-0.5 rounded-full ${
-                    activeCategory === cat.slug
-                      ? "bg-white/20 text-white/90"
-                      : "bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400"
-                  }`}>
-                    {cat.articleCount}
-                  </span>
-                </button>
-              ))}
-            </>
-          )}
+  {/* All Categories */}
+  <div className="mt-2 border-t border-gray-200 dark:border-gray-700 pt-3">
+    <div className="flex items-center gap-2 mb-2">
+      <Grid3X3 className="w-4 h-4 text-blue-500" />
+      <span className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400 font-semibold">
+        All Categories
+      </span>
+    </div>
 
-          {/* All Categories Scrollable Area */}
-          <div className="flex gap-2 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent pb-1">
-            {categories
-              .filter(cat => !popularCategories.some(popular => popular._id === cat._id))
-              .map((cat) => (
-                <button
-                  key={cat._id}
-                  onClick={() => handleCategoryChange(cat.slug)}
-                  className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-200 flex-shrink-0 ${
-                    activeCategory === cat.slug
-                      ? "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 shadow-md"
-                      : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
-                  }`}
-                >
-                  <span>{cat.name}</span>
-                  {cat.articleCount !== undefined && (
-                    <span className="text-xs opacity-75">({cat.articleCount})</span>
-                  )}
-                </button>
-              ))}
-          </div>
-        </div>
+    <div className="flex flex-col gap-2">
+      {categories &&
+        categories
+          .filter(cat => !popularCategories.some(popular => popular._id === cat._id))
+          .map((cat) => (
+            <button
+              key={cat._id}
+              onClick={() => handleCategoryChange(cat.slug)}
+              className={`flex items-center justify-between px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 border ${
+                activeCategory === cat.slug
+                  ? "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 shadow-sm"
+                  : "bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:shadow-sm"
+              }`}
+            >
+              <span>{cat.name}</span>
+              {cat.articleCount !== undefined && (
+                <span className="text-xs opacity-70">({cat.articleCount})</span>
+              )}
+            </button>
+          ))}
+    </div>
+  </div>
+
+  {/* Loading / Empty States */}
+  {isLoading && (
+    <div className="flex justify-center items-center py-6 text-gray-400 dark:text-gray-500 text-sm">
+      Loading categories...
+    </div>
+  )}
+  {!isLoading && (!categories || categories.length === 0) && (
+    <div className="flex justify-center items-center py-6 text-gray-400 dark:text-gray-500 text-sm">
+      No categories available.
+    </div>
+  )}
+</div>
+
       </div>
 
       {/* Loading State */}

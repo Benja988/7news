@@ -224,7 +224,7 @@ export default function HeaderMobile({ user, scrolled, categories }: HeaderMobil
                 </div>
               </Link>
 
-              <Link
+              {/*<Link
                 href="/trending"
                 className="flex items-center justify-between px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800"
                 onClick={() => setMenuOpen(false)}
@@ -233,7 +233,7 @@ export default function HeaderMobile({ user, scrolled, categories }: HeaderMobil
                   <TrendingUp className="w-5 h-5" />
                   <span>Trending</span>
                 </div>
-              </Link>
+              </Link>*/}
 
               {/* Auth Section */}
               <div className="border-t border-gray-200 dark:border-gray-700 pt-4 mt-4">

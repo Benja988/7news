@@ -26,6 +26,7 @@ export default function HomePage() {
   }, [fetchHomepageData]);
 
   return (
+    <>
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Hero Section */}
       <HeroSection
@@ -49,8 +50,10 @@ export default function HomePage() {
         hasMoreArticles={articles.length > 0}
       />
 
-      {/* Newsletter Section */}
-      <NewsletterSection />
+      
     </div>
+    {/* Newsletter Section */}
+      <NewsletterSection />
+    </>
   );
 }

@@ -178,12 +178,12 @@ export default function HeaderDesktop({ user, scrolled, categories }: HeaderDesk
               All Articles
             </Link>
 
-            <Link
+            {/* <Link
               href="/trending"
               className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
             >
               Trending
-            </Link>
+            </Link> */}
           </nav>
 
           {/* Right Side Actions - Rest of the code remains the same */}
