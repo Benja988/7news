@@ -4,20 +4,28 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
-import { 
-  Newspaper, 
-  Sun, 
-  Moon, 
-  User, 
-  LogOut, 
-  Edit3, 
+import {
+  Newspaper,
+  Sun,
+  Moon,
+  User,
+  LogOut,
+  Edit3,
   Search,
   Menu,
   X,
   ChevronRight,
   Home,
   TrendingUp,
-  Grid3X3
+  Grid3X3,
+  BookOpen,
+  Camera,
+  Code,
+  Coffee,
+  Gamepad2,
+  Heart,
+  Music,
+  Zap
 } from "lucide-react";
 import { useState } from "react";
 
@@ -63,6 +71,12 @@ export default function HeaderMobile({ user, scrolled, categories }: HeaderMobil
 
   const toggleSubmenu = (menu: string) => {
     setActiveSubmenu(activeSubmenu === menu ? null : menu);
+  };
+
+  // Generate random icon for categories
+  const getRandomIcon = (index: number) => {
+    const icons = [BookOpen, Camera, Code, Coffee, Gamepad2, Heart, Music, Zap];
+    return icons[index % icons.length];
   };
 
   return (
@@ -183,22 +197,61 @@ export default function HeaderMobile({ user, scrolled, categories }: HeaderMobil
                       <span>All Categories</span>
                       <Grid3X3 className="w-4 h-4" />
                     </Link>
-                    <div className="grid grid-cols-2 gap-2 mt-2">
-                      {categories.slice(0, 8).map((category) => (
-                        <Link
-                          key={category._id}
-                          href={`/category/${category.slug}`}
-                          className="flex items-center justify-between px-3 py-2 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors rounded-lg bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700"
-                          onClick={() => setMenuOpen(false)}
-                        >
-                          <span className="text-sm">{category.name}</span>
-                          {category.articleCount && (
-                            <span className="text-xs bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 px-1.5 py-0.5 rounded-full min-w-[20px] text-center">
-                              {category.articleCount}
-                            </span>
-                          )}
-                        </Link>
-                      ))}
+                    {/* Featured Categories (max 7) */}
+                    <div className="grid grid-cols-2 gap-2 mt-2 mb-4">
+                      {categories.slice(0, 7).map((category, index) => {
+                        const IconComponent = getRandomIcon(index);
+                        return (
+                          <Link
+                            key={category._id}
+                            href={`/categories/${category.slug}`}
+                            className="flex items-center justify-between px-3 py-3 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors rounded-lg bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700"
+                            onClick={() => setMenuOpen(false)}
+                          >
+                            <div className="flex items-center space-x-2">
+                              <div className="w-6 h-6 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center flex-shrink-0">
+                                <IconComponent className="w-3 h-3 text-blue-600 dark:text-blue-400" />
+                              </div>
+                              <span className="text-sm font-medium">{category.name}</span>
+                            </div>
+                            {category.articleCount && (
+                              <span className="text-xs bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 px-1.5 py-0.5 rounded-full min-w-[20px] text-center">
+                                {category.articleCount}
+                              </span>
+                            )}
+                          </Link>
+                        );
+                      })}
+                    </div>
+
+                    {/* All Categories List */}
+                    <div className="border-t border-gray-200 dark:border-gray-700 pt-3">
+                      <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">All Categories</h4>
+                      <div className="space-y-1 max-h-48 overflow-y-auto">
+                        {categories.map((category, index) => {
+                          const IconComponent = getRandomIcon(index);
+                          return (
+                            <Link
+                              key={category._id}
+                              href={`/categories/${category.slug}`}
+                              className="flex items-center justify-between px-3 py-2 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800"
+                              onClick={() => setMenuOpen(false)}
+                            >
+                              <div className="flex items-center space-x-2">
+                                <div className="w-5 h-5 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center flex-shrink-0">
+                                  <IconComponent className="w-2.5 h-2.5 text-gray-600 dark:text-gray-400" />
+                                </div>
+                                <span className="text-sm">{category.name}</span>
+                              </div>
+                              {category.articleCount && (
+                                <span className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 px-1.5 py-0.5 rounded-full">
+                                  {category.articleCount}
+                                </span>
+                              )}
+                            </Link>
+                          );
+                        })}
+                      </div>
                     </div>
                     {categories.length > 8 && (
                       <Link

@@ -16,13 +16,16 @@ type Article = {
 interface NewsCardProps {
   article: Article;
   variant?: 'default' | 'list';
+  viewMode?: 'grid' | 'list';
 }
 
 
 // Enhanced NewsCard
-export function NewsCard({ article, variant = 'default' }: NewsCardProps) {
+export function NewsCard({ article, variant = 'default', viewMode }: NewsCardProps) {
+  // Use viewMode if provided, otherwise fall back to variant
+  const displayMode = viewMode || (variant === 'list' ? 'list' : 'grid');
 
-  if (variant === 'list') {
+  if (displayMode === 'list') {
     return (
       <div className="flex items-start space-x-4 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow">
         {article.coverImage && (

@@ -1,0 +1,284 @@
+2025-10-17 15:24:47 [WARN] [2857a730-403f-4c61-b4da-f5e765f88da2] [Auth] No access token found in cookies
+2025-10-17 15:24:47 [WARN] [user:me] Unauthenticated access attempt
+2025-10-17 15:24:47 [INFO] [327e3490-43c4-4833-878c-efb8a9c68a4f] [Auth] Signing access token for user: benjaminokumu12@gmail.com
+2025-10-17 15:24:47 [INFO] [1a9e5351-c2b3-4cf3-99f6-b70cd2dc1233] [Auth] Signing refresh token for user: benjaminokumu12@gmail.com
+2025-10-17 15:24:47 [INFO] [448e0946-0190-4085-99c1-2663d639d3f2] [Auth] Setting auth cookies
+2025-10-17 15:24:47 [INFO] [auth:login] User logged in: benjaminokumu12@gmail.com
+2025-10-17 15:24:51 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 15:24:52 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 15:24:52 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 15:24:52 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 15:24:52 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-17 15:24:52 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-17 15:25:12 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-10-17 15:25:20 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-10-17 15:25:27 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-10-17 15:25:35 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 15:25:35 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 15:39:00 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-17 15:39:31 [ERROR] [articles:list-create] Error listing articles
+2025-10-17 15:39:31 [ERROR] [articles:list-create] Error listing articles
+2025-10-17 15:39:31 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-17 15:39:34 [ERROR] [Error retrieving user profile] getaddrinfo ENOTFOUND cluster0-shard-00-01.uybmn.mongodb.net
+MongoServerSelectionError: getaddrinfo ENOTFOUND cluster0-shard-00-01.uybmn.mongodb.net
+    at Topology.selectServer (D:\WProjects\bbprodnews\7news\node_modules\mongodb\lib\sdam\topology.js:326:38)
+    at async tryOperation (D:\WProjects\bbprodnews\7news\node_modules\mongodb\lib\operations\execute_operation.js:145:18)
+    at async executeOperation (D:\WProjects\bbprodnews\7news\node_modules\mongodb\lib\operations\execute_operation.js:75:16)
+    at async FindCursor._initialize (D:\WProjects\bbprodnews\7news\node_modules\mongodb\lib\cursor\find_cursor.js:61:26)
+    at async FindCursor.cursorInit (D:\WProjects\bbprodnews\7news\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async FindCursor.fetchBatch (D:\WProjects\bbprodnews\7news\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async FindCursor.next (D:\WProjects\bbprodnews\7news\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17)
+    at async Collection.findOne (D:\WProjects\bbprodnews\7news\node_modules\mongodb\lib\collection.js:277:21)
+    at async model.Query._findOne (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\query.js:2710:15)
+    at async model.Query.exec (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\query.js:4627:63)
+    at async GET (webpack-internal:///(rsc)/./src/app/api/me/route.ts:29:22)
+    at async AppRouteRouteModule.do (D:\WProjects\bbprodnews\7news\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:5:38782)
+    at async AppRouteRouteModule.handle (D:\WProjects\bbprodnews\7news\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:5:45984)
+    at async responseGenerator (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader/index.js?name=app%2Fapi%2Fme%2Froute&page=%2Fapi%2Fme%2Froute&appPaths=&pagePath=private-next-app-dir%2Fapi%2Fme%2Froute.ts&appDir=D%3A%5CWProjects%5Cbbprodnews%5C7news%5Csrc%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=D%3A%5CWProjects%5Cbbprodnews%5C7news&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D&isGlobalNotFoundEnabled=!:203:38)
+    at async AppRouteRouteModule.handleResponse (D:\WProjects\bbprodnews\7news\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:1:183692)
+    at async handleResponse (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader/index.js?name=app%2Fapi%2Fme%2Froute&page=%2Fapi%2Fme%2Froute&appPaths=&pagePath=private-next-app-dir%2Fapi%2Fme%2Froute.ts&appDir=D%3A%5CWProjects%5Cbbprodnews%5C7news%5Csrc%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=D%3A%5CWProjects%5Cbbprodnews%5C7news&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D&isGlobalNotFoundEnabled=!:265:32)
+    at async handler (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader/index.js?name=app%2Fapi%2Fme%2Froute&page=%2Fapi%2Fme%2Froute&appPaths=&pagePath=private-next-app-dir%2Fapi%2Fme%2Froute.ts&appDir=D%3A%5CWProjects%5Cbbprodnews%5C7news%5Csrc%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=D%3A%5CWProjects%5Cbbprodnews%5C7news&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D&isGlobalNotFoundEnabled=!:317:13)
+    at async doRender (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:1592:34)
+    at async DevServer.renderToResponseWithComponentsImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:1934:13)
+    at async DevServer.renderPageComponent (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:2400:24)
+    at async DevServer.renderToResponseImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:2440:32)
+    at async DevServer.pipeImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:1035:25)
+    at async NextNodeServer.handleCatchallRenderRequest (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\next-server.js:393:17)
+    at async DevServer.handleRequestImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:925:17)
+    at async D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\dev\next-dev-server.js:398:20
+    at async Span.traceAsyncFn (D:\WProjects\bbprodnews\7news\node_modules\next\dist\trace\trace.js:157:20)
+    at async DevServer.handleRequest (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\dev\next-dev-server.js:394:24)
+    at async invokeRender (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\lib\router-server.js:239:21)
+    at async handleRequest (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\lib\router-server.js:436:24)
+    at async requestHandlerImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\lib\router-server.js:464:13)
+    at async Server.requestListener (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\lib\start-server.js:218:13)
+2025-10-17 15:40:02 [ERROR] [articles:list-create] Error listing articles
+2025-10-17 15:40:02 [ERROR] [articles:list-create] Error listing articles
+2025-10-17 15:40:04 [ERROR] [Error retrieving user profile] getaddrinfo ENOTFOUND cluster0-shard-00-01.uybmn.mongodb.net
+MongoServerSelectionError: getaddrinfo ENOTFOUND cluster0-shard-00-01.uybmn.mongodb.net
+    at Topology.selectServer (D:\WProjects\bbprodnews\7news\node_modules\mongodb\lib\sdam\topology.js:326:38)
+    at async tryOperation (D:\WProjects\bbprodnews\7news\node_modules\mongodb\lib\operations\execute_operation.js:145:18)
+    at async executeOperation (D:\WProjects\bbprodnews\7news\node_modules\mongodb\lib\operations\execute_operation.js:75:16)
+    at async FindCursor._initialize (D:\WProjects\bbprodnews\7news\node_modules\mongodb\lib\cursor\find_cursor.js:61:26)
+    at async FindCursor.cursorInit (D:\WProjects\bbprodnews\7news\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async FindCursor.fetchBatch (D:\WProjects\bbprodnews\7news\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async FindCursor.next (D:\WProjects\bbprodnews\7news\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17)
+    at async Collection.findOne (D:\WProjects\bbprodnews\7news\node_modules\mongodb\lib\collection.js:277:21)
+    at async model.Query._findOne (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\query.js:2710:15)
+    at async model.Query.exec (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\query.js:4627:63)
+    at async GET (webpack-internal:///(rsc)/./src/app/api/me/route.ts:29:22)
+    at async AppRouteRouteModule.do (D:\WProjects\bbprodnews\7news\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:5:38782)
+    at async AppRouteRouteModule.handle (D:\WProjects\bbprodnews\7news\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:5:45984)
+    at async responseGenerator (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader/index.js?name=app%2Fapi%2Fme%2Froute&page=%2Fapi%2Fme%2Froute&appPaths=&pagePath=private-next-app-dir%2Fapi%2Fme%2Froute.ts&appDir=D%3A%5CWProjects%5Cbbprodnews%5C7news%5Csrc%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=D%3A%5CWProjects%5Cbbprodnews%5C7news&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D&isGlobalNotFoundEnabled=!:203:38)
+    at async AppRouteRouteModule.handleResponse (D:\WProjects\bbprodnews\7news\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:1:183692)
+    at async handleResponse (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader/index.js?name=app%2Fapi%2Fme%2Froute&page=%2Fapi%2Fme%2Froute&appPaths=&pagePath=private-next-app-dir%2Fapi%2Fme%2Froute.ts&appDir=D%3A%5CWProjects%5Cbbprodnews%5C7news%5Csrc%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=D%3A%5CWProjects%5Cbbprodnews%5C7news&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D&isGlobalNotFoundEnabled=!:265:32)
+    at async handler (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader/index.js?name=app%2Fapi%2Fme%2Froute&page=%2Fapi%2Fme%2Froute&appPaths=&pagePath=private-next-app-dir%2Fapi%2Fme%2Froute.ts&appDir=D%3A%5CWProjects%5Cbbprodnews%5C7news%5Csrc%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=D%3A%5CWProjects%5Cbbprodnews%5C7news&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D&isGlobalNotFoundEnabled=!:317:13)
+    at async doRender (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:1592:34)
+    at async DevServer.renderToResponseWithComponentsImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:1934:13)
+    at async DevServer.renderPageComponent (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:2400:24)
+    at async DevServer.renderToResponseImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:2440:32)
+    at async DevServer.pipeImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:1035:25)
+    at async NextNodeServer.handleCatchallRenderRequest (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\next-server.js:393:17)
+    at async DevServer.handleRequestImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:925:17)
+    at async D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\dev\next-dev-server.js:398:20
+    at async Span.traceAsyncFn (D:\WProjects\bbprodnews\7news\node_modules\next\dist\trace\trace.js:157:20)
+    at async DevServer.handleRequest (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\dev\next-dev-server.js:394:24)
+    at async invokeRender (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\lib\router-server.js:239:21)
+    at async handleRequest (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\lib\router-server.js:436:24)
+    at async requestHandlerImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\lib\router-server.js:464:13)
+    at async Server.requestListener (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\lib\start-server.js:218:13)
+2025-10-17 15:40:34 [ERROR] [Error retrieving user profile] querySrv ECONNREFUSED _mongodb._tcp.cluster0.uybmn.mongodb.net
+Error: querySrv ECONNREFUSED _mongodb._tcp.cluster0.uybmn.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:293:17)
+    at QueryReqWrap.callbackTrampoline (node:internal/async_hooks:130:17)
+2025-10-17 15:40:35 [ERROR] [Error retrieving user profile] querySrv ECONNREFUSED _mongodb._tcp.cluster0.uybmn.mongodb.net
+Error: querySrv ECONNREFUSED _mongodb._tcp.cluster0.uybmn.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:293:17)
+    at QueryReqWrap.callbackTrampoline (node:internal/async_hooks:130:17)
+2025-10-17 15:41:51 [ERROR] [Error retrieving user profile] querySrv ECONNREFUSED _mongodb._tcp.cluster0.uybmn.mongodb.net
+Error: querySrv ECONNREFUSED _mongodb._tcp.cluster0.uybmn.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:293:17)
+    at QueryReqWrap.callbackTrampoline (node:internal/async_hooks:130:17)
+2025-10-17 15:41:57 [ERROR] [auth:login] Login error: querySrv ECONNREFUSED _mongodb._tcp.cluster0.uybmn.mongodb.net
+2025-10-17 15:47:41 [ERROR] [Error retrieving user profile] querySrv ECONNREFUSED _mongodb._tcp.cluster0.uybmn.mongodb.net
+Error: querySrv ECONNREFUSED _mongodb._tcp.cluster0.uybmn.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:293:17)
+    at QueryReqWrap.callbackTrampoline (node:internal/async_hooks:130:17)
+2025-10-17 15:47:41 [ERROR] [Error retrieving user profile] querySrv ECONNREFUSED _mongodb._tcp.cluster0.uybmn.mongodb.net
+Error: querySrv ECONNREFUSED _mongodb._tcp.cluster0.uybmn.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:293:17)
+    at QueryReqWrap.callbackTrampoline (node:internal/async_hooks:130:17)
+2025-10-17 15:47:43 [ERROR] [auth:login] Login error: querySrv ECONNREFUSED _mongodb._tcp.cluster0.uybmn.mongodb.net
+2025-10-17 15:47:48 [ERROR] [Error retrieving user profile] querySrv ECONNREFUSED _mongodb._tcp.cluster0.uybmn.mongodb.net
+Error: querySrv ECONNREFUSED _mongodb._tcp.cluster0.uybmn.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:293:17)
+    at QueryReqWrap.callbackTrampoline (node:internal/async_hooks:130:17)
+2025-10-17 15:47:48 [ERROR] [Error retrieving user profile] querySrv ECONNREFUSED _mongodb._tcp.cluster0.uybmn.mongodb.net
+Error: querySrv ECONNREFUSED _mongodb._tcp.cluster0.uybmn.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:293:17)
+    at QueryReqWrap.callbackTrampoline (node:internal/async_hooks:130:17)
+2025-10-17 15:47:48 [ERROR] [auth:login] Login error: querySrv ECONNREFUSED _mongodb._tcp.cluster0.uybmn.mongodb.net
+2025-10-17 15:47:51 [ERROR] [auth:login] Login error: querySrv ECONNREFUSED _mongodb._tcp.cluster0.uybmn.mongodb.net
+2025-10-17 15:47:52 [ERROR] [auth:login] Login error: querySrv ECONNREFUSED _mongodb._tcp.cluster0.uybmn.mongodb.net
+2025-10-17 15:47:53 [ERROR] [auth:login] Login error: querySrv ECONNREFUSED _mongodb._tcp.cluster0.uybmn.mongodb.net
+2025-10-17 15:48:01 [ERROR] [Error retrieving user profile] querySrv ECONNREFUSED _mongodb._tcp.cluster0.uybmn.mongodb.net
+Error: querySrv ECONNREFUSED _mongodb._tcp.cluster0.uybmn.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:293:17)
+    at QueryReqWrap.callbackTrampoline (node:internal/async_hooks:130:17)
+2025-10-17 15:48:01 [ERROR] [Error retrieving user profile] querySrv ECONNREFUSED _mongodb._tcp.cluster0.uybmn.mongodb.net
+Error: querySrv ECONNREFUSED _mongodb._tcp.cluster0.uybmn.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:293:17)
+    at QueryReqWrap.callbackTrampoline (node:internal/async_hooks:130:17)
+2025-10-17 15:48:21 [ERROR] [Error retrieving user profile] querySrv ECONNREFUSED _mongodb._tcp.cluster0.uybmn.mongodb.net
+Error: querySrv ECONNREFUSED _mongodb._tcp.cluster0.uybmn.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:293:17)
+    at QueryReqWrap.callbackTrampoline (node:internal/async_hooks:130:17)
+2025-10-17 15:48:21 [ERROR] [Error retrieving user profile] querySrv ECONNREFUSED _mongodb._tcp.cluster0.uybmn.mongodb.net
+Error: querySrv ECONNREFUSED _mongodb._tcp.cluster0.uybmn.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:293:17)
+    at QueryReqWrap.callbackTrampoline (node:internal/async_hooks:130:17)
+2025-10-17 15:48:23 [ERROR] [auth:login] Login error: querySrv ECONNREFUSED _mongodb._tcp.cluster0.uybmn.mongodb.net
+2025-10-17 15:51:02 [WARN] [50be264a-fdbf-4bb9-84fb-be006e48ef05] [Auth] No access token found in cookies
+2025-10-17 15:51:02 [WARN] [user:me] Unauthenticated access attempt
+2025-10-17 15:51:02 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-17 15:51:04 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-17 15:51:04 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 15:51:04 [WARN] [2c5f1482-8b8d-489a-ae3b-3ff4989ada00] [Auth] No access token found in cookies
+2025-10-17 15:51:04 [WARN] [user:me] Unauthenticated access attempt
+2025-10-17 15:51:04 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 15:51:04 [WARN] [a721a2c9-07a7-4778-b7a7-081fa7b02405] [Auth] No access token found in cookies
+2025-10-17 15:51:04 [WARN] [user:me] Unauthenticated access attempt
+2025-10-17 15:51:04 [WARN] [e4fac5db-aae4-43fb-9051-ca619bd0d118] [Auth] No access token found in cookies
+2025-10-17 15:51:04 [WARN] [user:me] Unauthenticated access attempt
+2025-10-17 15:51:04 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 15:51:04 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 15:51:18 [INFO] [3532c6a6-a52a-4b6f-afc3-207b08097447] [Auth] Signing access token for user: benjaminokumu12@gmail.com
+2025-10-17 15:51:18 [INFO] [3f2d4088-8bd1-40d8-ac51-cbc142b19176] [Auth] Signing refresh token for user: benjaminokumu12@gmail.com
+2025-10-17 15:51:18 [INFO] [ed23365d-06be-40b9-baa1-3cee6a5884ed] [Auth] Setting auth cookies
+2025-10-17 15:51:18 [INFO] [auth:login] User logged in: benjaminokumu12@gmail.com
+2025-10-17 15:51:19 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-17 15:51:19 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-17 15:51:19 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 15:51:20 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 15:51:20 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 15:51:20 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 15:51:30 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-10-17 15:51:49 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 15:51:49 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 15:57:41 [INFO] [articles:list-create] Created article
+2025-10-17 15:57:47 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-10-17 15:57:47 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 15:57:47 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 15:58:08 [INFO] [articles:by-id] Fetched article by ID
+2025-10-17 15:58:08 [INFO] [articles:by-id] Fetched article by ID
+2025-10-17 15:58:39 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-17 15:58:39 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-10-17 15:58:39 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 15:58:39 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-17 15:58:39 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-10-17 15:58:39 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 15:58:39 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 15:58:40 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 15:59:01 [INFO] [articles:by-slug] Fetched article by slug
+2025-10-17 15:59:01 [INFO] [articles:by-slug] Fetched article by slug
+2025-10-17 15:59:19 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-17 15:59:20 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-17 15:59:20 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 15:59:20 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 15:59:20 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 15:59:20 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 15:59:27 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 15:59:27 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 16:00:22 [INFO] [articles:list-create] Created article
+2025-10-17 16:00:28 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-10-17 16:00:28 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 16:00:28 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 16:00:49 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-17 16:00:49 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 16:00:49 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-17 16:00:49 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-10-17 16:00:49 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 16:00:49 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-10-17 16:00:50 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 16:00:50 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 16:05:21 [INFO] [articles:by-id] Fetched article by ID
+2025-10-17 16:05:21 [INFO] [articles:by-id] Fetched article by ID
+2025-10-17 16:05:33 [INFO] [articles:by-id] Updated article
+2025-10-17 16:05:36 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-10-17 16:05:38 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 16:05:39 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 16:05:53 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-17 16:05:53 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-10-17 16:05:53 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-17 16:05:54 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 16:05:54 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 16:05:54 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-10-17 16:05:55 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 16:05:55 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 16:13:03 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 16:13:03 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 16:24:17 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 16:24:17 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 16:24:32 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 16:24:32 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 16:24:34 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-17 16:24:35 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-17 16:24:35 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 16:24:35 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 16:24:35 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 16:24:36 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 16:24:36 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 16:24:36 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 16:27:39 [WARN] [b12ebf89-e909-4701-b712-24176e17475a] [Auth] No access token found in cookies
+2025-10-17 16:27:39 [WARN] [user:me] Unauthenticated access attempt
+2025-10-17 16:27:44 [WARN] [767898d3-0f5e-46cd-a9fc-58b9f88bf4eb] [Auth] No access token found in cookies
+2025-10-17 16:27:44 [WARN] [user:me] Unauthenticated access attempt
+2025-10-17 16:27:48 [WARN] [98967441-8165-4570-969d-655352f56ab7] [Auth] No access token found in cookies
+2025-10-17 16:27:48 [WARN] [user:me] Unauthenticated access attempt
+2025-10-17 16:29:50 [WARN] [a6ed7e9c-95b1-4b93-a3ae-8d981b749a30] [Auth] No access token found in cookies
+2025-10-17 16:29:50 [WARN] [user:me] Unauthenticated access attempt
+2025-10-17 16:30:02 [WARN] [ddd00f5e-309c-4616-9d65-f90170c159fe] [Auth] No access token found in cookies
+2025-10-17 16:30:02 [WARN] [user:me] Unauthenticated access attempt
+2025-10-17 16:30:13 [WARN] [f37c9a65-1bec-4984-9ae6-80fe1ff3590c] [Auth] No access token found in cookies
+2025-10-17 16:30:13 [WARN] [user:me] Unauthenticated access attempt
+2025-10-17 16:30:26 [WARN] [33bb710a-9467-4ec6-b065-f39d6ba934d2] [Auth] No access token found in cookies
+2025-10-17 16:30:26 [WARN] [user:me] Unauthenticated access attempt
+2025-10-17 16:31:00 [WARN] [f54dbfb1-e1b3-4d06-8da4-9f0c527e828e] [Auth] No access token found in cookies
+2025-10-17 16:31:00 [WARN] [user:me] Unauthenticated access attempt
+2025-10-17 16:42:46 [WARN] [d5329f7c-f201-4092-b8b8-395997b8723d] [Auth] No access token found in cookies
+2025-10-17 16:42:46 [WARN] [user:me] Unauthenticated access attempt
+2025-10-17 16:42:57 [WARN] [c56826f8-ade6-4a7a-9914-017f3936a664] [Auth] No access token found in cookies
+2025-10-17 16:42:57 [WARN] [user:me] Unauthenticated access attempt
+2025-10-17 16:51:54 [WARN] [a65d2aac-9cfb-492e-9d5f-6abd6adb7342] [Auth] No access token found in cookies
+2025-10-17 16:51:54 [WARN] [user:me] Unauthenticated access attempt
+2025-10-17 16:56:27 [WARN] [a0a3e241-22cb-4b00-bbd6-89637c890886] [Auth] No access token found in cookies
+2025-10-17 16:56:27 [WARN] [user:me] Unauthenticated access attempt
+2025-10-17 17:03:03 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-17 17:03:03 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-17 17:03:03 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 17:03:03 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 17:03:04 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 17:03:04 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 17:03:04 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 17:03:05 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 17:03:05 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 17:03:06 [INFO] [articles:list-create] Fetched articles list
+2025-10-17 17:03:21 [WARN] [46fed4d5-36a5-4a3f-a8dc-58c642f32643] [Auth] No access token found in cookies
+2025-10-17 17:03:21 [WARN] [user:me] Unauthenticated access attempt
+2025-10-17 17:03:23 [WARN] [ee71099a-e63d-4dce-b015-15e904fea7f4] [Auth] No access token found in cookies
+2025-10-17 17:03:23 [WARN] [user:me] Unauthenticated access attempt
+2025-10-17 17:11:54 [WARN] [b3829d24-852e-4bb5-893b-181333fd9955] [Auth] No access token found in cookies
+2025-10-17 17:11:54 [WARN] [user:me] Unauthenticated access attempt
+2025-10-17 18:19:39 [WARN] [cd5b1c22-1881-4378-bc84-155f834abfbb] [Auth] No access token found in cookies
+2025-10-17 18:19:39 [WARN] [user:me] Unauthenticated access attempt
+2025-10-17 18:19:50 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-17 18:19:50 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-17 18:20:43 [WARN] [13f61d2c-4089-4917-85d9-f19b41d7ae5b] [Auth] No access token found in cookies
+2025-10-17 18:20:43 [WARN] [user:me] Unauthenticated access attempt
+2025-10-17 18:21:23 [WARN] [be6ff8f0-b710-4519-96cb-2c3f3a6a6e6b] [Auth] No access token found in cookies
+2025-10-17 18:21:23 [WARN] [user:me] Unauthenticated access attempt
+2025-10-17 18:23:19 [WARN] [923a7220-218d-4e24-a9fa-c39698805177] [Auth] No access token found in cookies
+2025-10-17 18:23:19 [WARN] [user:me] Unauthenticated access attempt
+2025-10-17 18:23:20 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-17 18:35:13 [INFO] [articles:by-slug] Fetched article by slug
+2025-10-17 18:35:13 [INFO] [articles:by-slug] Fetched article by slug

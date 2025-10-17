@@ -26,6 +26,7 @@ export default function ArticleTable({ articles }: { articles: Article[] }) {
       <table className="min-w-full text-sm">
         <thead className="bg-light-bg dark:bg-dark-surface border-b border-gray-200 dark:border-gray-700 text-left">
           <tr>
+            <th className="p-3">Cover</th>
             <th className="p-3">Title</th>
             <th className="p-3">Author</th>
             <th className="p-3">Category</th>
@@ -48,6 +49,19 @@ export default function ArticleTable({ articles }: { articles: Article[] }) {
               key={article._id}
               className="border-t border-gray-200 dark:border-gray-700 hover:bg-light-bg/50 dark:hover:bg-dark-bg/50 transition-colors"
             >
+              <td className="p-3">
+                {article.coverImage ? (
+                  <img
+                    src={article.coverImage}
+                    alt={article.title}
+                    className="w-16 h-16 object-cover rounded"
+                  />
+                ) : (
+                  <div className="w-16 h-16 bg-gray-200 dark:bg-gray-700 rounded flex items-center justify-center">
+                    <span className="text-xs text-gray-500">No Image</span>
+                  </div>
+                )}
+              </td>
               <td className="p-3 font-medium">{article.title}</td>
               <td className="p-3">{article.author?.name || "-"}</td>
               <td className="p-3">{article.category?.name || "-"}</td>

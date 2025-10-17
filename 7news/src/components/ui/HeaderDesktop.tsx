@@ -4,17 +4,25 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
-import { 
-  Newspaper, 
-  Sun, 
-  Moon, 
-  User, 
-  LogOut, 
-  Edit3, 
+import {
+  Newspaper,
+  Sun,
+  Moon,
+  User,
+  LogOut,
+  Edit3,
   Search,
   ChevronDown,
   Menu,
-  Grid3X3
+  Grid3X3,
+  BookOpen,
+  Camera,
+  Code,
+  Coffee,
+  Gamepad2,
+  Heart,
+  Music,
+  Zap
 } from "lucide-react";
 import { useState } from "react";
 import { Category } from "@/types/category";
@@ -47,6 +55,12 @@ export default function HeaderDesktop({ user, scrolled, categories }: HeaderDesk
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
+  };
+
+  // Generate random icon for categories
+  const getRandomIcon = (index: number) => {
+    const icons = [BookOpen, Camera, Code, Coffee, Gamepad2, Heart, Music, Zap];
+    return icons[index % icons.length];
   };
 
   // Generate random image URL from Picsum
@@ -118,40 +132,75 @@ export default function HeaderDesktop({ user, scrolled, categories }: HeaderDesk
                       </Link>
                     </div>
 
-                    {/* Categories Grid */}
-                    <div className="grid grid-cols-4 gap-4">
-                      {Array.isArray(categories) && categories.slice(0, 8).map((category) => (
-                        <Link
-                          key={category._id}
-                          href={`/category/${category.slug}`}
-                          className="group block rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600"
-                          onClick={() => setActiveDropdown(null)}
-                        >
-                          {/* Category Image */}
-                          <div className="aspect-video relative overflow-hidden bg-gray-100 dark:bg-gray-700">
-                            <img
-                              src={getRandomImage(category._id)}
-                              alt={category.name}
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                            />
-                            <div className="absolute inset-0 bg-black/10 group-hover:bg-black/5 transition-colors" />
-                          </div>
-                          
-                          {/* Category Info */}
-                          <div className="p-3">
-                            <div className="flex items-center justify-between">
-                              <span className="font-medium text-gray-900 dark:text-white text-sm group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-1">
-                                {category.name}
-                              </span>
+                    {/* Featured Categories (max 7) */}
+                    <div className="grid grid-cols-4 gap-4 mb-6">
+                      {Array.isArray(categories) && categories.slice(0, 7).map((category, index) => {
+                        const IconComponent = getRandomIcon(index);
+                        return (
+                          <Link
+                            key={category._id}
+                            href={`/categories/${category.slug}`}
+                            className="group block rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600"
+                            onClick={() => setActiveDropdown(null)}
+                          >
+                            {/* Category Image */}
+                            <div className="aspect-video relative overflow-hidden bg-gray-100 dark:bg-gray-700">
+                              <img
+                                src={getRandomImage(category._id)}
+                                alt={category.name}
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                              />
+                              <div className="absolute inset-0 bg-black/10 group-hover:bg-black/5 transition-colors" />
+                              {/* Icon Overlay */}
+                              <div className="absolute top-3 left-3 w-8 h-8 bg-white/90 dark:bg-gray-800/90 rounded-full flex items-center justify-center shadow-md">
+                                <IconComponent className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                              </div>
+                            </div>
+
+                            {/* Category Info */}
+                            <div className="p-3">
+                              <div className="flex items-center justify-between">
+                                <span className="font-medium text-gray-900 dark:text-white text-sm group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-1">
+                                  {category.name}
+                                </span>
+                                {category.articleCount && (
+                                  <span className="text-xs bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 px-2 py-1 rounded-full min-w-[20px] text-center">
+                                    {category.articleCount}
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+                          </Link>
+                        );
+                      })}
+                    </div>
+
+                    {/* All Categories List */}
+                    <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
+                      <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">All Categories</h4>
+                      <div className="grid grid-cols-2 gap-2">
+                        {Array.isArray(categories) && categories.map((category, index) => {
+                          const IconComponent = getRandomIcon(index);
+                          return (
+                            <Link
+                              key={category._id}
+                              href={`/categories/${category.slug}`}
+                              className="flex items-center space-x-3 px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-all duration-200"
+                              onClick={() => setActiveDropdown(null)}
+                            >
+                              <div className="w-6 h-6 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center flex-shrink-0">
+                                <IconComponent className="w-3 h-3 text-blue-600 dark:text-blue-400" />
+                              </div>
+                              <span className="text-sm font-medium truncate">{category.name}</span>
                               {category.articleCount && (
-                                <span className="text-xs bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 px-2 py-1 rounded-full min-w-[20px] text-center">
+                                <span className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 px-1.5 py-0.5 rounded-full ml-auto">
                                   {category.articleCount}
                                 </span>
                               )}
-                            </div>
-                          </div>
-                        </Link>
-                      ))}
+                            </Link>
+                          );
+                        })}
+                      </div>
                     </div>
 
                     {/* Footer */}

@@ -6,7 +6,7 @@ import { connectDB } from "@/lib/mongodb";
 export async function GET(req: Request, { params }: { params: Promise<{ slug: string }> }) {
   await connectDB();
 
-  const slug = await params;
+  const { slug } = await params;
   const { searchParams } = new URL(req.url);
   const page = parseInt(searchParams.get("page") || "1");
   const limit = parseInt(searchParams.get("limit") || "6");

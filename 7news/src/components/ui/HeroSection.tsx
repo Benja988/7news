@@ -240,25 +240,71 @@ const RelatedArticleCard = memo(({ article, onClick }: {
 RelatedArticleCard.displayName = 'RelatedArticleCard';
 
 // Quick Stats Component
-const QuickStats = memo(() => (
-  <div className="grid grid-cols-3 gap-3 lg:gap-4">
-    {[
-      { value: "24", label: "Breaking", color: "text-blue-600 dark:text-blue-400" },
-      { value: "156", label: "Today", color: "text-green-600 dark:text-green-400" },
-      { value: "12", label: "Live", color: "text-orange-600 dark:text-orange-400" }
-    ].map((stat, index) => (
-      <div 
-        key={index}
-        className="bg-white dark:bg-gray-800 rounded-lg lg:rounded-xl p-3 lg:p-4 text-center shadow-sm hover:shadow-md transition-all duration-200 group border border-gray-100 dark:border-gray-700 hover:border-gray-200 dark:hover:border-gray-600"
-      >
-        <div className={`text-xl lg:text-2xl font-bold ${stat.color} group-hover:scale-110 transition-transform duration-200`}>
-          {stat.value}
+const QuickStats = memo(({ categories }: { categories: Category[] }) => {
+  const [stats, setStats] = useState({
+    totalArticles: 0,
+    totalCategories: 0,
+    publishedToday: 0
+  });
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        // Fetch total articles count
+        const articlesRes = await fetch('/api/articles?limit=1');
+        const articlesData = await articlesRes.json();
+        const totalArticles = articlesData.total || 0;
+
+        // Fetch published articles today
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const publishedTodayRes = await fetch(`/api/articles?publishedAfter=${today.toISOString()}&limit=1`);
+        const publishedTodayData = await publishedTodayRes.json();
+        const publishedToday = publishedTodayData.total || 0;
+
+        setStats({
+          totalArticles,
+          totalCategories: categories.length,
+          publishedToday
+        });
+      } catch (error) {
+        console.error('Failed to fetch stats:', error);
+        // Fallback to static data if API fails
+        setStats({
+          totalArticles: categories.reduce((sum, cat) => sum + (cat.articleCount || 0), 0),
+          totalCategories: categories.length,
+          publishedToday: 0
+        });
+      }
+    };
+
+    if (categories.length > 0) {
+      fetchStats();
+    }
+  }, [categories]);
+
+  const statItems = [
+    { value: stats.totalArticles.toString(), label: "Articles", color: "text-blue-600 dark:text-blue-400" },
+    { value: stats.totalCategories.toString(), label: "Categories", color: "text-green-600 dark:text-green-400" },
+    { value: stats.publishedToday.toString(), label: "Today", color: "text-orange-600 dark:text-orange-400" }
+  ];
+
+  return (
+    <div className="grid grid-cols-3 gap-3 lg:gap-4">
+      {statItems.map((stat, index) => (
+        <div
+          key={index}
+          className="bg-white dark:bg-gray-800 rounded-lg lg:rounded-xl p-3 lg:p-4 text-center shadow-sm hover:shadow-md transition-all duration-200 group border border-gray-100 dark:border-gray-700 hover:border-gray-200 dark:hover:border-gray-600"
+        >
+          <div className={`text-xl lg:text-2xl font-bold ${stat.color} group-hover:scale-110 transition-transform duration-200`}>
+            {stat.value}
+          </div>
+          <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">{stat.label}</div>
         </div>
-        <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">{stat.label}</div>
-      </div>
-    ))}
-  </div>
-));
+      ))}
+    </div>
+  );
+});
 
 QuickStats.displayName = 'QuickStats';
 
@@ -424,7 +470,7 @@ export default function HeroSection({
               </div>
 
               {/* Quick Stats */}
-              <QuickStats />
+              <QuickStats categories={categories} />
             </div>
           </div>
         </div>

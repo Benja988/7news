@@ -3,8 +3,9 @@ import { SkeletonCard } from "@/components/ui/SkeletonLoader";
 import { NewsCard } from "@/components/ui/NewsCard";
 import { Article } from "@/types/article";
 import { EmptyState } from "./EmptyState";
-import { Grid3X3, ChevronRight, FolderOpen, Hash } from "lucide-react";
+import { Grid3X3, ChevronRight, FolderOpen, Hash, List, LayoutGrid } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
 
 interface LatestArticlesSectionProps {
   articles: Article[];
@@ -28,12 +29,13 @@ type GroupedArticles = {
   articles: Article[];
 }[];
 
-export default function LatestArticlesSection({ 
-  articles, 
-  loading, 
+export default function LatestArticlesSection({
+  articles,
+  loading,
   hasMoreArticles,
   categories = [] // Default to empty array
 }: LatestArticlesSectionProps) {
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   // Group articles by category with safe handling
   const groupedArticles: GroupedArticles = [];
   
@@ -75,17 +77,20 @@ export default function LatestArticlesSection({
   return (
     <section className="py-16 bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto px-4">
-        <SectionHeader 
-          articleCount={articles.length} 
+        <SectionHeader
+          articleCount={articles.length}
           categoryCount={shouldGroupByCategory ? groupedArticles.length : 1}
           isGrouped={shouldGroupByCategory}
+          viewMode={viewMode}
+          onViewModeChange={setViewMode}
         />
         
-        <ArticlesByCategory 
+        <ArticlesByCategory
           groupedArticles={displayArticles}
           loading={loading}
           totalArticles={articles.length}
           isGrouped={shouldGroupByCategory}
+          viewMode={viewMode}
         />
 
         {/* Load More Button */}
@@ -96,14 +101,18 @@ export default function LatestArticlesSection({
 }
 
 // Sub-component for section header
-function SectionHeader({ 
-  articleCount, 
+function SectionHeader({
+  articleCount,
   categoryCount,
-  isGrouped
-}: { 
-  articleCount: number; 
+  isGrouped,
+  viewMode,
+  onViewModeChange
+}: {
+  articleCount: number;
   categoryCount: number;
   isGrouped: boolean;
+  viewMode: 'grid' | 'list';
+  onViewModeChange: (mode: 'grid' | 'list') => void;
 }) {
   return (
     <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-12">
@@ -123,6 +132,32 @@ function SectionHeader({
       </div>
       
       <div className="flex items-center space-x-6 mt-4 lg:mt-0">
+        {/* View Mode Toggle */}
+        <div className="flex items-center bg-white dark:bg-gray-800 rounded-lg p-1 border border-gray-200 dark:border-gray-700">
+          <button
+            onClick={() => onViewModeChange('grid')}
+            className={`flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-all ${
+              viewMode === 'grid'
+                ? 'bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400'
+                : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+            }`}
+          >
+            <LayoutGrid className="w-4 h-4" />
+            <span className="hidden sm:inline">Grid</span>
+          </button>
+          <button
+            onClick={() => onViewModeChange('list')}
+            className={`flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-all ${
+              viewMode === 'list'
+                ? 'bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400'
+                : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+            }`}
+          >
+            <List className="w-4 h-4" />
+            <span className="hidden sm:inline">List</span>
+          </button>
+        </div>
+
         <div className="text-right">
           {isGrouped && (
             <div className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400 mb-2">
@@ -141,16 +176,18 @@ function SectionHeader({
 }
 
 // Sub-component for articles grouped by category
-function ArticlesByCategory({ 
-  groupedArticles, 
-  loading, 
+function ArticlesByCategory({
+  groupedArticles,
+  loading,
   totalArticles,
-  isGrouped
-}: { 
+  isGrouped,
+  viewMode
+}: {
   groupedArticles: GroupedArticles;
   loading: boolean;
   totalArticles: number;
   isGrouped: boolean;
+  viewMode: 'grid' | 'list';
 }) {
   if (loading) {
     return (
@@ -168,9 +205,12 @@ function ArticlesByCategory({
               </div>
             )}
             
-            {/* Articles Grid Skeleton */}
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {[...Array(4)].map((_, i) => (
+            {/* Articles Grid/List Skeleton */}
+            <div className={viewMode === 'grid'
+              ? "grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+              : "space-y-4"
+            }>
+              {[...Array(viewMode === 'grid' ? 4 : 6)].map((_, i) => (
                 <SkeletonCard key={i} />
               ))}
             </div>
@@ -192,12 +232,13 @@ function ArticlesByCategory({
   return (
     <div className="space-y-12">
       {groupedArticles.map((group, groupIndex) => (
-        <CategorySection 
-          key={group.category?._id || `group-${groupIndex}`} 
+        <CategorySection
+          key={group.category?._id || `group-${groupIndex}`}
           group={group}
           isFirst={groupIndex === 0}
           isLast={groupIndex === groupedArticles.length - 1}
           isGrouped={isGrouped}
+          viewMode={viewMode}
         />
       ))}
     </div>
@@ -205,16 +246,18 @@ function ArticlesByCategory({
 }
 
 // Sub-component for individual category section
-function CategorySection({ 
-  group, 
-  isFirst, 
+function CategorySection({
+  group,
+  isFirst,
   isLast,
-  isGrouped
-}: { 
+  isGrouped,
+  viewMode
+}: {
   group: GroupedArticles[0];
   isFirst: boolean;
   isLast: boolean;
   isGrouped: boolean;
+  viewMode: 'grid' | 'list';
 }) {
   return (
     <section className={`scroll-mt-8 ${!isFirst ? 'pt-8' : ''}`}>
@@ -257,12 +300,16 @@ function CategorySection({
         </div>
       )}
 
-      {/* Articles Grid */}
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      {/* Articles Grid/List */}
+      <div className={viewMode === 'grid'
+        ? "grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+        : "space-y-4"
+      }>
         {group.articles.map((article) => (
-          <NewsCard 
-            key={article._id} 
-            article={article}// Show category badge only if not grouped
+          <NewsCard
+            key={article._id}
+            article={article}
+            viewMode={viewMode}
           />
         ))}
       </div>

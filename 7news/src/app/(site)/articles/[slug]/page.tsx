@@ -67,13 +67,13 @@ export default function ArticlePage() {
     setComments((prev) => [newComment, ...prev]);
   };
 
-  if (loading) return <p className="text-center mt-10">Loading article...</p>;
-  if (!article) return <p className="text-center mt-10">Article not found.</p>;
+  if (loading) return <p className="text-center mt-10 text-gray-900 dark:text-white">Loading article...</p>;
+  if (!article) return <p className="text-center mt-10 text-gray-900 dark:text-white">Article not found.</p>;
 
   return (
-    <article className="max-w-3xl mx-auto">
-      <h1 className="text-4xl font-bold mb-4">{article.title}</h1>
-      <p className="text-gray-500 text-sm mb-2">
+    <article className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <h1 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white leading-tight">{article.title}</h1>
+      <p className="text-gray-500 dark:text-gray-400 text-sm mb-2">
         {new Date(article.publishedAt).toLocaleDateString()} · By{" "}
         {article.author?.name || "Unknown"}
       </p>
@@ -82,18 +82,18 @@ export default function ArticlePage() {
         <img
           src={article.coverImage}
           alt={article.title}
-          className="w-full h-96 object-cover rounded-lg mb-6"
+          className="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-lg mb-6 shadow-lg"
         />
       )}
 
       <div
-        className="prose max-w-none mb-10"
+        className="prose prose-lg max-w-none mb-10 dark:prose-invert leading-relaxed"
         dangerouslySetInnerHTML={{ __html: article.content }}
       />
 
       {/* Comments Section */}
       <section>
-        <h2 className="text-2xl font-semibold mb-4">Comments</h2>
+        <h2 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">Comments</h2>
         <CommentForm articleId={article._id} onCommentPosted={handleCommentPosted} />
         <CommentList articleId={article._id} />
       </section>
