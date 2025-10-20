@@ -33,14 +33,14 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} font-sans bg-background text-foreground min-h-screen flex flex-col`}
+        className={`${geistSans.variable} ${geistMono.variable} font-sans bg-background text-foreground min-h-screen flex flex-col text-base`}
       >
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <AuthProvider>
             {/* Merged from (site)/layout.tsx */}
             <Header />
             <main className="flex-grow w-full">
-              <div className="mx-auto w-full max-w-8xl">{children}</div>
+              <div className="mx-auto w-full max-w-8xl px-4 sm:px-6 lg:px-8">{children}</div>
             </main>
             <Footer />
           </AuthProvider>
