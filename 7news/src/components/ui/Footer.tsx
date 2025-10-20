@@ -217,15 +217,6 @@ export default function Footer() {
                 <span>and</span>
                 <Code className="w-4 h-4 text-blue-500" />
               </div>
-              <div className="flex items-center space-x-2">
-                <span>Built with</span>
-                <span className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-2 py-1 rounded text-xs font-medium">
-                  Next.js
-                </span>
-                <span className="bg-gradient-to-r from-green-600 to-blue-600 text-white px-2 py-1 rounded text-xs font-medium">
-                  MongoDB
-                </span>
-              </div>
             </div>
 
             {/* Additional Links */}
