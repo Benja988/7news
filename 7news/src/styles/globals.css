@@ -12,10 +12,15 @@
 
   body {
     @apply bg-light-bg text-light-text dark:bg-dark-bg dark:text-dark-text antialiased;
-    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: var(--font-geist-sans), system-ui, sans-serif;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-bold text-light-heading dark:text-dark-heading;
   }
 
@@ -40,14 +45,13 @@
   }
 
   .btn-primary {
-  @apply btn 
+    @apply btn 
     bg-primary text-white 
     hover:bg-red-100 
     focus:ring-2 focus:ring-primary/50 
     dark:bg-primary-light dark:text-gray-900 
     dark:hover:bg-red-300;
-}
-
+  }
 
   .btn-outline {
     @apply btn border border-primary text-primary hover:bg-primary hover:text-white dark:border-primary-light dark:text-primary-light dark:hover:bg-primary-light dark:hover:text-dark-bg;
