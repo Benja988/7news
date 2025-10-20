@@ -38,12 +38,8 @@ module.exports = {
       },
 
       fontFamily: {
-        sans: ['var(--font-geist-sans)', 'Inter', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
         serif: ['Merriweather', 'serif'],
-      },
-
-      maxWidth: {
-        '8xl': '88rem',
       },
 
       boxShadow: {
