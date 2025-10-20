@@ -210,14 +210,14 @@ export default function Footer() {
             </div>
 
             {/* Credits */}
-            <div className="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
+            {/* <div className="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
               <div className="flex items-center space-x-1">
                 <span>Made with</span>
                 <Heart className="w-4 h-4 text-red-500 fill-current" />
                 <span>and</span>
                 <Code className="w-4 h-4 text-blue-500" />
               </div>
-            </div>
+            </div> */}
 
             {/* Additional Links */}
             <div className="flex space-x-6 text-sm">

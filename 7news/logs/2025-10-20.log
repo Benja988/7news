@@ -12,3 +12,27 @@
 2025-10-20 14:49:54 [INFO] [articles:list-create] Fetched articles list
 2025-10-20 14:49:54 [INFO] [articles:list-create] Fetched articles list
 2025-10-20 14:49:55 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:04:20 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-20 18:04:20 [WARN] [fb38173a-7495-472e-ba6d-e66deef78fae] [Auth] No access token found in cookies
+2025-10-20 18:04:20 [WARN] [user:me] Unauthenticated access attempt
+2025-10-20 18:04:22 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-20 18:04:24 [WARN] [349d1c87-eec4-483e-a1d2-11792846e5ea] [Auth] No access token found in cookies
+2025-10-20 18:04:24 [WARN] [user:me] Unauthenticated access attempt
+2025-10-20 18:04:24 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:04:26 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:04:26 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:04:28 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:04:28 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:04:30 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:04:30 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:04:30 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:07:53 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-20 18:07:54 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-20 18:07:54 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:07:54 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:07:54 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:07:55 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:07:55 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:07:55 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:07:55 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:07:56 [INFO] [articles:list-create] Fetched articles list
