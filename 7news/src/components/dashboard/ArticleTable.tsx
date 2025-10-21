@@ -268,10 +268,10 @@ export default function ArticleTable({ articles }: { articles: Article[] }) {
                   </span>
                 </td>
                 <td className="p-3 text-center">
-                  <span className="font-medium">{article.views.toLocaleString()}</span>
+                  <span className="font-medium">{(article.views || 0).toLocaleString()}</span>
                 </td>
                 <td className="p-3 text-center">
-                  <span className="font-medium">{article.likes.toLocaleString()}</span>
+                  <span className="font-medium">{(article.likes || 0).toLocaleString()}</span>
                 </td>
                 <td className="p-3 text-center">
                   {article.isFeatured ? (
