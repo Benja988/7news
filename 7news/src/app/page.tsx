@@ -7,6 +7,8 @@ import FeaturedSection from "@/components/ui/FeaturedSection";
 import LatestArticlesSection from "@/components/ui/LatestArticlesSection";
 import NewsletterSection from "@/components/ui/NewsletterSection";
 import HeroSection from "@/components/ui/HeroSection";
+import Header from "@/components/ui/Header";
+import Footer from "@/components/ui/Footer";
 
 export default function HomePage() {
   const {
@@ -27,29 +29,35 @@ export default function HomePage() {
 
   return (
     <>
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-        <HeroSection
-          onSearch={handleSearch}
-          onCategorySelect={handleCategorySelect}
-          activeCategory={activeCategory}
-          featuredArticles={featuredArticles}
-          loading={loading.featured}
-          categories={categories}
-        />
+      <Header />
+      <main className="flex-grow w-full">
+        <div className="mx-auto w-full max-w-8xl">
+          <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+            <HeroSection
+              onSearch={handleSearch}
+              onCategorySelect={handleCategorySelect}
+              activeCategory={activeCategory}
+              featuredArticles={featuredArticles}
+              loading={loading.featured}
+              categories={categories}
+            />
 
-        <FeaturedSection
-          featuredArticles={featuredArticles}
-          loading={loading.featured}
-        />
+            <FeaturedSection
+              featuredArticles={featuredArticles}
+              loading={loading.featured}
+            />
 
-        <LatestArticlesSection
-          articles={articles}
-          loading={loading.main}
-          hasMoreArticles={articles.length > 0}
-        />
-      </div>
+            <LatestArticlesSection
+              articles={articles}
+              loading={loading.main}
+              hasMoreArticles={articles.length > 0}
+            />
+          </div>
 
-      <NewsletterSection />
+          <NewsletterSection />
+        </div>
+      </main>
+      <Footer />
     </>
   );
 }
