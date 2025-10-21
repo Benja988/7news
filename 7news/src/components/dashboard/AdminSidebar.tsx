@@ -3,13 +3,14 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Home, FileText, Folder, Users, Settings } from "lucide-react";
+import { ROUTES } from "@/lib/routes";
 
 const menuItems = [
-  { href: "/admin", icon: Home, label: "Dashboard" },
-  { href: "/admin/articles", icon: FileText, label: "Articles" },
-  { href: "/admin/categories", icon: Folder, label: "Categories" },
-  { href: "/admin/users", icon: Users, label: "Users" },
-  { href: "/admin/settings", icon: Settings, label: "Settings" },
+  { href: ROUTES.ADMIN, icon: Home, label: "Dashboard" },
+  { href: ROUTES.ADMIN_ARTICLES, icon: FileText, label: "Articles" },
+  { href: ROUTES.ADMIN_CATEGORIES, icon: Folder, label: "Categories" },
+  { href: ROUTES.ADMIN_USERS, icon: Users, label: "Users" },
+  { href: ROUTES.ADMIN_SETTINGS, icon: Settings, label: "Settings" },
 ];
 
 export default function AdminSidebar() {

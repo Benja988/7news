@@ -36,3 +36,374 @@
 2025-10-20 18:07:55 [INFO] [articles:list-create] Fetched articles list
 2025-10-20 18:07:55 [INFO] [articles:list-create] Fetched articles list
 2025-10-20 18:07:56 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:29:30 [WARN] [8b76cd89-9f38-4a11-b164-25261f4bf34c] [Auth] No access token found in cookies
+2025-10-20 18:29:30 [WARN] [user:me] Unauthenticated access attempt
+2025-10-20 18:29:37 [WARN] [5a2a7d5c-da44-4f30-b8db-e1796cbf64d2] [Auth] No access token found in cookies
+2025-10-20 18:29:37 [WARN] [user:me] Unauthenticated access attempt
+2025-10-20 18:29:48 [WARN] [534f01e6-14db-472c-835b-481c42ea69af] [Auth] No access token found in cookies
+2025-10-20 18:29:48 [WARN] [user:me] Unauthenticated access attempt
+2025-10-20 18:29:59 [WARN] [9d3a099f-c8a0-48e9-bf03-a855487b2ab4] [Auth] No access token found in cookies
+2025-10-20 18:29:59 [WARN] [user:me] Unauthenticated access attempt
+2025-10-20 18:34:49 [WARN] [6763c6d3-441e-4d90-8e3a-5626d766cc48] [Auth] No access token found in cookies
+2025-10-20 18:34:49 [WARN] [user:me] Unauthenticated access attempt
+2025-10-20 18:34:49 [WARN] [9098d3a6-5d38-4193-b14e-decd05226cf8] [Auth] No access token found in cookies
+2025-10-20 18:34:49 [WARN] [user:me] Unauthenticated access attempt
+2025-10-20 18:35:17 [INFO] [e7c83229-fe76-4e1a-96dd-f67943081edb] [Auth] Signing access token for user: benjaminokumu12@gmail.com
+2025-10-20 18:35:17 [INFO] [e32e911b-8517-49cf-9df3-b8cc2e7fe4d4] [Auth] Signing refresh token for user: benjaminokumu12@gmail.com
+2025-10-20 18:35:17 [INFO] [75f50040-016b-4c4f-adf1-aac09fbd9cc8] [Auth] Setting auth cookies
+2025-10-20 18:35:17 [INFO] [auth:login] User logged in: benjaminokumu12@gmail.com
+2025-10-20 18:35:22 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-20 18:35:23 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-20 18:35:23 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:35:24 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:35:24 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:35:24 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:35:24 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:35:25 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:35:25 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:35:25 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:35:33 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-10-20 18:35:33 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-10-20 18:35:37 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:35:37 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:35:48 [INFO] [users] Users retrieved
+2025-10-20 18:35:48 [INFO] [users] Users retrieved
+2025-10-20 18:36:00 [ERROR] [Error retrieving user] Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "User"
+CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "User"
+    at SchemaObjectId.cast (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\schema\objectId.js:251:11)
+    at SchemaType.applySetters (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\schemaType.js:1258:12)
+    at SchemaType.castForQuery (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\schemaType.js:1694:17)
+    at cast (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\cast.js:390:32)
+    at Query.cast (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\query.js:5060:12)
+    at Query._castConditions (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._findOne (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\query.js:2697:8)
+    at model.Query.exec (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\query.js:4627:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async eval (webpack-internal:///(rsc)/./src/app/api/users/[id]/route.ts:26:22)
+    at async AppRouteRouteModule.do (D:\WProjects\bbprodnews\7news\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:5:38782)
+    at async AppRouteRouteModule.handle (D:\WProjects\bbprodnews\7news\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:5:45984)
+    at async responseGenerator (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader/index.js?name=app%2Fapi%2Fusers%2F%5Bid%5D%2Froute&page=%2Fapi%2Fusers%2F%5Bid%5D%2Froute&appPaths=&pagePath=private-next-app-dir%2Fapi%2Fusers%2F%5Bid%5D%2Froute.ts&appDir=D%3A%5CWProjects%5Cbbprodnews%5C7news%5Csrc%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=D%3A%5CWProjects%5Cbbprodnews%5C7news&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D&isGlobalNotFoundEnabled=!:203:38)
+    at async AppRouteRouteModule.handleResponse (D:\WProjects\bbprodnews\7news\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:1:183692)
+    at async handleResponse (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader/index.js?name=app%2Fapi%2Fusers%2F%5Bid%5D%2Froute&page=%2Fapi%2Fusers%2F%5Bid%5D%2Froute&appPaths=&pagePath=private-next-app-dir%2Fapi%2Fusers%2F%5Bid%5D%2Froute.ts&appDir=D%3A%5CWProjects%5Cbbprodnews%5C7news%5Csrc%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=D%3A%5CWProjects%5Cbbprodnews%5C7news&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D&isGlobalNotFoundEnabled=!:265:32)
+    at async handler (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader/index.js?name=app%2Fapi%2Fusers%2F%5Bid%5D%2Froute&page=%2Fapi%2Fusers%2F%5Bid%5D%2Froute&appPaths=&pagePath=private-next-app-dir%2Fapi%2Fusers%2F%5Bid%5D%2Froute.ts&appDir=D%3A%5CWProjects%5Cbbprodnews%5C7news%5Csrc%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=D%3A%5CWProjects%5Cbbprodnews%5C7news&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D&isGlobalNotFoundEnabled=!:317:13)
+    at async doRender (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:1592:34)
+    at async DevServer.renderToResponseWithComponentsImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:1934:13)
+    at async DevServer.renderPageComponent (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:2400:24)
+    at async DevServer.renderToResponseImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:2440:32)
+    at async DevServer.pipeImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:1035:25)
+    at async NextNodeServer.handleCatchallRenderRequest (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\next-server.js:393:17)
+    at async DevServer.handleRequestImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:925:17)
+    at async D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\dev\next-dev-server.js:398:20
+    at async Span.traceAsyncFn (D:\WProjects\bbprodnews\7news\node_modules\next\dist\trace\trace.js:157:20)
+    at async DevServer.handleRequest (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\dev\next-dev-server.js:394:24)
+    at async invokeRender (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\lib\router-server.js:239:21)
+    at async handleRequest (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\lib\router-server.js:436:24)
+    at async requestHandlerImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\lib\router-server.js:464:13)
+    at async Server.requestListener (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\lib\start-server.js:218:13)
+2025-10-20 18:36:00 [ERROR] [Error retrieving user] Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "User"
+CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "User"
+    at SchemaObjectId.cast (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\schema\objectId.js:251:11)
+    at SchemaType.applySetters (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\schemaType.js:1258:12)
+    at SchemaType.castForQuery (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\schemaType.js:1694:17)
+    at cast (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\cast.js:390:32)
+    at Query.cast (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\query.js:5060:12)
+    at Query._castConditions (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._findOne (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\query.js:2697:8)
+    at model.Query.exec (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\query.js:4627:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async eval (webpack-internal:///(rsc)/./src/app/api/users/[id]/route.ts:26:22)
+    at async AppRouteRouteModule.do (D:\WProjects\bbprodnews\7news\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:5:38782)
+    at async AppRouteRouteModule.handle (D:\WProjects\bbprodnews\7news\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:5:45984)
+    at async responseGenerator (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader/index.js?name=app%2Fapi%2Fusers%2F%5Bid%5D%2Froute&page=%2Fapi%2Fusers%2F%5Bid%5D%2Froute&appPaths=&pagePath=private-next-app-dir%2Fapi%2Fusers%2F%5Bid%5D%2Froute.ts&appDir=D%3A%5CWProjects%5Cbbprodnews%5C7news%5Csrc%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=D%3A%5CWProjects%5Cbbprodnews%5C7news&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D&isGlobalNotFoundEnabled=!:203:38)
+    at async AppRouteRouteModule.handleResponse (D:\WProjects\bbprodnews\7news\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:1:183692)
+    at async handleResponse (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader/index.js?name=app%2Fapi%2Fusers%2F%5Bid%5D%2Froute&page=%2Fapi%2Fusers%2F%5Bid%5D%2Froute&appPaths=&pagePath=private-next-app-dir%2Fapi%2Fusers%2F%5Bid%5D%2Froute.ts&appDir=D%3A%5CWProjects%5Cbbprodnews%5C7news%5Csrc%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=D%3A%5CWProjects%5Cbbprodnews%5C7news&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D&isGlobalNotFoundEnabled=!:265:32)
+    at async handler (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader/index.js?name=app%2Fapi%2Fusers%2F%5Bid%5D%2Froute&page=%2Fapi%2Fusers%2F%5Bid%5D%2Froute&appPaths=&pagePath=private-next-app-dir%2Fapi%2Fusers%2F%5Bid%5D%2Froute.ts&appDir=D%3A%5CWProjects%5Cbbprodnews%5C7news%5Csrc%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=D%3A%5CWProjects%5Cbbprodnews%5C7news&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D&isGlobalNotFoundEnabled=!:317:13)
+    at async doRender (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:1592:34)
+    at async DevServer.renderToResponseWithComponentsImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:1934:13)
+    at async DevServer.renderPageComponent (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:2400:24)
+    at async DevServer.renderToResponseImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:2440:32)
+    at async DevServer.pipeImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:1035:25)
+    at async NextNodeServer.handleCatchallRenderRequest (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\next-server.js:393:17)
+    at async DevServer.handleRequestImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:925:17)
+    at async D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\dev\next-dev-server.js:398:20
+    at async Span.traceAsyncFn (D:\WProjects\bbprodnews\7news\node_modules\next\dist\trace\trace.js:157:20)
+    at async DevServer.handleRequest (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\dev\next-dev-server.js:394:24)
+    at async invokeRender (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\lib\router-server.js:239:21)
+    at async handleRequest (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\lib\router-server.js:436:24)
+    at async requestHandlerImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\lib\router-server.js:464:13)
+    at async Server.requestListener (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\lib\start-server.js:218:13)
+2025-10-20 18:36:11 [INFO] [users] Users retrieved
+2025-10-20 18:36:11 [INFO] [users] Users retrieved
+2025-10-20 18:36:24 [ERROR] [Error retrieving user] Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "User"
+CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "User"
+    at SchemaObjectId.cast (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\schema\objectId.js:251:11)
+    at SchemaType.applySetters (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\schemaType.js:1258:12)
+    at SchemaType.castForQuery (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\schemaType.js:1694:17)
+    at cast (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\cast.js:390:32)
+    at Query.cast (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\query.js:5060:12)
+    at Query._castConditions (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._findOne (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\query.js:2697:8)
+    at model.Query.exec (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\query.js:4627:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async eval (webpack-internal:///(rsc)/./src/app/api/users/[id]/route.ts:26:22)
+    at async AppRouteRouteModule.do (D:\WProjects\bbprodnews\7news\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:5:38782)
+    at async AppRouteRouteModule.handle (D:\WProjects\bbprodnews\7news\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:5:45984)
+    at async responseGenerator (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader/index.js?name=app%2Fapi%2Fusers%2F%5Bid%5D%2Froute&page=%2Fapi%2Fusers%2F%5Bid%5D%2Froute&appPaths=&pagePath=private-next-app-dir%2Fapi%2Fusers%2F%5Bid%5D%2Froute.ts&appDir=D%3A%5CWProjects%5Cbbprodnews%5C7news%5Csrc%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=D%3A%5CWProjects%5Cbbprodnews%5C7news&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D&isGlobalNotFoundEnabled=!:203:38)
+    at async AppRouteRouteModule.handleResponse (D:\WProjects\bbprodnews\7news\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:1:183692)
+    at async handleResponse (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader/index.js?name=app%2Fapi%2Fusers%2F%5Bid%5D%2Froute&page=%2Fapi%2Fusers%2F%5Bid%5D%2Froute&appPaths=&pagePath=private-next-app-dir%2Fapi%2Fusers%2F%5Bid%5D%2Froute.ts&appDir=D%3A%5CWProjects%5Cbbprodnews%5C7news%5Csrc%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=D%3A%5CWProjects%5Cbbprodnews%5C7news&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D&isGlobalNotFoundEnabled=!:265:32)
+    at async handler (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader/index.js?name=app%2Fapi%2Fusers%2F%5Bid%5D%2Froute&page=%2Fapi%2Fusers%2F%5Bid%5D%2Froute&appPaths=&pagePath=private-next-app-dir%2Fapi%2Fusers%2F%5Bid%5D%2Froute.ts&appDir=D%3A%5CWProjects%5Cbbprodnews%5C7news%5Csrc%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=D%3A%5CWProjects%5Cbbprodnews%5C7news&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D&isGlobalNotFoundEnabled=!:317:13)
+    at async doRender (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:1592:34)
+    at async DevServer.renderToResponseWithComponentsImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:1934:13)
+    at async DevServer.renderPageComponent (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:2400:24)
+    at async DevServer.renderToResponseImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:2440:32)
+    at async DevServer.pipeImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:1035:25)
+    at async NextNodeServer.handleCatchallRenderRequest (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\next-server.js:393:17)
+    at async DevServer.handleRequestImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:925:17)
+    at async D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\dev\next-dev-server.js:398:20
+    at async Span.traceAsyncFn (D:\WProjects\bbprodnews\7news\node_modules\next\dist\trace\trace.js:157:20)
+    at async DevServer.handleRequest (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\dev\next-dev-server.js:394:24)
+    at async invokeRender (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\lib\router-server.js:239:21)
+    at async handleRequest (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\lib\router-server.js:436:24)
+    at async requestHandlerImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\lib\router-server.js:464:13)
+    at async Server.requestListener (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\lib\start-server.js:218:13)
+2025-10-20 18:36:25 [ERROR] [Error retrieving user] Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "User"
+CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "User"
+    at SchemaObjectId.cast (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\schema\objectId.js:251:11)
+    at SchemaType.applySetters (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\schemaType.js:1258:12)
+    at SchemaType.castForQuery (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\schemaType.js:1694:17)
+    at cast (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\cast.js:390:32)
+    at Query.cast (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\query.js:5060:12)
+    at Query._castConditions (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._findOne (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\query.js:2697:8)
+    at model.Query.exec (D:\WProjects\bbprodnews\7news\node_modules\mongoose\lib\query.js:4627:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async eval (webpack-internal:///(rsc)/./src/app/api/users/[id]/route.ts:26:22)
+    at async AppRouteRouteModule.do (D:\WProjects\bbprodnews\7news\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:5:38782)
+    at async AppRouteRouteModule.handle (D:\WProjects\bbprodnews\7news\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:5:45984)
+    at async responseGenerator (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader/index.js?name=app%2Fapi%2Fusers%2F%5Bid%5D%2Froute&page=%2Fapi%2Fusers%2F%5Bid%5D%2Froute&appPaths=&pagePath=private-next-app-dir%2Fapi%2Fusers%2F%5Bid%5D%2Froute.ts&appDir=D%3A%5CWProjects%5Cbbprodnews%5C7news%5Csrc%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=D%3A%5CWProjects%5Cbbprodnews%5C7news&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D&isGlobalNotFoundEnabled=!:203:38)
+    at async AppRouteRouteModule.handleResponse (D:\WProjects\bbprodnews\7news\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:1:183692)
+    at async handleResponse (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader/index.js?name=app%2Fapi%2Fusers%2F%5Bid%5D%2Froute&page=%2Fapi%2Fusers%2F%5Bid%5D%2Froute&appPaths=&pagePath=private-next-app-dir%2Fapi%2Fusers%2F%5Bid%5D%2Froute.ts&appDir=D%3A%5CWProjects%5Cbbprodnews%5C7news%5Csrc%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=D%3A%5CWProjects%5Cbbprodnews%5C7news&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D&isGlobalNotFoundEnabled=!:265:32)
+    at async handler (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader/index.js?name=app%2Fapi%2Fusers%2F%5Bid%5D%2Froute&page=%2Fapi%2Fusers%2F%5Bid%5D%2Froute&appPaths=&pagePath=private-next-app-dir%2Fapi%2Fusers%2F%5Bid%5D%2Froute.ts&appDir=D%3A%5CWProjects%5Cbbprodnews%5C7news%5Csrc%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=D%3A%5CWProjects%5Cbbprodnews%5C7news&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D&isGlobalNotFoundEnabled=!:317:13)
+    at async doRender (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:1592:34)
+    at async DevServer.renderToResponseWithComponentsImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:1934:13)
+    at async DevServer.renderPageComponent (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:2400:24)
+    at async DevServer.renderToResponseImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:2440:32)
+    at async DevServer.pipeImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:1035:25)
+    at async NextNodeServer.handleCatchallRenderRequest (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\next-server.js:393:17)
+    at async DevServer.handleRequestImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\base-server.js:925:17)
+    at async D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\dev\next-dev-server.js:398:20
+    at async Span.traceAsyncFn (D:\WProjects\bbprodnews\7news\node_modules\next\dist\trace\trace.js:157:20)
+    at async DevServer.handleRequest (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\dev\next-dev-server.js:394:24)
+    at async invokeRender (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\lib\router-server.js:239:21)
+    at async handleRequest (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\lib\router-server.js:436:24)
+    at async requestHandlerImpl (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\lib\router-server.js:464:13)
+    at async Server.requestListener (D:\WProjects\bbprodnews\7news\node_modules\next\dist\server\lib\start-server.js:218:13)
+2025-10-20 18:36:57 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-20 18:36:58 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-20 18:36:58 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:36:58 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:36:58 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:36:58 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:36:58 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:36:58 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:36:59 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:36:59 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:37:06 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-10-20 18:38:04 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-10-20 18:51:08 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-20 18:51:08 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-20 18:51:09 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:51:09 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:51:09 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:51:09 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:51:11 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:51:11 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:51:13 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:51:15 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-20 18:51:15 [WARN] [b9b266a0-e50a-4265-899c-804aa971ca6f] [Auth] No access token found in cookies
+2025-10-20 18:51:15 [WARN] [user:me] Unauthenticated access attempt
+2025-10-20 18:51:15 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-20 18:51:15 [WARN] [09453ff6-75ff-4bac-9d93-c89ea12f838e] [Auth] No access token found in cookies
+2025-10-20 18:51:15 [WARN] [user:me] Unauthenticated access attempt
+2025-10-20 18:51:15 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:51:15 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:51:15 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:51:15 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:51:15 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:51:16 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:51:16 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:51:16 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:51:42 [INFO] [auth:register] User registered: benjaminokumu1@gmail.com
+2025-10-20 18:51:54 [INFO] [b7aed339-e2b2-41db-a3bc-7097dc97a4cd] [Auth] Signing access token for user: benjaminokumu1@gmail.com
+2025-10-20 18:51:54 [INFO] [89bc7f17-ebe0-4734-ad4a-4eabfc263c20] [Auth] Signing refresh token for user: benjaminokumu1@gmail.com
+2025-10-20 18:51:54 [INFO] [2b60f594-2b2b-49e9-a5a3-7c1bb03c8a56] [Auth] Setting auth cookies
+2025-10-20 18:51:54 [INFO] [auth:login] User logged in: benjaminokumu1@gmail.com
+2025-10-20 18:51:55 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-20 18:51:55 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-20 18:51:56 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:51:56 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:51:56 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:51:56 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:51:56 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:51:57 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:51:57 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:51:57 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 18:53:21 [INFO] [user:me] User profile retrieved: benjaminokumu1@gmail.com
+2025-10-20 19:07:03 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-20 19:07:03 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-20 19:07:03 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:07:04 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:07:04 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:07:04 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:07:04 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:07:04 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:07:04 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:07:05 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:07:09 [INFO] [7dfa0238-95c2-4d6f-b5fc-19fccc9bf0d1] [Auth] Signing access token for user: benjaminokumu12@gmail.com
+2025-10-20 19:07:09 [INFO] [6628fa4a-f571-4a9a-8dd6-820e60b85ed3] [Auth] Signing refresh token for user: benjaminokumu12@gmail.com
+2025-10-20 19:07:09 [INFO] [e7eb1dab-8085-4ccf-a914-5b6f4216b565] [Auth] Setting auth cookies
+2025-10-20 19:07:09 [INFO] [auth:login] User logged in: benjaminokumu12@gmail.com
+2025-10-20 19:07:09 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-20 19:07:10 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-20 19:07:10 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:07:10 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:07:10 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:07:10 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:07:10 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:07:11 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:07:11 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:07:11 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:07:26 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-10-20 19:07:50 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:07:50 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:08:35 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:08:35 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:23:13 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:23:13 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:23:26 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:23:26 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:23:26 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-20 19:23:26 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-20 19:23:27 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:23:27 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:23:27 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:23:27 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:23:27 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:23:27 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:23:37 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-20 19:23:37 [WARN] [cb056e3c-26ab-4919-b3f9-fc5b9b4c0a6d] [Auth] No access token found in cookies
+2025-10-20 19:23:37 [WARN] [user:me] Unauthenticated access attempt
+2025-10-20 19:23:37 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-20 19:23:37 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:23:38 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:23:38 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:23:38 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:23:38 [WARN] [19079df5-7435-44df-8322-19845c4d31e3] [Auth] No access token found in cookies
+2025-10-20 19:23:38 [WARN] [user:me] Unauthenticated access attempt
+2025-10-20 19:23:39 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:23:39 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:23:39 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:23:40 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:23:56 [INFO] [6332bf33-5f61-4295-8df9-18d57439bea6] [Auth] Signing access token for user: benjaminokumu1@gmail.com
+2025-10-20 19:23:56 [INFO] [8a880273-d02b-40ee-9048-d2130c90ad3e] [Auth] Signing refresh token for user: benjaminokumu1@gmail.com
+2025-10-20 19:23:56 [INFO] [d51bff9d-3caf-4676-ba6d-3df255ccf56b] [Auth] Setting auth cookies
+2025-10-20 19:23:56 [INFO] [auth:login] User logged in: benjaminokumu1@gmail.com
+2025-10-20 19:23:56 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-20 19:23:56 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-20 19:23:57 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:23:57 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:23:57 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:23:57 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:23:57 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:23:58 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:23:58 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:23:58 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:24:31 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:24:31 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:24:42 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-20 19:24:42 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-20 19:24:43 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:24:43 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:24:43 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:24:43 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:24:43 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:24:43 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:24:43 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:24:44 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:25:12 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-20 19:26:02 [ERROR] [articles:list-create] Error listing articles
+2025-10-20 19:26:02 [ERROR] [articles:list-create] Error listing articles
+2025-10-20 19:26:02 [ERROR] [articles:list-create] Error listing articles
+2025-10-20 19:50:12 [INFO] [c5bcbb66-d1c1-4d60-9a25-6d524e5b492d] [Auth] Signing access token for user: benjaminokumu12@gmail.com
+2025-10-20 19:50:12 [INFO] [3024e8f3-9b7c-4170-8287-b2f20ce9ffbb] [Auth] Signing refresh token for user: benjaminokumu12@gmail.com
+2025-10-20 19:50:12 [INFO] [f57ede5c-7a05-4453-9d1d-3d1729762471] [Auth] Setting auth cookies
+2025-10-20 19:50:12 [INFO] [auth:login] User logged in: benjaminokumu12@gmail.com
+2025-10-20 19:50:18 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-20 19:50:18 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-20 19:50:19 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:50:19 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:50:19 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:50:19 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:50:19 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:50:20 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:50:20 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:50:20 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:51:25 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-10-20 19:51:29 [INFO] [2e769292-91e9-4e79-994c-057a50d08a31] [Auth] Signing access token for user: benjaminokumu12@gmail.com
+2025-10-20 19:51:30 [INFO] [c4fa0ba1-b593-4a20-baf0-f55d837197ef] [Auth] Signing refresh token for user: benjaminokumu12@gmail.com
+2025-10-20 19:51:30 [INFO] [6885784e-39b6-400d-9202-ed9a1d390c85] [Auth] Setting auth cookies
+2025-10-20 19:51:30 [INFO] [auth:login] User logged in: benjaminokumu12@gmail.com
+2025-10-20 19:51:37 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-20 19:51:37 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-20 19:51:37 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:51:37 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:51:38 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:51:38 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:51:38 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:51:39 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:51:39 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:51:40 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:51:45 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-10-20 19:51:57 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 19:51:57 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 20:45:02 [WARN] [2d662960-c555-4545-9eef-b58b6b949f60] [Auth] No access token found in cookies
+2025-10-20 20:45:02 [WARN] [user:me] Unauthenticated access attempt
+2025-10-20 20:45:02 [WARN] [b89eabca-f7c2-4f05-9d6a-cb02711db428] [Auth] No access token found in cookies
+2025-10-20 20:45:02 [WARN] [user:me] Unauthenticated access attempt
+2025-10-20 20:45:09 [INFO] [15b6c2c8-56bf-4342-ac94-f0c888c7a003] [Auth] Signing access token for user: benjaminokumu12@gmail.com
+2025-10-20 20:45:09 [INFO] [b91dc627-2a85-49c6-a056-97c0ef968898] [Auth] Signing refresh token for user: benjaminokumu12@gmail.com
+2025-10-20 20:45:09 [INFO] [34164258-6ead-4217-8266-dc0740b93e71] [Auth] Setting auth cookies
+2025-10-20 20:45:09 [INFO] [auth:login] User logged in: benjaminokumu12@gmail.com
+2025-10-20 20:45:18 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-20 20:45:18 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-20 20:45:18 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 20:45:18 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 20:45:18 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 20:45:19 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 20:45:23 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 20:45:24 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 20:45:24 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 20:45:24 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 20:45:28 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-10-20 20:45:29 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-10-20 20:45:36 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 20:45:36 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 22:31:34 [WARN] [18060524-0dc7-44ed-944c-6c6d0a05a52a] [Auth] No access token found in cookies
+2025-10-20 22:31:34 [WARN] [user:me] Unauthenticated access attempt
+2025-10-20 22:31:46 [INFO] [09f26b79-dd3f-4242-aab8-ec76aad6b006] [Auth] Signing access token for user: benjaminokumu12@gmail.com
+2025-10-20 22:31:46 [INFO] [c7ad9ad7-3f9c-416e-aa1c-59619c940e8a] [Auth] Signing refresh token for user: benjaminokumu12@gmail.com
+2025-10-20 22:31:46 [INFO] [82060d37-82db-481a-b8c7-76de4fc90386] [Auth] Setting auth cookies
+2025-10-20 22:31:46 [INFO] [auth:login] User logged in: benjaminokumu12@gmail.com
+2025-10-20 22:31:54 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-20 22:31:54 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-20 22:31:54 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 22:31:54 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 22:31:54 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 22:31:54 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 22:31:55 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 22:31:55 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 22:31:55 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 22:31:55 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 22:32:05 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-10-20 22:32:14 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 22:32:14 [INFO] [articles:list-create] Fetched articles list

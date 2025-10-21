@@ -22,15 +22,18 @@ import {
   Gamepad2,
   Heart,
   Music,
-  Zap
+  Zap,
+  Settings
 } from "lucide-react";
 import { useState } from "react";
 import { Category } from "@/types/category";
+import { ROUTES } from "@/lib/routes";
 
 interface User {
   id: string;
   name: string;
   email: string;
+  role: string;
 }
 
 interface HeaderDesktopProps {
@@ -279,12 +282,21 @@ export default function HeaderDesktop({ user, scrolled, categories }: HeaderDesk
                         <p className="text-sm text-gray-500 dark:text-gray-400 truncate">{user.email}</p>
                       </div>
                       <Link
-                        href="/profile"
+                        href={ROUTES.PROFILE}
                         className="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-sm"
                       >
                         <User className="w-4 h-4" />
                         <span>Profile</span>
                       </Link>
+                      {(user.role === 'admin' || user.role === 'editor') && (
+                        <Link
+                          href={ROUTES.ADMIN}
+                          className="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-sm"
+                        >
+                          <Settings className="w-4 h-4" />
+                          <span>Admin Dashboard</span>
+                        </Link>
+                      )}
                       <div className="h-px bg-gray-200 dark:bg-gray-700 my-1"></div>
                       <button
                         onClick={handleLogout}

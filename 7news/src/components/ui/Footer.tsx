@@ -3,18 +3,20 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { 
-  Newspaper, 
-  Mail, 
-  Github, 
-  Twitter, 
-  Facebook, 
+import {
+  Newspaper,
+  Mail,
+  Github,
+  Twitter,
+  Facebook,
   Linkedin,
   ArrowUp,
   Heart,
   Code,
-  Zap
+  Zap,
+  User
 } from "lucide-react";
+import { ROUTES } from "@/lib/routes";
 
 export default function Footer() {
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
@@ -37,24 +39,24 @@ export default function Footer() {
   };
 
   const quickLinks = [
-    { name: "Home", href: "/" },
-    { name: "Articles", href: "/articles" },
-    { name: "Categories", href: "/categories" },
-    { name: "Trending", href: "/trending" },
+    { name: "Home", href: ROUTES.HOME },
+    { name: "Articles", href: ROUTES.ARTICLES },
+    { name: "Categories", href: ROUTES.CATEGORIES },
+    { name: "Profile", href: ROUTES.PROFILE },
   ];
 
   const companyLinks = [
-    { name: "About Us", href: "/about" },
-    { name: "Contact", href: "/contact" },
-    { name: "Careers", href: "/careers" },
-    { name: "Newsroom", href: "/newsroom" },
+    { name: "About Us", href: ROUTES.ABOUT },
+    { name: "Contact", href: ROUTES.CONTACT },
+    { name: "Careers", href: ROUTES.CAREERS },
+    { name: "Newsroom", href: ROUTES.NEWSROOM },
   ];
 
   const legalLinks = [
-    { name: "Privacy Policy", href: "/privacy" },
-    { name: "Terms of Service", href: "/terms" },
-    { name: "Cookie Policy", href: "/cookies" },
-    { name: "GDPR", href: "/gdpr" },
+    { name: "Privacy Policy", href: ROUTES.PRIVACY },
+    { name: "Terms of Service", href: ROUTES.TERMS },
+    { name: "Cookie Policy", href: ROUTES.COOKIES },
+    { name: "GDPR", href: ROUTES.GDPR },
   ];
 
   const socialLinks = [
@@ -222,13 +224,13 @@ export default function Footer() {
             {/* Additional Links */}
             <div className="flex space-x-6 text-sm">
               <Link
-                href="/sitemap"
+                href={ROUTES.SITEMAP}
                 className="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
               >
                 Sitemap
               </Link>
               <Link
-                href="/accessibility"
+                href={ROUTES.ACCESSIBILITY}
                 className="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
               >
                 Accessibility

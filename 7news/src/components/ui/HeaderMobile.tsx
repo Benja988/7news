@@ -25,9 +25,11 @@ import {
   Gamepad2,
   Heart,
   Music,
-  Zap
+  Zap,
+  Settings
 } from "lucide-react";
 import { useState } from "react";
+import { ROUTES } from "@/lib/routes";
 
 interface Category {
   _id: string;
@@ -40,6 +42,7 @@ interface User {
   id: string;
   name: string;
   email: string;
+  role: string;
 }
 
 interface HeaderMobileProps {
@@ -293,13 +296,23 @@ export default function HeaderMobile({ user, scrolled, categories }: HeaderMobil
                 {user ? (
                   <>
                     <Link
-                      href="/profile"
+                      href={ROUTES.PROFILE}
                       className="flex items-center space-x-3 px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 rounded-lg"
                       onClick={() => setMenuOpen(false)}
                     >
                       <User className="w-5 h-5" />
                       <span>Profile</span>
                     </Link>
+                    {(user.role === 'admin' || user.role === 'editor') && (
+                      <Link
+                        href={ROUTES.ADMIN}
+                        className="flex items-center space-x-3 px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 rounded-lg"
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        <Settings className="w-5 h-5" />
+                        <span>Admin Dashboard</span>
+                      </Link>
+                    )}
                     <button
                       onClick={handleLogout}
                       className="flex items-center space-x-3 w-full px-4 py-3 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg text-left"

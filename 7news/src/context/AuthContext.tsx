@@ -1,6 +1,7 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { getDashboardRoute, ROUTES } from "@/lib/routes";
 
 type User = {
   id: string;
@@ -59,7 +60,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     if (!res.ok) throw new Error(data.message || "Login failed");
 
     setUser(data.data); // API should return safe user data
-    router.push("/");
+
+    // Redirect based on user role
+    const dashboardRoute = getDashboardRoute(data.data.role);
+    router.push(dashboardRoute);
     router.refresh();
   };
 
@@ -75,7 +79,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     if (!res.ok) throw new Error(data.message || "Registration failed");
 
     // After successful registration, redirect to login
-    router.push("/login");
+    router.push(ROUTES.LOGIN);
   };
 
   // 🔹 Logout
@@ -86,7 +90,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       console.error("❌ Error logging out:", err);
     }
     setUser(null);
-    router.push("/");
+    router.push(ROUTES.HOME);
   };
 
   return (

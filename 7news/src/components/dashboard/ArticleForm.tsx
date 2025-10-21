@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
+import { Editor } from '@tinymce/tinymce-react';
 
 type Props = {
   initialData?: any;
@@ -21,7 +22,7 @@ export default function ArticleForm({ initialData }: Props) {
       : {
           title: "",
           excerpt: "",
-          content: "",
+          content: "<p>Start writing your article content here...</p>",
           coverImage: "",
           category: "",
           tags: "",
@@ -85,6 +86,32 @@ export default function ArticleForm({ initialData }: Props) {
     }
   };
 
+  const handleEditorChange = (content: string) => {
+    setForm({ ...form, content });
+  };
+
+  const handleImageUpload = async (blobInfo: any, success: (url: string) => void, failure: (msg: string) => void) => {
+    try {
+      const formData = new FormData();
+      formData.append('file', blobInfo.blob());
+
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error('Upload failed');
+      }
+
+      const data = await response.json();
+      success(data.url);
+    } catch (error) {
+      console.error('Image upload error:', error);
+      failure('Image upload failed');
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -142,14 +169,119 @@ export default function ArticleForm({ initialData }: Props) {
         placeholder="Excerpt"
         className="input"
       />
-      <textarea
-        name="content"
-        value={form.content}
-        onChange={handleChange}
-        placeholder="Content"
-        rows={6}
-        className="input"
-      />
+      <div className="space-y-2">
+        <label className="block text-sm font-medium">Article Content</label>
+        <Editor
+          apiKey="no-api-key" // Using TinyMCE in free mode - no API key required for basic functionality
+          value={form.content}
+          onEditorChange={handleEditorChange}
+          init={{
+            height: 500,
+            menubar: false,
+            statusbar: false,
+            branding: false,
+            plugins: [
+              'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+              'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+              'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount',
+              'emoticons', 'paste', 'textcolor', 'colorpicker', 'hr', 'pagebreak',
+              'codesample', 'blockquote', 'nonbreaking', 'contextmenu', 'directionality'
+            ],
+            toolbar: 'undo redo | formatselect | bold italic underline strikethrough | ' +
+              'forecolor backcolor | alignleft aligncenter alignright alignjustify | ' +
+              'bullist numlist outdent indent | table | image media link | ' +
+              'code codesample blockquote hr | removeformat | fullscreen',
+            content_style: 'body { font-family:Inter,Arial,sans-serif; font-size:14px; line-height:1.6; max-width: none; }',
+            skin: 'oxide',
+            content_css: false,
+            images_upload_handler: handleImageUpload,
+            automatic_uploads: true,
+            file_picker_types: 'image',
+            paste_data_images: true,
+            paste_as_text: false,
+            paste_webkit_styles: "all",
+            paste_retain_style_properties: "all",
+            paste_merge_formats: true,
+            smart_paste: true,
+            table_default_attributes: {
+              border: '1',
+              cellpadding: '8',
+              cellspacing: '0',
+              width: '100%',
+              style: 'border-collapse: collapse; border: 1px solid #ddd;'
+            },
+            table_default_styles: {
+              width: '100%',
+              'border-collapse': 'collapse',
+              border: '1px solid #ddd'
+            },
+            table_toolbar: 'tableprops tabledelete | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol',
+            table_appearance_options: true,
+            table_grid: true,
+            table_cell_class_list: [
+              {title: 'None', value: ''},
+              {title: 'Header', value: 'table-header'},
+              {title: 'Highlight', value: 'table-highlight'}
+            ],
+            fontsize_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt',
+            formats: {
+              alignleft: {selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', styles: {textAlign:'left'}},
+              aligncenter: {selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', styles: {textAlign:'center'}},
+              alignright: {selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', styles: {textAlign:'right'}},
+              alignjustify: {selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', styles: {textAlign:'justify'}},
+              bold: {inline: 'span', styles: {fontWeight: 'bold'}},
+              italic: {inline: 'span', styles: {fontStyle: 'italic'}},
+              underline: {inline: 'span', styles: {textDecoration: 'underline'}, exact: true},
+              strikethrough: {inline: 'span', styles: {textDecoration: 'line-through'}, exact: true}
+            },
+            block_formats: 'Paragraph=p; Header 1=h1; Header 2=h2; Header 3=h3; Header 4=h4; Header 5=h5; Header 6=h6; Preformatted=pre; Code=code; Blockquote=blockquote',
+            contextmenu: 'link image table configurepermanentpen',
+            image_advtab: true,
+            image_title: true,
+            image_caption: true,
+            image_class_list: [
+              {title: 'None', value: ''},
+              {title: 'Responsive', value: 'img-responsive'},
+              {title: 'Rounded', value: 'img-rounded'},
+              {title: 'Circle', value: 'img-circle'},
+              {title: 'Thumbnail', value: 'img-thumbnail'}
+            ],
+            link_context_toolbar: true,
+            link_assume_external_targets: true,
+            link_default_target: '_blank',
+            link_title: false,
+            media_live_embeds: true,
+            media_alt_source: false,
+            media_poster: false,
+            media_dimensions: false,
+            codesample_languages: [
+              {text: 'HTML/XML', value: 'markup'},
+              {text: 'JavaScript', value: 'javascript'},
+              {text: 'CSS', value: 'css'},
+              {text: 'PHP', value: 'php'},
+              {text: 'Ruby', value: 'ruby'},
+              {text: 'Python', value: 'python'},
+              {text: 'Java', value: 'java'},
+              {text: 'C', value: 'c'},
+              {text: 'C#', value: 'csharp'},
+              {text: 'C++', value: 'cpp'}
+            ],
+            textpattern_patterns: [
+              {start: '*', end: '*', format: 'italic'},
+              {start: '**', end: '**', format: 'bold'},
+              {start: '#', format: 'h1'},
+              {start: '##', format: 'h2'},
+              {start: '###', format: 'h3'},
+              {start: '####', format: 'h4'},
+              {start: '#####', format: 'h5'},
+              {start: '######', format: 'h6'},
+              {start: '1. ', cmd: 'InsertOrderedList'},
+              {start: '* ', cmd: 'InsertUnorderedList'},
+              {start: '- ', cmd: 'InsertUnorderedList'}
+            ]
+          }}
+        />
+      </div>
       <div className="space-y-2">
         <label className="block text-sm font-medium">Cover Image</label>
         <input

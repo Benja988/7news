@@ -1,6 +1,8 @@
 "use client";
 import { useState } from "react";
 import { useAuth } from "@/context/AuthContext";
+import { ROUTES } from "@/lib/routes";
+import Link from "next/link";
 
 export default function LoginPage() {
   const { login } = useAuth();
@@ -51,6 +53,15 @@ export default function LoginPage() {
           {loading ? "Logging in..." : "Login"}
         </button>
       </form>
+
+      <div className="mt-6 text-center">
+        <p className="text-sm text-gray-600">
+          Don't have an account?{" "}
+          <Link href={ROUTES.REGISTER} className="text-blue-600 hover:text-blue-800">
+            Register here
+          </Link>
+        </p>
+      </div>
     </div>
   );
 }
