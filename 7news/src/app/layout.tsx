@@ -37,12 +37,7 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <AuthProvider>
-            {/* Merged from (site)/layout.tsx */}
-            <Header />
-            <main className="flex-grow w-full">
-              <div className="mx-auto w-full max-w-8xl">{children}</div>
-            </main>
-            <Footer />
+            {children}
           </AuthProvider>
         </ThemeProvider>
       </body>

@@ -3,9 +3,9 @@
 export default function AdminDashboardPage() {
   return (
     <section>
-      <h1 className="text-3xl font-bold mb-6">Admin Dashboard</h1>
+      <h1 className="text-2xl md:text-3xl font-bold mb-6">Admin Dashboard</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
         {/* Quick stats (use .card for consistency) */}
         <div className="card">
           <h2 className="text-lg font-semibold text-light-heading dark:text-dark-heading">

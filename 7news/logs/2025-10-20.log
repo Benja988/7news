@@ -407,3 +407,30 @@ CastError: Cast to ObjectId failed for value "undefined" (type string) at path "
 2025-10-20 22:32:05 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
 2025-10-20 22:32:14 [INFO] [articles:list-create] Fetched articles list
 2025-10-20 22:32:14 [INFO] [articles:list-create] Fetched articles list
+2025-10-20 23:34:07 [WARN] [6e8b3b56-c86e-4146-90a9-15baedd635e4] [Auth] No access token found in cookies
+2025-10-20 23:34:07 [WARN] [user:me] Unauthenticated access attempt
+2025-10-21 09:25:51 [WARN] [2ed6cf5e-b8f5-4c13-8e96-277c870a8a44] [Auth] No access token found in cookies
+2025-10-21 09:25:51 [WARN] [user:me] Unauthenticated access attempt
+2025-10-21 09:25:51 [WARN] [e1285ed4-2f64-498e-b6d7-a94fba38508b] [Auth] No access token found in cookies
+2025-10-21 09:25:51 [WARN] [user:me] Unauthenticated access attempt
+2025-10-21 09:26:07 [INFO] [c0c2ad09-2ecd-4ea2-b708-2f3bd7f5f4cc] [Auth] Signing access token for user: benjaminokumu12@gmail.com
+2025-10-21 09:26:07 [INFO] [dedef559-bae5-4378-b4d4-c0751a2fec18] [Auth] Signing refresh token for user: benjaminokumu12@gmail.com
+2025-10-21 09:26:07 [INFO] [58d88fb3-ec6a-4603-bd44-0192360459be] [Auth] Setting auth cookies
+2025-10-21 09:26:07 [INFO] [auth:login] User logged in: benjaminokumu12@gmail.com
+2025-10-21 09:26:08 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-21 09:26:08 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-21 09:26:17 [INFO] [articles:list-create] Fetched articles list
+2025-10-21 09:26:25 [INFO] [articles:list-create] Fetched articles list
+2025-10-21 09:26:25 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-21 09:26:25 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-10-21 09:26:25 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-21 09:26:25 [INFO] [articles:list-create] Fetched articles list
+2025-10-21 09:26:26 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-10-21 09:26:26 [INFO] [articles:list-create] Fetched articles list
+2025-10-21 09:26:26 [INFO] [articles:list-create] Fetched articles list
+2025-10-21 09:26:27 [INFO] [articles:list-create] Fetched articles list
+2025-10-21 09:26:30 [INFO] [articles:list-create] Fetched articles list
+2025-10-21 09:26:38 [INFO] [articles:list-create] Fetched articles list
+2025-10-21 09:26:38 [INFO] [articles:list-create] Fetched articles list
+2025-10-21 09:26:42 [INFO] [articles:list-create] Fetched articles list
+2025-10-21 09:27:49 [INFO] [articles:list-create] Fetched articles list
