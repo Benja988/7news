@@ -125,6 +125,7 @@ export default function HeaderDesktop({ user, scrolled, categories, loading = fa
               className="relative"
               onMouseEnter={() => setActiveDropdown('categories')}
               onMouseLeave={() => setActiveDropdown(null)}
+              onClick={() => setActiveDropdown(activeDropdown === 'categories' ? null : 'categories')}
             >
               <button className="flex items-center space-x-1 px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
                 <span>Categories</span>
@@ -134,7 +135,7 @@ export default function HeaderDesktop({ user, scrolled, categories, loading = fa
               </button>
               
               {activeDropdown === 'categories' && (
-                <div className="absolute top-full left-0 mt-2 w-screen bg-white dark:bg-gray-800 shadow-2xl border border-gray-200 dark:border-gray-700 z-50 overflow-hidden" style={{ left: 'calc(-50vw + 50%)', width: '100vw' }}>
+                <div className="absolute top-full left-0 mt-2 w-screen bg-white dark:bg-gray-800 shadow-2xl border border-gray-200 dark:border-gray-700 z-50 overflow-hidden" style={{ left: 'calc(-50vw + 50%)', width: '100vw', minHeight: '400px' }}>
                   <div className="container mx-auto px-6 py-8">
                     {/* Header */}
                     <div className="flex items-center justify-between mb-6">
