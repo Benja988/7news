@@ -45,6 +45,7 @@ export async function GET(req: Request) {
     articleLogger.info("Fetched articles list", { requestId, page, limit, filter });
     return Response.json({
       articles,
+      total,
       totalPages: Math.ceil(total / limit),
       currentPage: page,
     });

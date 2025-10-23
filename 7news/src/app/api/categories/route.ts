@@ -11,7 +11,29 @@ import logger from "@/lib/logger";
 
 export async function GET() {
   await connectDB();
-  const categories = await Category.find().sort({ name: 1 });
+  const categories = await Category.aggregate([
+    {
+      $lookup: {
+        from: 'articles',
+        localField: '_id',
+        foreignField: 'category',
+        as: 'articles'
+      }
+    },
+    {
+      $addFields: {
+        articleCount: { $size: '$articles' }
+      }
+    },
+    {
+      $project: {
+        articles: 0 // Remove the articles array from the result
+      }
+    },
+    {
+      $sort: { name: 1 }
+    }
+  ]);
   return ok(categories);
 }
 

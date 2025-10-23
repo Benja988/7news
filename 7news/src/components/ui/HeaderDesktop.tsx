@@ -40,9 +40,10 @@ interface HeaderDesktopProps {
   user: User | null;
   scrolled: boolean;
   categories: Category[];
+  loading?: boolean;
 }
 
-export default function HeaderDesktop({ user, scrolled, categories }: HeaderDesktopProps) {
+export default function HeaderDesktop({ user, scrolled, categories, loading = false }: HeaderDesktopProps) {
   const router = useRouter();
   const { theme, setTheme } = useTheme();
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -105,8 +106,22 @@ export default function HeaderDesktop({ user, scrolled, categories }: HeaderDesk
               Home
             </Link>
 
+            <Link
+              href="/about"
+              className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+            >
+              About
+            </Link>
+
+            <Link
+              href="/newsroom"
+              className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+            >
+              Newsroom
+            </Link>
+
             {/* Categories Dropdown */}
-            <div 
+            <div
               className="relative"
               onMouseEnter={() => setActiveDropdown('categories')}
               onMouseLeave={() => setActiveDropdown(null)}
@@ -119,103 +134,107 @@ export default function HeaderDesktop({ user, scrolled, categories }: HeaderDesk
               </button>
               
               {activeDropdown === 'categories' && (
-                <div className="absolute top-full left-0 mt-2 w-[800px] bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 z-50 overflow-hidden">
-                  <div className="p-6">
+                <div className="absolute top-full left-0 mt-2 w-screen bg-white dark:bg-gray-800 shadow-2xl border border-gray-200 dark:border-gray-700 z-50 overflow-hidden" style={{ left: 'calc(-50vw + 50%)', width: '100vw' }}>
+                  <div className="container mx-auto px-6 py-8">
                     {/* Header */}
-                    <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                        Article Categories
+                    <div className="flex items-center justify-between mb-6">
+                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                        Explore Categories
                       </h3>
                       <Link
                         href="/categories"
-                        className="flex items-center space-x-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-sm font-medium transition-colors"
+                        className="flex items-center space-x-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-base font-medium transition-colors"
+                        onClick={() => setActiveDropdown(null)}
                       >
-                        <Grid3X3 className="w-4 h-4" />
+                        <Grid3X3 className="w-5 h-5" />
                         <span>View All Categories</span>
                       </Link>
                     </div>
 
-                    {/* Featured Categories (max 7) */}
-                    <div className="grid grid-cols-4 gap-4 mb-6">
-                      {Array.isArray(categories) && categories.slice(0, 7).map((category, index) => {
-                        const IconComponent = getRandomIcon(index);
-                        return (
-                          <Link
-                            key={category._id}
-                            href={`/categories/${category.slug}`}
-                            className="group block rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600"
-                            onClick={() => setActiveDropdown(null)}
-                          >
-                            {/* Category Image */}
-                            <div className="aspect-video relative overflow-hidden bg-gray-100 dark:bg-gray-700">
-                              <img
-                                src={getRandomImage(category._id)}
-                                alt={category.name}
-                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                              />
-                              <div className="absolute inset-0 bg-black/10 group-hover:bg-black/5 transition-colors" />
-                              {/* Icon Overlay */}
-                              <div className="absolute top-3 left-3 w-8 h-8 bg-white/90 dark:bg-gray-800/90 rounded-full flex items-center justify-center shadow-md">
-                                <IconComponent className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-                              </div>
+                    {/* Categories Grid */}
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+                      {loading ? (
+                        // Loading skeleton
+                        [...Array(12)].map((_, i) => (
+                          <div key={i} className="bg-white dark:bg-gray-800 rounded-xl shadow-sm animate-pulse">
+                            <div className="aspect-square bg-gray-300 dark:bg-gray-700 rounded-t-xl"></div>
+                            <div className="p-4">
+                              <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded mb-2"></div>
+                              <div className="h-3 bg-gray-300 dark:bg-gray-700 rounded w-2/3"></div>
                             </div>
-
-                            {/* Category Info */}
-                            <div className="p-3">
-                              <div className="flex items-center justify-between">
-                                <span className="font-medium text-gray-900 dark:text-white text-sm group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-1">
-                                  {category.name}
-                                </span>
-                                {category.articleCount && (
-                                  <span className="text-xs bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 px-2 py-1 rounded-full min-w-[20px] text-center">
-                                    {category.articleCount}
-                                  </span>
-                                )}
-                              </div>
-                            </div>
-                          </Link>
-                        );
-                      })}
-                    </div>
-
-                    {/* All Categories List */}
-                    <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
-                      <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">All Categories</h4>
-                      <div className="grid grid-cols-2 gap-2">
-                        {Array.isArray(categories) && categories.map((category, index) => {
+                          </div>
+                        ))
+                      ) : (
+                        Array.isArray(categories) && categories.map((category, index) => {
                           const IconComponent = getRandomIcon(index);
                           return (
                             <Link
                               key={category._id}
                               href={`/categories/${category.slug}`}
-                              className="flex items-center space-x-3 px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-all duration-200"
+                              className="group block rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 bg-white dark:bg-gray-800"
                               onClick={() => setActiveDropdown(null)}
                             >
-                              <div className="w-6 h-6 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center flex-shrink-0">
-                                <IconComponent className="w-3 h-3 text-blue-600 dark:text-blue-400" />
+                              {/* Category Image */}
+                              <div className="aspect-square relative overflow-hidden bg-gray-100 dark:bg-gray-700">
+                                <img
+                                  src={getRandomImage(category._id)}
+                                  alt={category.name}
+                                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                                {/* Icon Overlay */}
+                                <div className="absolute top-4 left-4 w-10 h-10 bg-white/95 dark:bg-gray-800/95 rounded-full flex items-center justify-center shadow-lg">
+                                  <IconComponent className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                                </div>
+                                {/* Article Count Badge */}
+                                {category.articleCount !== undefined && (
+                                  <div className="absolute top-4 right-4 bg-blue-600 text-white text-xs font-semibold px-2 py-1 rounded-full shadow-lg">
+                                    {category.articleCount}
+                                  </div>
+                                )}
                               </div>
-                              <span className="text-sm font-medium truncate">{category.name}</span>
-                              {category.articleCount && (
-                                <span className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 px-1.5 py-0.5 rounded-full ml-auto">
-                                  {category.articleCount}
-                                </span>
-                              )}
+
+                              {/* Category Info */}
+                              <div className="p-4">
+                                <h4 className="font-semibold text-gray-900 dark:text-white text-base group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2 mb-2">
+                                  {category.name}
+                                </h4>
+                                <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
+                                  Latest updates in {category.name.toLowerCase()}
+                                </p>
+                              </div>
                             </Link>
                           );
-                        })}
-                      </div>
+                        })
+                      )}
                     </div>
 
+                    {/* Empty State */}
+                    {(!Array.isArray(categories) || categories.length === 0) && (
+                      <div className="text-center py-12">
+                        <div className="w-16 h-16 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <Grid3X3 className="w-8 h-8 text-gray-400" />
+                        </div>
+                        <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">No Categories Yet</h4>
+                        <p className="text-gray-600 dark:text-gray-400">Categories will appear here once they're created.</p>
+                      </div>
+                    )}
+
                     {/* Footer */}
-                    {categories.length > 8 && (
-                      <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-                        <Link
-                          href="/categories"
-                          className="flex items-center justify-center w-full py-2 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm font-medium"
-                          onClick={() => setActiveDropdown(null)}
-                        >
-                          View all {categories.length} categories
-                        </Link>
+                    {Array.isArray(categories) && categories.length > 0 && (
+                      <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+                        <div className="flex items-center justify-between">
+                          <p className="text-gray-600 dark:text-gray-400">
+                            Showing {categories.length} categorie{categories.length !== 1 ? 's' : ''}
+                          </p>
+                          <Link
+                            href="/categories"
+                            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-colors font-medium"
+                            onClick={() => setActiveDropdown(null)}
+                          >
+                            Browse All Categories
+                          </Link>
+                        </div>
                       </div>
                     )}
                   </div>
@@ -230,12 +249,19 @@ export default function HeaderDesktop({ user, scrolled, categories }: HeaderDesk
               All Articles
             </Link>
 
-            {/* <Link
-              href="/trending"
+            <Link
+              href="/careers"
               className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
             >
-              Trending
-            </Link> */}
+              Careers
+            </Link>
+
+            <Link
+              href="/contact"
+              className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+            >
+              Contact
+            </Link>
           </nav>
 
           {/* Right Side Actions - Rest of the code remains the same */}

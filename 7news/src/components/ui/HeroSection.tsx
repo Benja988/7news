@@ -269,7 +269,7 @@ const QuickStats = memo(({ categories }: { categories: Category[] }) => {
         });
       } catch (error) {
         console.error('Failed to fetch stats:', error);
-        // Fallback to static data if API fails
+        // Fallback to aggregation from categories if API fails
         setStats({
           totalArticles: categories.reduce((sum, cat) => sum + (cat.articleCount || 0), 0),
           totalCategories: categories.length,

@@ -160,3 +160,55 @@
 2025-10-23 11:27:40 [INFO] [articles:list-create] Fetched articles list
 2025-10-23 11:27:55 [INFO] [articles:by-slug] Fetched article by slug
 2025-10-23 11:27:56 [INFO] [articles:by-slug] Fetched article by slug
+2025-10-23 12:57:53 [WARN] [a163c2bb-8902-4773-a317-e12bf0ed910a] [Auth] No access token found in cookies
+2025-10-23 12:57:53 [WARN] [user:me] Unauthenticated access attempt
+2025-10-23 12:57:53 [WARN] [41b16226-7ab0-4980-baee-e8cbc8a27f96] [Auth] No access token found in cookies
+2025-10-23 12:57:53 [WARN] [user:me] Unauthenticated access attempt
+2025-10-23 12:57:54 [INFO] [articles:by-slug] Fetched article by slug
+2025-10-23 12:57:55 [INFO] [articles:by-slug] Fetched article by slug
+2025-10-23 13:54:39 [WARN] [e80b4108-14cf-4166-9634-06a683abe01e] [Auth] No access token found in cookies
+2025-10-23 13:54:39 [WARN] [user:me] Unauthenticated access attempt
+2025-10-23 13:55:09 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-23 13:55:09 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-23 13:55:09 [INFO] [articles:list-create] Fetched articles list
+2025-10-23 13:55:10 [INFO] [articles:list-create] Fetched articles list
+2025-10-23 13:55:10 [INFO] [articles:list-create] Fetched articles list
+2025-10-23 13:55:10 [INFO] [articles:list-create] Fetched articles list
+2025-10-23 13:55:10 [INFO] [articles:list-create] Fetched articles list
+2025-10-23 13:55:10 [INFO] [articles:list-create] Fetched articles list
+2025-10-23 13:55:11 [INFO] [articles:list-create] Fetched articles list
+2025-10-23 13:55:11 [INFO] [articles:list-create] Fetched articles list
+2025-10-23 14:05:58 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-23 14:05:58 [INFO] [articles:list-create] Fetched articles list
+2025-10-23 14:05:59 [WARN] [389008b5-7b24-4834-8d42-c000aef3a05e] [Auth] No access token found in cookies
+2025-10-23 14:05:59 [WARN] [user:me] Unauthenticated access attempt
+2025-10-23 14:06:20 [INFO] [articles:list-create] Fetched articles list
+2025-10-23 14:06:20 [INFO] [articles:list-create] Fetched articles list
+2025-10-23 14:06:21 [INFO] [articles:list-create] Fetched articles list
+2025-10-23 14:07:26 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-23 14:07:26 [WARN] [c67bf79a-1e26-4e24-8bdd-392f89763a6a] [Auth] No access token found in cookies
+2025-10-23 14:07:26 [WARN] [user:me] Unauthenticated access attempt
+2025-10-23 14:07:28 [INFO] [articles:list-create] Fetched articles list
+2025-10-23 14:07:28 [INFO] [articles:list-create] Fetched articles list
+2025-10-23 14:07:30 [INFO] [articles:list-create] Fetched articles list
+2025-10-23 14:07:31 [INFO] [articles:list-create] Fetched articles list
+2025-10-23 14:08:31 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-23 14:08:31 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-23 14:08:31 [INFO] [articles:list-create] Fetched articles list
+2025-10-23 14:08:31 [INFO] [articles:list-create] Fetched articles list
+2025-10-23 14:08:32 [INFO] [articles:list-create] Fetched articles list
+2025-10-23 14:08:32 [INFO] [articles:list-create] Fetched articles list
+2025-10-23 14:08:32 [INFO] [articles:list-create] Fetched articles list
+2025-10-23 14:08:33 [INFO] [articles:list-create] Fetched articles list
+2025-10-23 14:08:33 [INFO] [articles:list-create] Fetched articles list
+2025-10-23 14:08:33 [INFO] [articles:list-create] Fetched articles list
+2025-10-23 15:14:52 [INFO] [articles:list-create] Fetched articles list
+2025-10-23 15:14:52 [INFO] [articles:list-create] Fetched articles list
+2025-10-23 15:14:53 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-23 15:14:53 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-23 15:14:53 [INFO] [articles:list-create] Fetched articles list
+2025-10-23 15:14:53 [INFO] [articles:list-create] Fetched articles list
+2025-10-23 15:14:53 [INFO] [articles:list-create] Fetched articles list
+2025-10-23 15:14:54 [INFO] [articles:list-create] Fetched articles list
+2025-10-23 15:14:54 [INFO] [articles:list-create] Fetched articles list
+2025-10-23 15:14:54 [INFO] [articles:list-create] Fetched articles list
