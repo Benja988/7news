@@ -9,7 +9,7 @@ import { connectDB } from "@/lib/mongodb";
 const logger = enhancedLogger.child("Auth");
 
 const secret = new TextEncoder().encode(process.env.JWT_SECRET!);
-const accessExp = process.env.JWT_EXPIRES_IN || "15m";
+const accessExp = process.env.JWT_EXPIRES_IN || "7d";
 const refreshExp = process.env.REFRESH_JWT_EXPIRES_IN || "7d";
 
 export type JWTPayload = {
@@ -179,7 +179,6 @@ export function requireRole(roles: UserRole[], userRole?: string): boolean {
   return hasRole;
 }
 
-// Helper to parse duration (e.g., "15m" -> seconds)
 export function parseDuration(duration: string): number {
   const match = duration.match(/^(\d+)([smhd])$/);
   if (!match) return 900; // Default to 15m

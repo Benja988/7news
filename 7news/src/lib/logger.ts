@@ -4,15 +4,12 @@ import path from "path";
 import winston from "winston";
 import { v4 as uuidv4 } from "uuid";
 
-// Define log directory
 const logDir = path.join(process.cwd(), "logs");
 
-// Ensure logs directory exists
 if (!fs.existsSync(logDir)) {
   fs.mkdirSync(logDir, { recursive: true });
 }
 
-// Custom Winston format to include request ID and context
 const customFormat = winston.format.printf(({ level, message, timestamp, requestId, context }) => {
   const formattedMessage =
     typeof message === "string"
@@ -25,19 +22,17 @@ const customFormat = winston.format.printf(({ level, message, timestamp, request
   } ${formattedMessage}`;
 });
 
-// Create Winston logger
 const logger = winston.createLogger({
-  level: process.env.LOG_LEVEL || "info", // Configurable log level via env
+  level: process.env.LOG_LEVEL || "info", 
   format: winston.format.combine(
     winston.format.timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
-    winston.format.errors({ stack: true }), // Include stack traces for errors
+    winston.format.errors({ stack: true }), 
     customFormat
   ),
   transports: [
-    // Console transport for development
     new winston.transports.Console({
       format: winston.format.combine(
-        winston.format.colorize(), // Colorize logs for better readability in console
+        winston.format.colorize(), 
         customFormat
       ),
     }),

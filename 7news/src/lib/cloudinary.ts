@@ -10,8 +10,8 @@ export default cloudinary;
 
 
 export const uploadImage = async (file: File): Promise<string> => {
-  const arrayBuffer = await file.arrayBuffer(); // Convert Blob to ArrayBuffer
-  const buffer = Buffer.from(arrayBuffer); // Convert ArrayBuffer to Node Buffer
+  const arrayBuffer = await file.arrayBuffer(); 
+  const buffer = Buffer.from(arrayBuffer); 
 
   return new Promise((resolve, reject) => {
     const uploadStream = cloudinary.uploader.upload_stream(
@@ -24,6 +24,6 @@ export const uploadImage = async (file: File): Promise<string> => {
         }
       }
     );
-    uploadStream.end(buffer); // Pass the Buffer, not the File
+    uploadStream.end(buffer); 
   });
 };
