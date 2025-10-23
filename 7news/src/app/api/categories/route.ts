@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
     if (exists) return badRequest("Category name/slug already exists");
 
     const cat = await Category.create(parsed.data);
-    // logger.info({ categoryId: cat._id, by: user.sub }, "Category created");
+    logger.info("Category created", { categoryId: cat._id.toString(), by: user.sub });
     return created(cat);
   } catch (e) {
     logger.error("Category create error");

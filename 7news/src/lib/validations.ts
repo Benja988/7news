@@ -19,13 +19,19 @@ export const categoryCreateSchema = z.object({
 
 export const articleCreateSchema = z.object({
   title: z.string().min(4).max(160),
-  slug: z.string().min(3).max(180),
   excerpt: z.string().max(300).optional(),
   content: z.string().min(10),
-  coverImage: z.string().url().optional(),
-  categoryId: z.string().min(1),
+  coverImage: z.string().url().optional().or(z.literal("")),
+  category: z.string().min(1),
   tags: z.array(z.string().min(1).max(30)).max(20).optional().default([]),
-  status: z.enum(["draft","published"]).optional().default("draft"),
+  status: z.enum(["draft","published", "archived"]).optional().default("draft"),
+  scheduledPublishAt: z.string().optional(),
+  isFeatured: z.boolean().optional().default(false),
+  seo: z.object({
+    metaTitle: z.string().max(60).optional(),
+    metaDescription: z.string().max(160).optional(),
+    keywords: z.array(z.string().min(1).max(30)).max(10).optional().default([]),
+  }).optional(),
 });
 
 export const articleUpdateSchema = articleCreateSchema.partial();

@@ -3,6 +3,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 
 export default function UsersTable({ users }: { users: any[] }) {
   const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
@@ -54,38 +55,70 @@ export default function UsersTable({ users }: { users: any[] }) {
     return 0;
   });
 
+  const handleDelete = async (id: string) => {
+    if (!confirm('Are you sure you want to delete this user?')) return;
+
+    try {
+      const res = await fetch(`/api/users/${id}`, { method: 'DELETE' });
+      if (res.ok) {
+        toast.success('User deleted successfully');
+        location.reload();
+      } else {
+        toast.error('Failed to delete user');
+      }
+    } catch (error) {
+      toast.error('Error deleting user');
+    }
+  };
+
   const handleBulkAction = async (action: string) => {
     if (selectedUsers.length === 0) return;
 
     if (action === "activate") {
       try {
-        await Promise.all(
-          selectedUsers.map(id =>
-            fetch(`/api/users/${id}/status`, {
-              method: "PATCH",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ isActive: true })
-            })
-          )
+        const activatePromises = selectedUsers.map(id =>
+          fetch(`/api/users/${id}/status`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ isActive: true })
+          })
         );
+
+        const results = await Promise.allSettled(activatePromises);
+        const failed = results.filter(result => result.status === 'rejected').length;
+
+        if (failed > 0) {
+          toast.error(`Failed to activate ${failed} user${failed > 1 ? 's' : ''}`);
+        } else {
+          toast.success(`Successfully activated ${selectedUsers.length} user${selectedUsers.length > 1 ? 's' : ''}`);
+        }
+
         location.reload();
       } catch (error) {
-        alert("Error activating users");
+        toast.error("Error activating users");
       }
     } else if (action === "deactivate") {
       try {
-        await Promise.all(
-          selectedUsers.map(id =>
-            fetch(`/api/users/${id}/status`, {
-              method: "PATCH",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ isActive: false })
-            })
-          )
+        const deactivatePromises = selectedUsers.map(id =>
+          fetch(`/api/users/${id}/status`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ isActive: false })
+          })
         );
+
+        const results = await Promise.allSettled(deactivatePromises);
+        const failed = results.filter(result => result.status === 'rejected').length;
+
+        if (failed > 0) {
+          toast.error(`Failed to deactivate ${failed} user${failed > 1 ? 's' : ''}`);
+        } else {
+          toast.success(`Successfully deactivated ${selectedUsers.length} user${selectedUsers.length > 1 ? 's' : ''}`);
+        }
+
         location.reload();
       } catch (error) {
-        alert("Error deactivating users");
+        toast.error("Error deactivating users");
       }
     }
   };
@@ -247,6 +280,12 @@ export default function UsersTable({ users }: { users: any[] }) {
                     >
                       Edit
                     </Link>
+                    <button
+                      onClick={() => handleDelete(u.id)}
+                      className="px-3 py-1 bg-red-600 text-white text-sm rounded hover:bg-red-700 transition-colors"
+                    >
+                      Delete
+                    </button>
                   </div>
                 </td>
               </tr>

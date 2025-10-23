@@ -18,7 +18,7 @@ export default function EditUserPage() {
 
   const handleUpdate = async (data: any) => {
     await fetch(`/api/users/${id}`, {
-      method: 'PUT',
+      method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
     });

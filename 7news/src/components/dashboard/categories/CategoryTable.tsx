@@ -4,6 +4,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import toast from 'react-hot-toast';
 
 type Category = {
   _id: string;
@@ -25,8 +26,18 @@ export default function CategoryTable({ categories, onDeleted }: Props) {
 
   async function deleteCategory(id: string) {
     if (!confirm("Delete this category?")) return;
-    const res = await fetch(`/api/categories/${id}`, { method: "DELETE" });
-    if (res.ok) onDeleted?.();
+
+    try {
+      const res = await fetch(`/api/categories/${id}`, { method: "DELETE" });
+      if (res.ok) {
+        toast.success("Category deleted successfully");
+        onDeleted?.();
+      } else {
+        toast.error("Failed to delete category");
+      }
+    } catch (error) {
+      toast.error("Error deleting category");
+    }
   }
 
   const handleSelectAll = (checked: boolean) => {
@@ -67,15 +78,23 @@ export default function CategoryTable({ categories, onDeleted }: Props) {
     if (!confirm(`Delete ${selectedCategories.length} selected categories?`)) return;
 
     try {
-      await Promise.all(
-        selectedCategories.map(id =>
-          fetch(`/api/categories/${id}`, { method: "DELETE" })
-        )
+      const deletePromises = selectedCategories.map(id =>
+        fetch(`/api/categories/${id}`, { method: "DELETE" })
       );
+
+      const results = await Promise.allSettled(deletePromises);
+      const failed = results.filter(result => result.status === 'rejected').length;
+
+      if (failed > 0) {
+        toast.error(`Failed to delete ${failed} categor${failed > 1 ? 'ies' : 'y'}`);
+      } else {
+        toast.success(`Successfully deleted ${selectedCategories.length} categor${selectedCategories.length > 1 ? 'ies' : 'y'}`);
+      }
+
       onDeleted?.();
       setSelectedCategories([]);
     } catch (error) {
-      alert("Error deleting categories");
+      toast.error("Error deleting categories");
     }
   };
 

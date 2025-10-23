@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import toast from 'react-hot-toast';
 
 type Article = {
   _id: string;
@@ -74,14 +75,22 @@ export default function ArticleTable({ articles }: { articles: Article[] }) {
     if (!confirm(`Delete ${selectedArticles.length} selected articles?`)) return;
 
     try {
-      await Promise.all(
-        selectedArticles.map(id =>
-          fetch(`/api/articles/${id}`, { method: "DELETE" })
-        )
+      const deletePromises = selectedArticles.map(id =>
+        fetch(`/api/articles/${id}`, { method: "DELETE" })
       );
+
+      const results = await Promise.allSettled(deletePromises);
+      const failed = results.filter(result => result.status === 'rejected').length;
+
+      if (failed > 0) {
+        toast.error(`Failed to delete ${failed} article(s)`);
+      } else {
+        toast.success(`Successfully deleted ${selectedArticles.length} article(s)`);
+      }
+
       location.reload();
     } catch (error) {
-      alert("Error deleting articles");
+      toast.error("Error deleting articles");
     }
   };
 
@@ -295,10 +304,19 @@ export default function ArticleTable({ articles }: { articles: Article[] }) {
                       Edit
                     </Link>
                     <button
-                      onClick={() =>
-                        fetch(`/api/articles/${article._id}`, { method: "DELETE" })
-                          .then(() => location.reload())
-                      }
+                      onClick={async () => {
+                        if (!confirm(`Delete article "${article.title}"?`)) return;
+
+                        try {
+                          const response = await fetch(`/api/articles/${article._id}`, { method: "DELETE" });
+                          if (!response.ok) throw new Error("Failed to delete");
+
+                          toast.success("Article deleted successfully");
+                          location.reload();
+                        } catch (error) {
+                          toast.error("Failed to delete article");
+                        }
+                      }}
                       className="px-3 py-1 bg-red-600 text-white text-sm rounded hover:bg-red-700 transition-colors"
                     >
                       Delete

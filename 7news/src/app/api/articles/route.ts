@@ -60,12 +60,42 @@ export const POST = requireAuth(["admin", "editor"])(async (req: any) => {
 
   try {
     const body = await req.json();
-    const article = await Article.create({ ...body, author: req.user.sub });
 
-    articleLogger.info("Created article", { requestId, articleId: article._id });
+    // Validate the input
+    const { articleCreateSchema } = await import("@/lib/validations");
+    const validatedData = articleCreateSchema.parse(body);
+
+    // Process tags and keywords
+    const tagsArray = Array.isArray(validatedData.tags)
+      ? validatedData.tags
+      : [];
+
+    const keywordsArray = Array.isArray(validatedData.seo?.keywords)
+      ? validatedData.seo.keywords
+      : [];
+
+    const articleData = {
+      ...validatedData,
+      tags: tagsArray,
+      seo: {
+        ...validatedData.seo,
+        keywords: keywordsArray,
+      },
+      scheduledPublishAt: validatedData.scheduledPublishAt ? new Date(validatedData.scheduledPublishAt) : undefined,
+      author: req.user.sub,
+    };
+
+    const article = await Article.create(articleData);
+
+    articleLogger.info("Created article", { requestId, articleId: article._id, title: article.title });
     return Response.json(article, { status: 201 });
   } catch (err: unknown) {
     articleLogger.error("Error creating article", { err, requestId });
+    console.log("Full error object:", err);
+    if (err && typeof err === 'object' && 'name' in err && err.name === 'ZodError') {
+      console.log("Zod validation errors:", (err as any).errors);
+      return Response.json({ message: "Validation failed", errors: (err as any).errors }, { status: 400 });
+    }
     return error500("Failed to create article");
   }
 });

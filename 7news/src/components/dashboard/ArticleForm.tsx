@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { Editor } from '@tinymce/tinymce-react';
+import toast from 'react-hot-toast';
 
 type Props = {
   initialData?: any;
@@ -107,26 +108,46 @@ export default function ArticleForm({ initialData }: Props) {
 
     const submitData = {
       ...form,
+      excerpt: form.excerpt.slice(0, 300),
       tags: tagsArray,
       seo: {
         ...form.seo,
+        metaDescription: form.seo.metaDescription.slice(0, 160),
         keywords: keywordsArray,
       },
-      scheduledPublishAt: form.scheduledPublishAt ? new Date(form.scheduledPublishAt) : undefined,
+      scheduledPublishAt: form.scheduledPublishAt || undefined,
     };
+
+    console.log("Submit data:", submitData);
 
     const method = initialData ? "PUT" : "POST";
     const url = initialData
       ? `/api/articles/${initialData._id}`
       : "/api/articles";
 
-    await fetch(url, {
-      method,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(submitData),
-    });
+    try {
+      const response = await fetch(url, {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(submitData),
+      });
 
-    window.location.href = "/admin/articles";
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.log("Response error data:", errorData);
+        console.log("Full error details:", errorData.errors);
+        console.log("Response status:", response.status);
+        console.log("Response statusText:", response.statusText);
+        throw new Error(errorData.message || "Failed to save article");
+      }
+
+      const result = await response.json();
+      toast.success(initialData ? "Article updated successfully!" : "Article created successfully!");
+      window.location.href = "/admin/articles";
+    } catch (error) {
+      console.error("Submit error:", error);
+      toast.error(error instanceof Error ? error.message : "Failed to save article");
+    }
   };
 
   const tabs = [
@@ -325,8 +346,10 @@ export default function ArticleForm({ initialData }: Props) {
                 name="category"
                 value={form.category}
                 onChange={handleChange}
+                required
                 className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors"
               >
+                <option value="" disabled>Select Category</option>
                 <option value="">Select Category</option>
                 {categories.map((c: any) => (
                   <option key={c._id} value={c._id}>
