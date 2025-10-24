@@ -293,3 +293,26 @@
 2025-10-24 20:46:43 [INFO] [articles:list-create] Fetched articles list
 2025-10-24 20:46:56 [INFO] [admin:stats] Fetched admin stats
 2025-10-24 20:46:58 [INFO] [admin:stats] Fetched admin stats
+2025-10-24 20:48:42 [INFO] [articles:list-create] Fetched articles list
+2025-10-24 20:48:42 [INFO] [articles:list-create] Fetched articles list
+2025-10-24 21:25:39 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-10-24 21:25:42 [INFO] [articles:list-create] Fetched articles list
+2025-10-24 21:25:42 [INFO] [articles:list-create] Fetched articles list
+2025-10-24 21:26:13 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-24 21:26:14 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-10-24 21:26:15 [INFO] [articles:list-create] Fetched articles list
+2025-10-24 21:26:20 [INFO] [articles:list-create] Fetched articles list
+2025-10-24 21:26:21 [INFO] [articles:list-create] Fetched articles list
+2025-10-24 21:26:23 [INFO] [articles:list-create] Fetched articles list
+2025-10-24 21:26:45 [INFO] [articles:by-slug] Fetched article by slug
+2025-10-24 21:26:45 [INFO] [articles:by-slug] Fetched article by slug
+2025-10-24 21:27:54 [INFO] [articles:list-create] Fetched articles list
+2025-10-24 21:27:54 [INFO] [articles:list-create] Fetched articles list
+2025-10-24 21:27:56 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-24 21:27:56 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-24 21:27:56 [INFO] [articles:list-create] Fetched articles list
+2025-10-24 21:27:56 [INFO] [articles:list-create] Fetched articles list
+2025-10-24 21:27:56 [INFO] [articles:list-create] Fetched articles list
+2025-10-24 21:27:57 [INFO] [articles:list-create] Fetched articles list
+2025-10-24 21:27:57 [INFO] [articles:list-create] Fetched articles list
+2025-10-24 21:27:57 [INFO] [articles:list-create] Fetched articles list
