@@ -23,11 +23,15 @@ import {
   Heart,
   Music,
   Zap,
-  Settings
+  Settings,
+  Globe,
+  List,
+  LayoutGrid
 } from "lucide-react";
 import { useState } from "react";
 import { Category } from "@/types/category";
 import { ROUTES } from "@/lib/routes";
+import { getCategoryIcon } from "@/lib/categoryIcons";
 
 interface User {
   id: string;
@@ -47,6 +51,7 @@ export default function HeaderDesktop({ user, scrolled, categories, loading = fa
   const router = useRouter();
   const { theme, setTheme } = useTheme();
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [viewMode, setViewMode] = useState<'list' | 'grid'>('list');
 
   const handleLogout = async () => {
     try {
@@ -68,11 +73,6 @@ export default function HeaderDesktop({ user, scrolled, categories, loading = fa
     return icons[index % icons.length];
   };
 
-  // Generate random image URL from Picsum
-  const getRandomImage = (id: string) => {
-    const seed = id.replace(/[^a-zA-Z0-9]/g, '');
-    return `https://picsum.photos/seed/${seed}/300/200`;
-  };
 
   return (
     <header className={`hidden lg:block fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -136,80 +136,289 @@ export default function HeaderDesktop({ user, scrolled, categories, loading = fa
               </button>
               
               {activeDropdown === 'categories' && (
-                <div className="absolute top-full left-0 mt-2 w-screen bg-white dark:bg-gray-800 shadow-2xl border border-gray-200 dark:border-gray-700 z-50 overflow-hidden" style={{ left: 'calc(-50vw + 50%)', width: '100vw', minHeight: '400px' }}>
-                  <div className="container mx-auto px-6 py-8">
+                <div className="absolute top-full left-0 mt-2 w-screen bg-white dark:bg-gray-800 shadow-2xl border border-gray-200 dark:border-gray-700 z-50 overflow-hidden" style={{ left: 'calc(-50vw + 50%)', width: '100vw', height: '70vh' }}>
+                  <div className="container mx-auto px-6 py-8 h-full overflow-y-scroll">
                     {/* Header */}
                     <div className="flex items-center justify-between mb-6">
                       <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
                         Explore Categories
                       </h3>
-                      <Link
-                        href="/categories"
-                        className="flex items-center space-x-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-base font-medium transition-colors"
-                        onClick={() => setActiveDropdown(null)}
-                      >
-                        <Grid3X3 className="w-5 h-5" />
-                        <span>View All Categories</span>
-                      </Link>
+                      <div className="flex items-center space-x-3">
+                        {/* View Toggle */}
+                        <div className="flex items-center bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
+                          <button
+                            onClick={() => setViewMode('list')}
+                            className={`p-2 rounded-md transition-colors ${
+                              viewMode === 'list'
+                                ? 'bg-white dark:bg-gray-600 text-blue-600 dark:text-blue-400 shadow-sm'
+                                : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+                            }`}
+                            title="List view"
+                          >
+                            <List className="w-4 h-4" />
+                          </button>
+                          <button
+                            onClick={() => setViewMode('grid')}
+                            className={`p-2 rounded-md transition-colors ${
+                              viewMode === 'grid'
+                                ? 'bg-white dark:bg-gray-600 text-blue-600 dark:text-blue-400 shadow-sm'
+                                : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+                            }`}
+                            title="Grid view"
+                          >
+                            <LayoutGrid className="w-4 h-4" />
+                          </button>
+                        </div>
+                        <Link
+                          href="/categories"
+                          className="flex items-center space-x-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-base font-medium transition-colors"
+                          onClick={() => setActiveDropdown(null)}
+                        >
+                          <Grid3X3 className="w-5 h-5" />
+                          <span>View All Categories</span>
+                        </Link>
+                      </div>
                     </div>
 
-                    {/* Categories Grid */}
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
-                      {loading ? (
-                        // Loading skeleton
-                        [...Array(12)].map((_, i) => (
-                          <div key={i} className="bg-white dark:bg-gray-800 rounded-xl shadow-sm animate-pulse">
-                            <div className="aspect-square bg-gray-300 dark:bg-gray-700 rounded-t-xl"></div>
-                            <div className="p-4">
-                              <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded mb-2"></div>
-                              <div className="h-3 bg-gray-300 dark:bg-gray-700 rounded w-2/3"></div>
-                            </div>
-                          </div>
-                        ))
-                      ) : (
-                        Array.isArray(categories) && categories.map((category, index) => {
-                          const IconComponent = getRandomIcon(index);
-                          return (
-                            <Link
-                              key={category._id}
-                              href={`/categories/${category.slug}`}
-                              className="group block rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 bg-white dark:bg-gray-800"
-                              onClick={() => setActiveDropdown(null)}
-                            >
-                              {/* Category Image */}
-                              <div className="aspect-square relative overflow-hidden bg-gray-100 dark:bg-gray-700">
-                                <img
-                                  src={getRandomImage(category._id)}
-                                  alt={category.name}
-                                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                                {/* Icon Overlay */}
-                                <div className="absolute top-4 left-4 w-10 h-10 bg-white/95 dark:bg-gray-800/95 rounded-full flex items-center justify-center shadow-lg">
-                                  <IconComponent className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                                </div>
-                                {/* Article Count Badge */}
-                                {category.articleCount !== undefined && (
-                                  <div className="absolute top-4 right-4 bg-blue-600 text-white text-xs font-semibold px-2 py-1 rounded-full shadow-lg">
-                                    {category.articleCount}
+                    {/* Categories Display */}
+                    {viewMode === 'grid' ? (
+                      <div className="space-y-8">
+                        {loading ? (
+                          // Loading skeleton
+                          [...Array(4)].map((_, i) => (
+                            <div key={i} className="space-y-4">
+                              <div className="h-6 bg-gray-300 dark:bg-gray-700 rounded w-48"></div>
+                              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+                                {[...Array(6)].map((_, j) => (
+                                  <div key={j} className="bg-white dark:bg-gray-800 rounded-xl shadow-sm animate-pulse">
+                                    <div className="aspect-square bg-gray-300 dark:bg-gray-700 rounded-t-xl"></div>
+                                    <div className="p-4">
+                                      <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded mb-2"></div>
+                                      <div className="h-3 bg-gray-300 dark:bg-gray-700 rounded w-2/3"></div>
+                                    </div>
                                   </div>
-                                )}
+                                ))}
                               </div>
+                            </div>
+                          ))
+                        ) : (
+                          Array.isArray(categories) && (() => {
+                            // Group categories by parent
+                            const groupedCategories = categories.reduce((acc, cat) => {
+                              const parentId = cat.parent || 'root';
+                              if (!acc[parentId]) acc[parentId] = [];
+                              acc[parentId].push(cat);
+                              return acc;
+                            }, {} as Record<string, Category[]>);
 
-                              {/* Category Info */}
-                              <div className="p-4">
-                                <h4 className="font-semibold text-gray-900 dark:text-white text-base group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2 mb-2">
-                                  {category.name}
-                                </h4>
-                                <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
-                                  Latest updates in {category.name.toLowerCase()}
-                                </p>
+                            // Get parent categories (those with null parent)
+                            const parentCategories = categories.filter(cat => !cat.parent);
+
+                            return parentCategories.map(parentCat => {
+                              const childCategories = groupedCategories[parentCat._id] || [];
+                              const IconComponent = getCategoryIcon(parentCat.name);
+
+                              return (
+                                <div key={parentCat._id} className="space-y-4">
+                                  {/* Parent Category Header */}
+                                  <div className="flex items-center space-x-3">
+                                    <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
+                                      <IconComponent className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                                    </div>
+                                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
+                                      {parentCat.name}
+                                    </h4>
+                                    {parentCat.articleCount !== undefined && parentCat.articleCount > 0 && (
+                                      <div className="bg-blue-600 text-white text-xs font-semibold px-2 py-1 rounded-full">
+                                        {parentCat.articleCount}
+                                      </div>
+                                    )}
+                                  </div>
+
+                                  {/* Child Categories Grid */}
+                                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+                                    {/* Parent category card */}
+                                    <Link
+                                      href={`/categories/${parentCat.slug}`}
+                                      className="group block rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 bg-white dark:bg-gray-800"
+                                      onClick={() => setActiveDropdown(null)}
+                                    >
+                                      <div className="aspect-square relative overflow-hidden bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 flex items-center justify-center">
+                                        <div className="w-12 h-12 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                          <IconComponent className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                                        </div>
+                                      </div>
+                                      <div className="p-3">
+                                        <h5 className="font-medium text-gray-900 dark:text-white text-sm group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2 mb-1">
+                                          All {parentCat.name}
+                                        </h5>
+                                        <p className="text-xs text-gray-600 dark:text-gray-400 line-clamp-2">
+                                          Browse all {parentCat.name.toLowerCase()} topics
+                                        </p>
+                                      </div>
+                                    </Link>
+
+                                    {/* Child categories */}
+                                    {childCategories.map((childCat) => {
+                                      const ChildIconComponent = getCategoryIcon(childCat.name);
+                                      return (
+                                        <Link
+                                          key={childCat._id}
+                                          href={`/categories/${childCat.slug}`}
+                                          className="group block rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 bg-white dark:bg-gray-800"
+                                          onClick={() => setActiveDropdown(null)}
+                                        >
+                                          <div className="aspect-square relative overflow-hidden bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 flex items-center justify-center">
+                                            <div className="w-12 h-12 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                              <ChildIconComponent className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                                            </div>
+                                            {childCat.articleCount !== undefined && childCat.articleCount > 0 && (
+                                              <div className="absolute top-2 right-2 bg-blue-600 text-white text-xs font-semibold px-1.5 py-0.5 rounded-full shadow-lg">
+                                                {childCat.articleCount}
+                                              </div>
+                                            )}
+                                          </div>
+                                          <div className="p-3">
+                                            <h5 className="font-medium text-gray-900 dark:text-white text-sm group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2 mb-1">
+                                              {childCat.name}
+                                            </h5>
+                                            <p className="text-xs text-gray-600 dark:text-gray-400 line-clamp-2">
+                                              {childCat.name.toLowerCase()} updates
+                                            </p>
+                                          </div>
+                                        </Link>
+                                      );
+                                    })}
+                                  </div>
+                                </div>
+                              );
+                            });
+                          })()
+                        )}
+                      </div>
+                    ) : (
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        {loading ? (
+                          // Loading skeleton for list - two columns
+                          [0, 1].map((colIndex) => (
+                            <div key={colIndex} className="space-y-6">
+                              {[...Array(10)].map((_, i) => (
+                                <div key={i} className="space-y-3">
+                                  <div className="flex items-center space-x-3 p-3 bg-white dark:bg-gray-800 rounded-lg animate-pulse">
+                                    <div className="w-8 h-8 bg-gray-300 dark:bg-gray-700 rounded-full"></div>
+                                    <div className="flex-1">
+                                      <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded mb-1"></div>
+                                      <div className="h-3 bg-gray-300 dark:bg-gray-700 rounded w-2/3"></div>
+                                    </div>
+                                  </div>
+                                  <div className="ml-11 space-y-2">
+                                    {[...Array(3)].map((_, j) => (
+                                      <div key={j} className="flex items-center space-x-3 p-2 bg-white dark:bg-gray-800 rounded-lg animate-pulse">
+                                        <div className="w-6 h-6 bg-gray-300 dark:bg-gray-700 rounded-full"></div>
+                                        <div className="flex-1">
+                                          <div className="h-3 bg-gray-300 dark:bg-gray-700 rounded"></div>
+                                        </div>
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          ))
+                        ) : (
+                          Array.isArray(categories) && (() => {
+                            // Group categories by parent
+                            const groupedCategories = categories.reduce((acc, cat) => {
+                              const parentId = cat.parent || 'root';
+                              if (!acc[parentId]) acc[parentId] = [];
+                              acc[parentId].push(cat);
+                              return acc;
+                            }, {} as Record<string, Category[]>);
+
+                            // Get parent categories (those with null parent)
+                            const parentCategories = categories.filter(cat => !cat.parent);
+
+                            // Split parent categories into two columns
+                            const midPoint = Math.ceil(parentCategories.length / 2);
+                            const leftColumn = parentCategories.slice(0, midPoint);
+                            const rightColumn = parentCategories.slice(midPoint);
+
+                            const renderColumn = (columnCategories: Category[]) => (
+                              <div className="space-y-6">
+                                {columnCategories.map(parentCat => {
+                                  const childCategories = groupedCategories[parentCat._id] || [];
+                                  const IconComponent = getCategoryIcon(parentCat.name);
+
+                                  return (
+                                    <div key={parentCat._id} className="space-y-3">
+                                      {/* Parent Category */}
+                                      <Link
+                                        href={`/categories/${parentCat.slug}`}
+                                        className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors group"
+                                        onClick={() => setActiveDropdown(null)}
+                                      >
+                                        <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center flex-shrink-0">
+                                          <IconComponent className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                                        </div>
+                                        <div className="flex-1 min-w-0">
+                                          <h4 className="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                                            {parentCat.name}
+                                          </h4>
+                                          <p className="text-sm text-gray-600 dark:text-gray-400 truncate">
+                                            All {parentCat.name.toLowerCase()} topics
+                                          </p>
+                                        </div>
+                                        {parentCat.articleCount !== undefined && parentCat.articleCount > 0 && (
+                                          <div className="bg-blue-600 text-white text-xs font-semibold px-2 py-1 rounded-full flex-shrink-0">
+                                            {parentCat.articleCount}
+                                          </div>
+                                        )}
+                                      </Link>
+
+                                      {/* Child Categories */}
+                                      <div className="ml-11 space-y-2">
+                                        {childCategories.map((childCat) => {
+                                          const ChildIconComponent = getCategoryIcon(childCat.name);
+                                          return (
+                                            <Link
+                                              key={childCat._id}
+                                              href={`/categories/${childCat.slug}`}
+                                              className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors group"
+                                              onClick={() => setActiveDropdown(null)}
+                                            >
+                                              <div className="w-6 h-6 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center flex-shrink-0">
+                                                <ChildIconComponent className="w-3 h-3 text-blue-600 dark:text-blue-400" />
+                                              </div>
+                                              <div className="flex-1 min-w-0">
+                                                <h5 className="font-medium text-gray-700 dark:text-gray-300 text-sm group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                                                  {childCat.name}
+                                                </h5>
+                                              </div>
+                                              {childCat.articleCount !== undefined && childCat.articleCount > 0 && (
+                                                <div className="bg-blue-600 text-white text-xs font-semibold px-1.5 py-0.5 rounded-full flex-shrink-0">
+                                                  {childCat.articleCount}
+                                                </div>
+                                              )}
+                                            </Link>
+                                          );
+                                        })}
+                                      </div>
+                                    </div>
+                                  );
+                                })}
                               </div>
-                            </Link>
-                          );
-                        })
-                      )}
-                    </div>
+                            );
+
+                            return (
+                              <>
+                                <div>{renderColumn(leftColumn)}</div>
+                                <div>{renderColumn(rightColumn)}</div>
+                              </>
+                            );
+                          })()
+                        )}
+                      </div>
+                    )}
 
                     {/* Empty State */}
                     {(!Array.isArray(categories) || categories.length === 0) && (

@@ -10,6 +10,7 @@ type Category = {
   _id: string;
   name: string;
   slug: string;
+  parent?: string | null;
   articleCount?: number; // Add this if available from API
 };
 
@@ -65,14 +66,50 @@ export default function CategoryTable({ categories, onDeleted }: Props) {
     }
   };
 
-  const sortedCategories = [...categories].sort((a, b) => {
-    let aVal: any = a[sortField as keyof Category];
-    let bVal: any = b[sortField as keyof Category];
+  // Group categories by parent for hierarchical display
+  const groupedCategories = categories.reduce((acc, cat) => {
+    const parentId = cat.parent || 'root';
+    if (!acc[parentId]) acc[parentId] = [];
+    acc[parentId].push(cat);
+    return acc;
+  }, {} as Record<string, Category[]>);
 
-    if (aVal < bVal) return sortOrder === "asc" ? -1 : 1;
-    if (aVal > bVal) return sortOrder === "asc" ? 1 : -1;
-    return 0;
-  });
+  // Sort categories within each group
+  const sortedGroupedCategories = Object.keys(groupedCategories).reduce((acc, parentId) => {
+    acc[parentId] = [...groupedCategories[parentId]].sort((a, b) => {
+      let aVal: any = a[sortField as keyof Category];
+      let bVal: any = b[sortField as keyof Category];
+
+      if (aVal < bVal) return sortOrder === "asc" ? -1 : 1;
+      if (aVal > bVal) return sortOrder === "asc" ? 1 : -1;
+      return 0;
+    });
+    return acc;
+  }, {} as Record<string, Category[]>);
+
+  // Flatten for display with indentation
+  const flattenedCategories: (Category & { level: number; hasChildren: boolean })[] = [];
+  const processedIds = new Set<string>();
+
+  function addCategoryWithChildren(parentId: string | null, level: number = 0) {
+    const key = parentId || 'root';
+    const cats = sortedGroupedCategories[key] || [];
+
+    cats.forEach(cat => {
+      if (!processedIds.has(cat._id)) {
+        processedIds.add(cat._id);
+        const hasChildren = sortedGroupedCategories[cat._id]?.length > 0;
+        flattenedCategories.push({ ...cat, level, hasChildren });
+
+        // Recursively add children
+        if (hasChildren) {
+          addCategoryWithChildren(cat._id, level + 1);
+        }
+      }
+    });
+  }
+
+  addCategoryWithChildren(null);
 
   const handleBulkDelete = async () => {
     if (!confirm(`Delete ${selectedCategories.length} selected categories?`)) return;
@@ -142,7 +179,7 @@ export default function CategoryTable({ categories, onDeleted }: Props) {
                   onClick={() => handleSort("name")}
                   className="flex items-center hover:text-primary transition-colors"
                 >
-                  Name
+                  Name & Hierarchy
                   {sortField === "name" && (
                     <span className="ml-1">{sortOrder === "asc" ? "↑" : "↓"}</span>
                   )}
@@ -164,8 +201,8 @@ export default function CategoryTable({ categories, onDeleted }: Props) {
             </tr>
           </thead>
           <tbody>
-            {sortedCategories.length > 0 ? (
-              sortedCategories.map((cat) => (
+            {flattenedCategories.length > 0 ? (
+              flattenedCategories.map((cat) => (
                 <tr
                   key={cat._id}
                   className={`border-t border-gray-200 dark:border-gray-700 hover:bg-light-bg/50 dark:hover:bg-dark-bg/50 transition-colors ${
@@ -181,7 +218,11 @@ export default function CategoryTable({ categories, onDeleted }: Props) {
                     />
                   </td>
                   <td className="p-3">
-                    <div className="font-medium">{cat.name}</div>
+                    <div className="font-medium" style={{ paddingLeft: `${cat.level * 20}px` }}>
+                      {cat.level > 0 && <span className="text-gray-400 mr-2">└─</span>}
+                      {cat.name}
+                      {cat.hasChildren && <span className="text-xs text-gray-500 ml-2">(parent)</span>}
+                    </div>
                   </td>
                   <td className="p-3">
                     <code className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded font-mono">

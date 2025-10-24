@@ -46,6 +46,12 @@ export async function DELETE(_: NextRequest, { params }: { params: Promise<{ id:
     if (!user) return unauthorized();
     if (!requireRole(["admin"], user.role)) return forbidden();
 
+    // Check if category has children
+    const hasChildren = await Category.findOne({ parent: id });
+    if (hasChildren) {
+      return badRequest("Cannot delete category with subcategories. Move or delete subcategories first.");
+    }
+
     const del = await Category.findByIdAndDelete(id);
     if (!del) return notFound();
     logger.warn("Category deleted", { categoryId: id, by: user.sub });

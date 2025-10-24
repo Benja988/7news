@@ -4,6 +4,7 @@ export interface Category {
   name: string;
   slug: string;
   description?: string;
+  parent?: string | null; // parent category ID
   articleCount?: number;  // optional, if you populate with article counts
   createdAt?: string;     // string because JSON serializes dates
   updatedAt?: string;

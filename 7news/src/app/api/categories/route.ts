@@ -48,8 +48,14 @@ export async function POST(req: NextRequest) {
     const parsed = categoryCreateSchema.safeParse(json);
     if (!parsed.success) return badRequest("Invalid category data");
 
-    const exists = await Category.findOne({ $or: [{ name: parsed.data.name }, { slug: parsed.data.slug }] });
-    if (exists) return badRequest("Category name/slug already exists");
+    const exists = await Category.findOne({
+      $or: [
+        { name: parsed.data.name },
+        { slug: parsed.data.slug }
+      ],
+      parent: parsed.data.parent || null // Ensure uniqueness per parent level
+    });
+    if (exists) return badRequest("Category name/slug already exists at this level");
 
     const cat = await Category.create(parsed.data);
     logger.info("Category created", { categoryId: cat._id.toString(), by: user.sub });

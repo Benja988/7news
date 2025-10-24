@@ -3,12 +3,14 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { BookOpen, Camera, Code, Coffee, Gamepad2, Heart, Music, Zap, Grid3X3 } from "lucide-react";
+import { Grid3X3 } from "lucide-react";
+import { getCategoryIcon } from "@/lib/categoryIcons";
 
 type Category = {
   _id: string;
   name: string;
   slug: string;
+  parent?: string | null;
   articleCount?: number;
 };
 
@@ -16,11 +18,6 @@ export default function CategoriesPage() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Generate random icon for categories
-  const getRandomIcon = (index: number) => {
-    const icons = [BookOpen, Camera, Code, Coffee, Gamepad2, Heart, Music, Zap];
-    return icons[index % icons.length];
-  };
 
   // Generate random image URL from Picsum
   const getRandomImage = (id: string) => {
@@ -110,49 +107,108 @@ export default function CategoriesPage() {
         </div>
 
         {/* Categories Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {categories.map((category, index) => {
-            const IconComponent = getRandomIcon(index);
-            return (
-              <Link
-                key={category._id}
-                href={`/categories/${category.slug}`}
-                className="group bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600"
-              >
-                {/* Category Image */}
-                <div className="relative overflow-hidden">
-                  <img
-                    src={getRandomImage(category._id)}
-                    alt={category.name}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/5 transition-colors" />
+        <div className="space-y-12">
+          {(() => {
+            // Group categories by parent
+            const groupedCategories = categories.reduce((acc, cat) => {
+              const parentId = cat.parent || 'root';
+              if (!acc[parentId]) acc[parentId] = [];
+              acc[parentId].push(cat);
+              return acc;
+            }, {} as Record<string, Category[]>);
 
-                  {/* Icon Overlay */}
-                  <div className="absolute top-3 left-3 w-10 h-10 bg-white/90 dark:bg-gray-800/90 rounded-full flex items-center justify-center shadow-md">
-                    <IconComponent className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+            // Get parent categories (those with null parent)
+            const parentCategories = categories.filter(cat => !cat.parent);
+
+            return parentCategories.map(parentCat => {
+              const childCategories = groupedCategories[parentCat._id] || [];
+              const IconComponent = getCategoryIcon(parentCat.name);
+
+              return (
+                <div key={parentCat._id} className="space-y-6">
+                  {/* Parent Category Header */}
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
+                      <IconComponent className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                    </div>
+                    <div>
+                      <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                        {parentCat.name}
+                      </h2>
+                      <p className="text-gray-600 dark:text-gray-400">
+                        {childCategories.length} subcategories • {parentCat.articleCount || 0} articles
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Child Categories Grid */}
+                  <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                    {/* Parent category card */}
+                    <Link
+                      href={`/categories/${parentCat.slug}`}
+                      className="group bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600"
+                    >
+                      <div className="relative overflow-hidden">
+                        <img
+                          src={getRandomImage(parentCat._id)}
+                          alt={parentCat.name}
+                          className="w-full h-32 object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                        <div className="absolute inset-0 bg-black/10 group-hover:bg-black/5 transition-colors" />
+
+                        {/* Icon Overlay */}
+                        <div className="absolute top-2 left-2 w-8 h-8 bg-white/90 dark:bg-gray-800/90 rounded-full flex items-center justify-center shadow-md">
+                          <IconComponent className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                        </div>
+                      </div>
+                      <div className="p-3">
+                        <h3 className="font-semibold text-gray-900 dark:text-white text-sm group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors mb-1">
+                          All {parentCat.name}
+                        </h3>
+                        <p className="text-gray-600 dark:text-gray-400 text-xs">
+                          Browse all topics
+                        </p>
+                      </div>
+                    </Link>
+
+                    {/* Child categories */}
+                    {childCategories.map((childCat) => {
+                      const ChildIconComponent = getCategoryIcon(childCat.name);
+                      return (
+                        <Link
+                          key={childCat._id}
+                          href={`/categories/${childCat.slug}`}
+                          className="group bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600"
+                        >
+                          <div className="relative overflow-hidden">
+                            <img
+                              src={getRandomImage(childCat._id)}
+                              alt={childCat.name}
+                              className="w-full h-32 object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                            <div className="absolute inset-0 bg-black/10 group-hover:bg-black/5 transition-colors" />
+
+                            {/* Icon Overlay */}
+                            <div className="absolute top-2 left-2 w-8 h-8 bg-white/90 dark:bg-gray-800/90 rounded-full flex items-center justify-center shadow-md">
+                              <ChildIconComponent className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                            </div>
+                          </div>
+                          <div className="p-3">
+                            <h3 className="font-semibold text-gray-900 dark:text-white text-sm group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors mb-1">
+                              {childCat.name}
+                            </h3>
+                            <p className="text-gray-600 dark:text-gray-400 text-xs">
+                              {childCat.articleCount || 0} articles
+                            </p>
+                          </div>
+                        </Link>
+                      );
+                    })}
                   </div>
                 </div>
-
-                {/* Category Info */}
-                <div className="p-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-semibold text-gray-900 dark:text-white text-lg group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                      {category.name}
-                    </h3>
-                    {category.articleCount !== undefined && (
-                      <span className="bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 px-2 py-1 rounded-full text-xs font-medium">
-                        {category.articleCount} {category.articleCount === 1 ? 'article' : 'articles'}
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">
-                    Latest updates in {category.name.toLowerCase()}
-                  </p>
-                </div>
-              </Link>
-            );
-          })}
+              );
+            });
+          })()}
         </div>
 
         {/* Stats Footer */}
