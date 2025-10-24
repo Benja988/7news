@@ -22,8 +22,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "HintFlow Website",
-  description: "A website showcasing articles and news",
+  title: "HintFlow - Stay Informed",
+  description: "Your trusted source for breaking news, technology insights, and in-depth analysis on global events, science, business, and culture.",
+  keywords: "news, technology, science, business, politics, entertainment, health, sports",
+  authors: [{ name: "HintFlow Team" }],
+  creator: "HintFlow",
+  publisher: "HintFlow",
+  verification: {
+    // google: process.env.GOOGLE_SITE_VERIFICATION,
+    google: "google-site-verification=J1VswVxKIwfs7fM2Njzd04L5UB845yR6gVvv04TZuI0",
+  },
 };
 
 export default function RootLayout({

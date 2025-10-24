@@ -316,3 +316,10 @@
 2025-10-24 21:27:57 [INFO] [articles:list-create] Fetched articles list
 2025-10-24 21:27:57 [INFO] [articles:list-create] Fetched articles list
 2025-10-24 21:27:57 [INFO] [articles:list-create] Fetched articles list
+2025-10-24 21:55:06 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-24 21:55:07 [INFO] [articles:list-create] Fetched articles list
+2025-10-24 21:55:07 [INFO] [articles:list-create] Fetched articles list
+2025-10-24 21:55:07 [WARN] [bad78cfc-87ab-4ac4-bbea-ea41c9fb980b] [Auth] No access token found in cookies
+2025-10-24 21:55:07 [WARN] [user:me] Unauthenticated access attempt
+2025-10-24 21:55:08 [INFO] [articles:list-create] Fetched articles list
+2025-10-24 21:55:08 [INFO] [articles:list-create] Fetched articles list
