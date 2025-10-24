@@ -8,7 +8,7 @@ export default function TermsOfService() {
     {
       icon: BookOpen,
       title: 'Acceptance of Terms',
-      content: `By accessing and using NewsFlow ("the Service"), you accept and agree to be bound by the terms and provision of this agreement.`
+      content: `By accessing and using HintFlow ("the Service"), you accept and agree to be bound by the terms and provision of this agreement.`
     },
     {
       icon: AlertTriangle,
@@ -18,7 +18,7 @@ export default function TermsOfService() {
     {
       icon: Scale,
       title: 'Intellectual Property',
-      content: `The Service and its original content, features, and functionality are owned by NewsFlow and are protected by international copyright, trademark, and other intellectual property laws.`
+      content: `The Service and its original content, features, and functionality are owned by HintFlow and are protected by international copyright, trademark, and other intellectual property laws.`
     }
   ];
 
@@ -47,7 +47,7 @@ export default function TermsOfService() {
                 Important Legal Notice
               </h3>
               <p className="text-yellow-700 dark:text-yellow-400 text-sm leading-relaxed">
-                Please read these terms carefully before using our services. By using NewsFlow, 
+                Please read these terms carefully before using our services. By using HintFlow, 
                 you agree to be bound by these terms and conditions. If you disagree with any part 
                 of the terms, you may not access our services.
               </p>
@@ -89,7 +89,7 @@ export default function TermsOfService() {
             
             <div>
               <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Limitation of Liability</h4>
-              <p>In no event shall NewsFlow, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages.</p>
+              <p>In no event shall HintFlow, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages.</p>
             </div>
             
             <div>

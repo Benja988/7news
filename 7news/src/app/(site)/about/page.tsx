@@ -38,7 +38,7 @@ export default function AboutUs() {
         {/* Hero Section */}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-            About <span className="text-blue-600">NewsFlow</span>
+            About <span className="text-blue-600">HintFlow</span>
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
             We are a leading digital news platform committed to delivering trustworthy journalism 
@@ -87,7 +87,7 @@ export default function AboutUs() {
             </h2>
             <div className="space-y-4 text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
               <p>
-                Founded in 2015, NewsFlow emerged from a simple belief: everyone deserves access 
+                Founded in 2015, HintFlow emerged from a simple belief: everyone deserves access 
                 to reliable, unbiased news. In an era of information overload, we saw the need 
                 for a platform that cuts through the noise and delivers what truly matters.
               </p>

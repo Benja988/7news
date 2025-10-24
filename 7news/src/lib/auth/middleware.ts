@@ -13,6 +13,23 @@ export async function middleware(req: NextRequest) {
 
   logger.debug(`Processing request for ${pathname}`, { requestId });
 
+  // Redirect logged-in users away from login page
+  if (pathname === "/login") {
+    const token = req.cookies.get("accessToken")?.value;
+    if (token) {
+      try {
+        const payload = await verifyToken(token);
+        if (payload) {
+          logger.debug(`Redirecting authenticated user from login to home`, { requestId });
+          return NextResponse.redirect(new URL("/", req.url));
+        }
+      } catch (error) {
+        logger.debug(`Invalid token for login page, allowing access`, { requestId });
+      }
+    }
+    return NextResponse.next();
+  }
+
   // Protect admin routes
   if (pathname.startsWith("/admin") || pathname.startsWith("/api/admin")) {
     const token = req.cookies.get("accessToken")?.value;

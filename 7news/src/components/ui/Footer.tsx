@@ -91,7 +91,7 @@ export default function Footer() {
               </div>
               <div className="flex flex-col">
                 <span className="text-xl font-bold bg-gradient-to-r from-gray-900 to-blue-600 dark:from-white dark:to-blue-400 bg-clip-text text-transparent">
-                  NewsFlow
+                  HintFlow
                 </span>
                 <span className="text-xs text-gray-500 dark:text-gray-400 -mt-1">
                   Stay Informed
@@ -207,7 +207,7 @@ export default function Footer() {
             {/* Copyright */}
             <div className="text-sm text-gray-500 dark:text-gray-400">
               <p>
-                &copy; {currentYear} NewsFlow. All rights reserved.
+                &copy; {currentYear} HintFlow. All rights reserved.
               </p>
             </div>
 

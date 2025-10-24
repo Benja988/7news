@@ -47,7 +47,7 @@ export default function CookiePolicy() {
         {/* Introduction */}
         <div className="bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-8 mb-12">
           <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
-            This Cookie Policy explains how NewsFlow uses cookies and similar technologies to recognize 
+            This Cookie Policy explains how HintFlow uses cookies and similar technologies to recognize 
             you when you visit our website. It explains what these technologies are and why we use them, 
             as well as your rights to control our use of them.
           </p>

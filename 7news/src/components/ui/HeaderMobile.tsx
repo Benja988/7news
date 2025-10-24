@@ -101,7 +101,7 @@ export default function HeaderMobile({ user, scrolled, categories }: HeaderMobil
               <Newspaper className="w-5 h-5 text-white" />
             </div>
             <span className="text-xl font-bold bg-gradient-to-r from-gray-900 to-blue-600 dark:from-white dark:to-blue-400 bg-clip-text text-transparent">
-              NewsFlow
+              HintFlow
             </span>
           </Link>
 

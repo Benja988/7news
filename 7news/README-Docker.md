@@ -1,6 +1,6 @@
-# Docker Setup for NewsFlow
+# Docker Setup for HintFlow
 
-This guide explains how to run the NewsFlow application using Docker and Docker Compose.
+This guide explains how to run the HintFlow application using Docker and Docker Compose.
 
 ## Prerequisites
 

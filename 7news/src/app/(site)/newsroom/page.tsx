@@ -4,10 +4,10 @@ import { Newspaper, Download, Users, Award, FileText, Calendar } from 'lucide-re
 export default function Newsroom() {
   const pressReleases = [
     {
-      title: 'NewsFlow Reaches 1 Million Subscribers',
+      title: 'HintFlow Reaches 1 Million Subscribers',
       date: '2024-01-15',
       category: 'Milestone',
-      excerpt: 'NewsFlow celebrates reaching one million paid subscribers worldwide.'
+      excerpt: 'HintFlow celebrates reaching one million paid subscribers worldwide.'
     },
     {
       title: 'Launch of New Mobile App Experience',

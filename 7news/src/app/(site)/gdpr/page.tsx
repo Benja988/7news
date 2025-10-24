@@ -44,7 +44,7 @@ export default function GDPR() {
         {/* Introduction */}
         <div className="bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-8 mb-12">
           <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
-            NewsFlow is fully committed to complying with the General Data Protection Regulation (GDPR). 
+            HintFlow is fully committed to complying with the General Data Protection Regulation (GDPR). 
             This page outlines our approach to data protection and your rights under GDPR.
           </p>
         </div>

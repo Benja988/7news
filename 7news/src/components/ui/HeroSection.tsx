@@ -338,7 +338,7 @@ export default function HeroSection({
   }, [featuredArticles]);
 
   const handleArticleClick = (slug: string) => {
-    window.open(`/article/${slug}`, '_blank');
+    window.open(`/articles/${slug}`, '_blank');
   };
 
   // Get trending categories with article counts
@@ -375,11 +375,11 @@ export default function HeroSection({
           <div className="xl:col-span-1 lg:col-span-1">
             <VideoPlayer
               title="Global Summit Updates"
-              description="Watch live coverage of the international climate summit with expert analysis and real-time updates from our correspondents."
+              description="Watch the coverage of the international climate summit with expert analysis and real-time updates from our correspondents."
               isLive={true}
-              viewerCount={2500}
+              viewerCount={250}
               channel="Video Channel"
-              duration="15 min ago"
+              duration="15 min"
             />
           </div>
 

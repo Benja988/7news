@@ -65,7 +65,7 @@ export default function PrivacyPolicy() {
         {/* Introduction */}
         <div className="bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-8 mb-12">
           <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
-            At NewsFlow, we take your privacy seriously. This Privacy Policy explains how we collect, 
+            At HintFlow, we take your privacy seriously. This Privacy Policy explains how we collect, 
             use, disclose, and safeguard your information when you use our website and services.
           </p>
         </div>
