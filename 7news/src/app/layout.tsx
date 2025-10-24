@@ -7,6 +7,7 @@ import { ThemeProvider } from "next-themes";
 import { AuthProvider } from "@/context/AuthContext";
 import Header from "@/components/ui/Header";
 import Footer from "@/components/ui/Footer";
+import JsonLd from "@/components/ui/JsonLd";
 import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
@@ -46,6 +47,22 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <AuthProvider>
+            <JsonLd
+              data={{
+                "@context": "https://schema.org",
+                "@type": "NewsMediaOrganization",
+                "name": "HintFlow",
+                "url": "https://hintflow.site",
+                "logo": "https://hintflow.site/logo.png",
+                "description": "Your trusted source for breaking news, technology insights, and in-depth analysis on global events, science, business, and culture.",
+                "sameAs": [
+                  "https://twitter.com/hintflow",
+                  "https://facebook.com/hintflow"
+                ],
+                "publishingPrinciples": "https://hintflow.site/newsroom",
+                "ethicsPolicy": "https://hintflow.site/ethics"
+              }}
+            />
             {children}
             <Toaster
               position="top-right"
