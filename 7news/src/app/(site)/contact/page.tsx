@@ -101,7 +101,7 @@ export default function ContactUs() {
               <div className="space-y-3 text-sm">
                 {[
                   'How do I submit a news tip?',
-                  'Can I advertise on NewsFlow?',
+                  'Can I advertise on HintFlow?',
                   'Do you offer subscriptions?',
                   'How can I report an error?'
                 ].map((question, index) => (

@@ -44,3 +44,9 @@
 2025-10-24 11:02:03 [INFO] [articles:by-slug] Fetched article by slug
 2025-10-24 11:03:29 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
 2025-10-24 11:03:29 [INFO] [articles:by-slug] Fetched article by slug
+2025-10-24 11:08:03 [INFO] [articles:list-create] Fetched articles list
+2025-10-24 11:08:03 [INFO] [articles:list-create] Fetched articles list
+2025-10-24 11:08:04 [INFO] [articles:list-create] Fetched articles list
+2025-10-24 11:08:04 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-24 11:08:04 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-24 11:08:08 [INFO] [articles:list-create] Fetched articles list

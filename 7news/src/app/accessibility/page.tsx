@@ -43,7 +43,7 @@ export default function AccessibilityPage() {
 
           <div className="prose dark:prose-invert max-w-none">
             <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
-              At NewsFlow, we are committed to making our website accessible to everyone, including people with disabilities.
+              At HintFlow, we are committed to making our website accessible to everyone, including people with disabilities.
               We strive to provide an inclusive experience that meets or exceeds the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA standards.
             </p>
 
