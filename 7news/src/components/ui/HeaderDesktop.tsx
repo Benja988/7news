@@ -50,8 +50,9 @@ export default function HeaderDesktop({ user, scrolled, categories, loading = fa
 
   const handleLogout = async () => {
     try {
-      await fetch("/api/logout", { method: "POST", credentials: "include" });
+      await fetch("/api/auth/logout", { method: "POST", credentials: "include" });
       router.push("/");
+      window.location.reload();
     } catch (err) {
       console.error("Error logging out:", err);
     }

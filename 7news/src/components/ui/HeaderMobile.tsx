@@ -60,9 +60,10 @@ export default function HeaderMobile({ user, scrolled, categories }: HeaderMobil
 
   const handleLogout = async () => {
     try {
-      await fetch("/api/logout", { method: "POST", credentials: "include" });
+      await fetch("/api/auth/logout", { method: "POST", credentials: "include" });
       router.push("/");
       setMenuOpen(false);
+      window.location.reload();
     } catch (err) {
       console.error("Error logging out:", err);
     }
