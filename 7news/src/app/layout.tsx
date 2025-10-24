@@ -22,7 +22,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "7news Website",
+  title: "HintFlow Website",
   description: "A website showcasing articles and news",
 };
 

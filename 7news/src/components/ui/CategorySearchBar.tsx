@@ -91,6 +91,8 @@ export default function CategorySearchBar({
     .filter(cat => (cat.articleCount || 0) > 10)
     .slice(0, 4);
 
+  const displayedCategories = categories.slice(0, 10);
+
   return (
     <div className={`w-full space-y-4 ${compact ? 'max-w-2xl mx-auto' : ''}`}>
       {/* Enhanced Search Bar */}
@@ -214,7 +216,7 @@ export default function CategorySearchBar({
         </div>
 
         {/* Desktop Category Buttons */}
-        <div className="hidden sm:flex flex-col gap-4 w-64 bg-white dark:bg-gray-900 rounded-2xl shadow-md p-4 overflow-y-auto max-h-[80vh]">
+        <div className="hidden sm:flex flex-col gap-4 w-64 bg-white dark:bg-gray-900 rounded-2xl shadow-md p-4 overflow-y-auto max-h-80">
   {/* All Categories Button */}
   <button
     onClick={() => handleCategoryChange("")}
@@ -277,26 +279,28 @@ export default function CategorySearchBar({
       </span>
     </div>
 
-    <div className="flex flex-col gap-2">
-      {categories &&
-        categories
-          .filter(cat => !popularCategories.some(popular => popular._id === cat._id))
-          .map((cat) => (
-            <button
-              key={cat._id}
-              onClick={() => handleCategoryChange(cat.slug)}
-              className={`flex items-center justify-between px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 border ${
-                activeCategory === cat.slug
-                  ? "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 shadow-sm"
-                  : "bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:shadow-sm"
-              }`}
-            >
-              <span>{cat.name}</span>
-              {cat.articleCount !== undefined && (
-                <span className="text-xs opacity-70">({cat.articleCount})</span>
-              )}
-            </button>
-          ))}
+    <div className="flex flex-col gap-2 max-h-40 overflow-y-auto">
+      {displayedCategories.map((cat) => (
+        <button
+          key={cat._id}
+          onClick={() => handleCategoryChange(cat.slug)}
+          className={`flex items-center justify-between px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 border ${
+            activeCategory === cat.slug
+              ? "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 shadow-sm"
+              : "bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:shadow-sm"
+          }`}
+        >
+          <span>{cat.name}</span>
+          {cat.articleCount !== undefined && (
+            <span className="text-xs opacity-70">({cat.articleCount})</span>
+          )}
+        </button>
+      ))}
+      {categories.length > 4 && (
+        <div className="text-center py-2 text-xs text-gray-500 dark:text-gray-400 border-t border-gray-200 dark:border-gray-700 mt-2">
+          +{categories.length - 10} more categories
+        </div>
+      )}
     </div>
   </div>
 

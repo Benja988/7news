@@ -29,7 +29,7 @@ export default function AccessibilityPage() {
   ];
 
   const contactInfo = {
-    email: "accessibility@newsflow.com",
+    email: "accessibility@hintflow.site",
     phone: "+1 (555) 123-4567"
   };
 

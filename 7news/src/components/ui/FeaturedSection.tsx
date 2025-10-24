@@ -80,7 +80,7 @@ function FeaturedArticleCard({ article, isMain }: { article: Article; isMain: bo
           <span className="px-2 py-0.5 rounded bg-blue-600 text-white">
             {article.category?.name || "Uncategorized"}
           </span>
-          {article.author?.name && <span>By {article.author.name}</span>}
+          {/* {article.author?.name && <span>By {article.author.name}</span>} */}
           {article.publishedAt && (
             <span>{new Date(article.publishedAt).toLocaleDateString()}</span>
           )}

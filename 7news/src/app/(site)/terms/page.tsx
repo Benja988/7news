@@ -108,8 +108,8 @@ export default function TermsOfService() {
         <div className="text-center mt-12 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-2xl">
           <p className="text-gray-600 dark:text-gray-300">
             If you have any questions about these Terms, please contact us at{' '}
-            <a href="mailto:legal@newsflow.com" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
-              legal@newsflow.com
+            <a href="mailto:legal@hintflow.site" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              legal@hintflow.site
             </a>
           </p>
         </div>

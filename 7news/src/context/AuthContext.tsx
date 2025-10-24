@@ -59,12 +59,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const data = await res.json();
     if (!res.ok) throw new Error(data.message || "Login failed");
 
-    setUser(data.data); // API should return safe user data
+    setUser(data.data); 
 
-    // Redirect based on user role
-    const dashboardRoute = getDashboardRoute(data.data.role);
-    router.push(dashboardRoute);
-    router.refresh();
+    router.push(ROUTES.HOME);
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 100);
   };
 
   // 🔹 Register

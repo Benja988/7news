@@ -141,10 +141,10 @@ export default function GDPR() {
               please contact our Data Protection Officer.
             </p>
             <a
-              href="mailto:dpo@newsflow.com"
+              href="mailto:dpo@hintflow.site"
               className="inline-block bg-white text-blue-600 hover:bg-gray-100 px-6 py-3 rounded-lg font-medium transition-colors"
             >
-              dpo@newsflow.com
+              dpo@hintflow.site
             </a>
           </div>
         </section>

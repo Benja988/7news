@@ -106,7 +106,7 @@ export default function Newsroom() {
                 Media Contact
               </h2>
               <div className="space-y-2 text-gray-600 dark:text-gray-300">
-                <p><strong>Press Inquiries:</strong> press@newsflow.com</p>
+                <p><strong>Press Inquiries:</strong> press@hintflow.site</p>
                 <p><strong>Phone:</strong> +1 (555) 123-4567</p>
                 <p><strong>Response Time:</strong> Within 2 business hours</p>
               </div>

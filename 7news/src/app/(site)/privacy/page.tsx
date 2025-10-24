@@ -121,8 +121,8 @@ export default function PrivacyPolicy() {
             </h3>
             <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
               If you have any questions about this Privacy Policy, please contact us at:{' '}
-              <a href="mailto:privacy@newsflow.com" className="text-blue-600 dark:text-blue-400 hover:underline">
-                privacy@newsflow.com
+              <a href="mailto:privacy@hintflow.site" className="text-blue-600 dark:text-blue-400 hover:underline">
+                privacy@hintflow.site
               </a>
             </p>
           </section>

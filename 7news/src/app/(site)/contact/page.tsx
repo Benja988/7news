@@ -29,7 +29,7 @@ export default function ContactUs() {
     {
       icon: Mail,
       title: 'Email Us',
-      details: 'hello@newsflow.com',
+      details: 'hello@hintflow.site',
       description: 'Send us an email anytime'
     },
     {

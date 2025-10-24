@@ -74,8 +74,8 @@ export default function ArticlePage() {
     <article className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <h1 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white leading-tight">{article.title}</h1>
       <p className="text-gray-500 dark:text-gray-400 text-sm mb-2">
-        {new Date(article.publishedAt).toLocaleDateString()} · By{" "}
-        {article.author?.name || "Unknown"}
+        {new Date(article.publishedAt).toLocaleDateString()} 
+        {/* {article.author?.name || "Unknown"} */}
       </p>
 
       {article.coverImage && (

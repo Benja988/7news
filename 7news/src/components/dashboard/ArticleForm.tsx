@@ -8,37 +8,38 @@ type Props = {
 };
 
 export default function ArticleForm({ initialData }: Props) {
-  const [form, setForm] = useState(
-    initialData
-      ? {
-          ...initialData,
-          tags: Array.isArray(initialData.tags)
-            ? initialData.tags.join(", ")
-            : initialData.tags || "",
-          seo: initialData.seo || { metaTitle: "", metaDescription: "", keywords: [] },
-          scheduledPublishAt: initialData.scheduledPublishAt
-            ? new Date(initialData.scheduledPublishAt).toISOString().slice(0, 16)
-            : "",
-        }
-      : {
-          title: "",
-          excerpt: "",
-          content: "",
-          coverImage: "",
-          category: "",
-          tags: "",
-          status: "draft",
-          scheduledPublishAt: "",
-          isFeatured: false,
-          seo: { metaTitle: "", metaDescription: "", keywords: [] },
-        }
-  );
+   const [form, setForm] = useState(
+     initialData
+       ? {
+           ...initialData,
+           tags: Array.isArray(initialData.tags)
+             ? initialData.tags.join(", ")
+             : initialData.tags || "",
+           seo: initialData.seo || { metaTitle: "", metaDescription: "", keywords: [] },
+           scheduledPublishAt: initialData.scheduledPublishAt
+             ? new Date(initialData.scheduledPublishAt).toISOString().slice(0, 16)
+             : "",
+         }
+       : {
+           title: "",
+           excerpt: "",
+           content: "",
+           coverImage: "",
+           category: "",
+           tags: "",
+           status: "draft",
+           scheduledPublishAt: "",
+           isFeatured: false,
+           seo: { metaTitle: "", metaDescription: "", keywords: [] },
+         }
+   );
 
-  const [categories, setCategories] = useState<any[]>([]);
-  const [uploading, setUploading] = useState(false);
-  const [activeTab, setActiveTab] = useState("content");
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const editorRef = useRef<any>(null);
+   const [errors, setErrors] = useState<Record<string, string>>({});
+   const [categories, setCategories] = useState<any[]>([]);
+   const [uploading, setUploading] = useState(false);
+   const [activeTab, setActiveTab] = useState("content");
+   const fileInputRef = useRef<HTMLInputElement>(null);
+   const editorRef = useRef<any>(null);
 
   useEffect(() => {
     fetch("/api/categories")
@@ -135,11 +136,26 @@ export default function ArticleForm({ initialData }: Props) {
       if (!response.ok) {
         const errorData = await response.json();
         console.log("Response error data:", errorData);
+
+        // Handle validation errors
+        if (errorData.errors && Array.isArray(errorData.errors)) {
+          const fieldErrors: Record<string, string> = {};
+          errorData.errors.forEach((error: any) => {
+            const path = error.path?.join('.') || 'general';
+            fieldErrors[path] = error.message;
+          });
+          setErrors(fieldErrors);
+          throw new Error("Please fix the validation errors below");
+        }
+
         console.log("Full error details:", errorData.errors);
         console.log("Response status:", response.status);
         console.log("Response statusText:", response.statusText);
         throw new Error(errorData.message || "Failed to save article");
       }
+
+      // Clear errors on success
+      setErrors({});
 
       const result = await response.json();
       toast.success(initialData ? "Article updated successfully!" : "Article created successfully!");
@@ -192,15 +208,22 @@ export default function ArticleForm({ initialData }: Props) {
             <label htmlFor="title" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               Article Title *
             </label>
-            <input
-              id="title"
-              name="title"
-              value={form.title}
-              onChange={handleChange}
-              placeholder="Enter a compelling title for your article"
-              className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors"
-              required
-            />
+            <div>
+              <input
+                id="title"
+                name="title"
+                value={form.title}
+                onChange={handleChange}
+                placeholder="Enter a compelling title for your article"
+                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors ${
+                  errors.title ? 'border-red-500 dark:border-red-500' : 'border-gray-300 dark:border-gray-600'
+                }`}
+                required
+              />
+              {errors.title && (
+                <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.title}</p>
+              )}
+            </div>
           </div>
 
           <div>
@@ -214,8 +237,13 @@ export default function ArticleForm({ initialData }: Props) {
               onChange={handleChange}
               placeholder="Brief summary of your article (will be shown in previews)"
               rows={3}
-              className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors"
+              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors ${
+                errors.excerpt ? 'border-red-500 dark:border-red-500' : 'border-gray-300 dark:border-gray-600'
+              }`}
             />
+            {errors.excerpt && (
+              <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.excerpt}</p>
+            )}
           </div>
         </div>
 
@@ -256,16 +284,16 @@ export default function ArticleForm({ initialData }: Props) {
                   images_upload_handler: async (blobInfo: any) => {
                     const formData = new FormData();
                     formData.append('file', blobInfo.blob(), blobInfo.filename());
-                    
+
                     const response = await fetch('/api/upload', {
                       method: 'POST',
                       body: formData,
                     });
-                    
+
                     if (!response.ok) {
                       throw new Error('Upload failed');
                     }
-                    
+
                     const data = await response.json();
                     return data.url;
                   },
@@ -273,6 +301,9 @@ export default function ArticleForm({ initialData }: Props) {
                   automatic_uploads: true,
                 }}
               />
+              {errors.content && (
+                <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.content}</p>
+              )}
             </div>
           </div>
         )}
@@ -347,16 +378,20 @@ export default function ArticleForm({ initialData }: Props) {
                 value={form.category}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors"
+                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors ${
+                  errors.category ? 'border-red-500 dark:border-red-500' : 'border-gray-300 dark:border-gray-600'
+                }`}
               >
                 <option value="" disabled>Select Category</option>
-                <option value="">Select Category</option>
                 {categories.map((c: any) => (
                   <option key={c._id} value={c._id}>
                     {c.name}
                   </option>
                 ))}
               </select>
+              {errors.category && (
+                <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.category}</p>
+              )}
             </div>
 
             <div>
@@ -427,61 +462,82 @@ export default function ArticleForm({ initialData }: Props) {
           <div className="space-y-4 md:space-y-6">
             <div className="grid grid-cols-1 gap-4 md:gap-6">
               <div>
-                <label htmlFor="metaTitle" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Meta Title
-                </label>
-                <input
-                  id="metaTitle"
-                  name="seo.metaTitle"
-                  value={form.seo.metaTitle}
-                  onChange={(e) => setForm({
-                    ...form,
-                    seo: { ...form.seo, metaTitle: e.target.value }
-                  })}
-                  placeholder="Optimized title for search engines (50-60 characters)"
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors"
-                />
-                <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-                  {form.seo.metaTitle.length}/60 characters
-                </p>
+                <div>
+                  <label htmlFor="metaTitle" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Meta Title
+                  </label>
+                  <input
+                    id="metaTitle"
+                    name="seo.metaTitle"
+                    value={form.seo.metaTitle}
+                    onChange={(e) => setForm({
+                      ...form,
+                      seo: { ...form.seo, metaTitle: e.target.value }
+                    })}
+                    placeholder="Optimized title for search engines (50-60 characters)"
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors ${
+                      errors['seo.metaTitle'] ? 'border-red-500 dark:border-red-500' : 'border-gray-300 dark:border-gray-600'
+                    }`}
+                  />
+                  <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+                    {form.seo.metaTitle.length}/60 characters
+                  </p>
+                  {errors['seo.metaTitle'] && (
+                    <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors['seo.metaTitle']}</p>
+                  )}
+                </div>
               </div>
 
               <div>
-                <label htmlFor="metaDescription" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Meta Description
-                </label>
-                <textarea
-                  id="metaDescription"
-                  name="seo.metaDescription"
-                  value={form.seo.metaDescription}
-                  onChange={(e) => setForm({
-                    ...form,
-                    seo: { ...form.seo, metaDescription: e.target.value }
-                  })}
-                  placeholder="Brief description for search results (150-160 characters)"
-                  rows={3}
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors"
-                />
-                <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-                  {form.seo.metaDescription.length}/160 characters
-                </p>
+                <div>
+                  <label htmlFor="metaDescription" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Meta Description
+                  </label>
+                  <textarea
+                    id="metaDescription"
+                    name="seo.metaDescription"
+                    value={form.seo.metaDescription}
+                    onChange={(e) => setForm({
+                      ...form,
+                      seo: { ...form.seo, metaDescription: e.target.value }
+                    })}
+                    placeholder="Brief description for search results (150-160 characters)"
+                    rows={3}
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors ${
+                      errors['seo.metaDescription'] ? 'border-red-500 dark:border-red-500' : 'border-gray-300 dark:border-gray-600'
+                    }`}
+                  />
+                  <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+                    {form.seo.metaDescription.length}/160 characters
+                  </p>
+                  {errors['seo.metaDescription'] && (
+                    <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors['seo.metaDescription']}</p>
+                  )}
+                </div>
               </div>
 
               <div>
-                <label htmlFor="keywords" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Keywords
-                </label>
-                <input
-                  id="keywords"
-                  name="seo.keywords"
-                  value={Array.isArray(form.seo.keywords) ? form.seo.keywords.join(", ") : form.seo.keywords}
-                  onChange={(e) => setForm({
-                    ...form,
-                    seo: { ...form.seo, keywords: e.target.value }
-                  })}
-                  placeholder="seo, marketing, content (comma separated)"
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors"
-                />
+                <div>
+                  <label htmlFor="keywords" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Keywords
+                  </label>
+                  <input
+                    id="keywords"
+                    name="seo.keywords"
+                    value={Array.isArray(form.seo.keywords) ? form.seo.keywords.join(", ") : form.seo.keywords}
+                    onChange={(e) => setForm({
+                      ...form,
+                      seo: { ...form.seo, keywords: e.target.value }
+                    })}
+                    placeholder="seo, marketing, content (comma separated)"
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors ${
+                      errors['seo.keywords'] ? 'border-red-500 dark:border-red-500' : 'border-gray-300 dark:border-gray-600'
+                    }`}
+                  />
+                  {errors['seo.keywords'] && (
+                    <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors['seo.keywords']}</p>
+                  )}
+                </div>
               </div>
             </div>
           </div>

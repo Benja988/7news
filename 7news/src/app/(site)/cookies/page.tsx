@@ -151,8 +151,8 @@ export default function CookiePolicy() {
         <div className="text-center mt-12 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-2xl">
           <p className="text-gray-600 dark:text-gray-300">
             Questions about our Cookie Policy? Contact us at{' '}
-            <a href="mailto:privacy@newsflow.com" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
-              privacy@newsflow.com
+            <a href="mailto:privacy@hintflow.site" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              privacy@hintflow.site
             </a>
           </p>
         </div>
