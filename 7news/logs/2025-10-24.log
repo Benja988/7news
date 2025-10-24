@@ -50,3 +50,4 @@
 2025-10-24 11:08:04 [ERROR] [articles:by-id] Error fetching article by ID
 2025-10-24 11:08:04 [ERROR] [articles:by-id] Error fetching article by ID
 2025-10-24 11:08:08 [INFO] [articles:list-create] Fetched articles list
+2025-10-24 11:11:58 [WARN] [user:me] User not found: 68c025ef605cf538a476381a

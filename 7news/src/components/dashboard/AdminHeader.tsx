@@ -33,7 +33,7 @@ export default function AdminHeader() {
           {/* Logo/Brand */}
           <div className="flex items-center">
             <h1 className="text-xl font-bold text-light-heading dark:text-dark-heading hidden sm:block">
-              7News Admin
+              HintFlow Admin
             </h1>
             <h1 className="text-lg font-bold text-light-heading dark:text-dark-heading sm:hidden">
               Admin
