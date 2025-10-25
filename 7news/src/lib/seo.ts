@@ -20,7 +20,7 @@ export function generateSEO(props: SEOProps = {}): Metadata {
     title = "HintFlow - Stay Informed",
     description = "Your trusted source for breaking news, technology insights, and in-depth analysis on global events, science, business, and culture.",
     keywords = ["news", "technology", "science", "business", "politics", "entertainment", "health", "sports"],
-    image = "https://hintflow.site/og-image.jpg",
+    image = "https://hintflow.site/logo.png",
     url = "https://hintflow.site",
     type = "website",
     publishedTime,

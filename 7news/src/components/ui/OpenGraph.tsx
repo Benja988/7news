@@ -17,7 +17,7 @@ interface OpenGraphProps {
 export default function OpenGraph({
   title = "HintFlow - Stay Informed",
   description = "Your trusted source for breaking news, technology insights, and in-depth analysis on global events, science, business, and culture.",
-  image = "https://hintflow.site/og-image.jpg",
+  image = "https://hintflow.site/logo.png",
   url = "https://hintflow.site",
   type = "website",
   publishedTime,
