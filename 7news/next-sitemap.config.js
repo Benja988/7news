@@ -18,9 +18,7 @@ module.exports = {
       'https://hintflow.site/server-sitemap.xml', // For dynamic content
     ],
   },
-  // Transform function for dynamic priority
   transform: async (config, path) => {
-    // Set higher priority for important pages
     const priorities = {
       '/': 1.0,
       '/about': 0.8,
@@ -35,7 +33,7 @@ module.exports = {
       loc: path,
       changefreq: config.changefreq,
       priority: priorities[path] || config.priority,
-      lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
+      lastmod: new Date().toISOString(),
     };
   },
 };

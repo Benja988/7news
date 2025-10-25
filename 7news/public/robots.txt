@@ -1,9 +1,13 @@
 # *
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
 
 # Host
 Host: https://hintflow.site
 
 # Sitemaps
 Sitemap: https://hintflow.site/sitemap.xml
+Sitemap: https://hintflow.site/server-sitemap.xml
