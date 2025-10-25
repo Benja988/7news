@@ -9,6 +9,7 @@ import Header from "@/components/ui/Header";
 import Footer from "@/components/ui/Footer";
 import JsonLd from "@/components/ui/JsonLd";
 import { Toaster } from "react-hot-toast";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -88,6 +89,7 @@ export default function RootLayout({
                 },
               }}
             />
+            <Analytics />
           </AuthProvider>
         </ThemeProvider>
       </body>
