@@ -1,4 +1,6 @@
 // components/ui/JsonLd.tsx
+"use client";
+
 import { useEffect } from 'react';
 
 interface JsonLdProps {
@@ -7,13 +9,12 @@ interface JsonLdProps {
 
 export default function JsonLd({ data }: JsonLdProps) {
   useEffect(() => {
-    // Add JSON-LD script to head
+    
     const script = document.createElement('script');
     script.type = 'application/ld+json';
     script.textContent = JSON.stringify(data);
     script.id = 'json-ld-schema';
 
-    // Remove existing script if present
     const existingScript = document.getElementById('json-ld-schema');
     if (existingScript) {
       existingScript.remove();
@@ -30,5 +31,5 @@ export default function JsonLd({ data }: JsonLdProps) {
     };
   }, [data]);
 
-  return null; // This component doesn't render anything
+  return null; 
 }
