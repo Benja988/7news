@@ -5,7 +5,7 @@ module.exports = {
   sitemapSize: 7000,
   changefreq: 'daily',
   priority: 0.7,
-  exclude: ['/admin/*', '/api/*', '/login', '/register', '/profile'],
+  exclude: ['/admin/*', '/api/*', '/login', '/register', '/profile', '/admin'],
   robotsTxtOptions: {
     policies: [
       {
