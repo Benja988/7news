@@ -11,6 +11,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontSize: {
+        base: '1rem', // Ensure consistent base font size
+      },
       colors: {
         /* 🌞 Light Theme */
         'light-bg': '#f9fafb',

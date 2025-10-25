@@ -8,11 +8,14 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    font-size: 16px; /* Base font size for consistent scaling */
   }
 
   body {
     @apply bg-light-bg text-light-text dark:bg-dark-bg dark:text-dark-text antialiased;
     font-family: var(--font-geist-sans), system-ui, sans-serif;
+    font-size: 1rem; /* Ensure consistent base font size */
+    line-height: 1.5; /* Improve readability */
   }
 
   h1,
