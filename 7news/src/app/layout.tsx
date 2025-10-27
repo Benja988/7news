@@ -34,6 +34,11 @@ export const metadata: Metadata = {
     // google: process.env.GOOGLE_SITE_VERIFICATION,
     google: "google-site-verification=J1VswVxKIwfs7fM2Njzd04L5UB845yR6gVvv04TZuI0",
   },
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.jpg',
+  },
 };
 
 export default function RootLayout({
