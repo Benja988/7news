@@ -3,6 +3,7 @@
 import HeaderMobile from "@/components/ui/HeaderMobile";
 import HeaderDesktop from "@/components/ui/HeaderDesktop";
 import Footer from "@/components/ui/Footer";
+import CookieConsent from "@/components/ui/CookieConsent";
 import { useHomePageData } from "@/hooks/useHomePageData";
 import { useAuth } from "@/context/AuthContext";
 import { useState, useEffect } from "react";
@@ -33,6 +34,7 @@ export default function SiteLayout({
         <div className="mx-auto w-full max-w-8xl">{children}</div>
       </main>
       <Footer />
+      <CookieConsent />
     </>
   );
 }

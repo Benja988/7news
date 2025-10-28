@@ -98,7 +98,6 @@ export default function Header({ user, scrolled, categories, loading = false, is
       await fetch("/api/auth/logout", { method: "POST", credentials: "include" });
       router.push("/");
       setMenuOpen(false);
-      window.location.reload();
     } catch (err) {
       console.error("Error logging out:", err);
     }

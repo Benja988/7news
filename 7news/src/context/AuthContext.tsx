@@ -59,13 +59,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const data = await res.json();
     if (!res.ok) throw new Error(data.message || "Login failed");
 
-    setUser(data.data); 
+    setUser(data.data);
 
     router.push(ROUTES.HOME);
-
-    setTimeout(() => {
-      window.location.reload();
-    }, 100);
   };
 
   // 🔹 Register
@@ -87,11 +83,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const logout = async () => {
     try {
       await fetch("/api/auth/logout", { method: "POST", credentials: "include" });
+      setUser(null);
+      router.push(ROUTES.HOME);
     } catch (err) {
       console.error("❌ Error logging out:", err);
+      // Even if logout API fails, clear local state
+      setUser(null);
+      router.push(ROUTES.HOME);
     }
-    setUser(null);
-    router.push(ROUTES.HOME);
   };
 
   return (
