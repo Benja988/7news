@@ -47,7 +47,7 @@ export default function HomePage() {
     <>
       <HeaderMobile user={user} scrolled={scrolled} categories={categories} />
       <HeaderDesktop user={user} scrolled={scrolled} categories={categories} />
-      <main className="flex-grow w-full">
+      <main className="flex-grow w-full pt-16 lg:pt-20">
         <div className="mx-auto w-full max-w-8xl">
           <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
             <HeroSection

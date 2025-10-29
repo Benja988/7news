@@ -1,0 +1,39 @@
+2025-10-29 12:43:49 [WARN] [ef1f461d-862d-4b80-8cad-d64af98cc2e1] [Auth] No access token found in cookies
+2025-10-29 12:43:49 [WARN] [user:me] Unauthenticated access attempt
+2025-10-29 12:43:57 [INFO] [726639d9-baf6-45f0-a77d-b176422744f3] [Auth] Signing access token for user: benjaminokumu12@gmail.com
+2025-10-29 12:43:57 [INFO] [8674f709-2fb2-4fd3-944a-8359ecca59a1] [Auth] Signing refresh token for user: benjaminokumu12@gmail.com
+2025-10-29 12:43:57 [INFO] [55e64ecd-d787-47ab-8e37-1cd6df2261f7] [Auth] Setting auth cookies
+2025-10-29 12:43:57 [INFO] [auth:login] User logged in: benjaminokumu12@gmail.com
+2025-10-29 12:44:01 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-10-29 12:44:04 [INFO] [articles:list-create] Fetched articles list
+2025-10-29 12:44:04 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-29 12:44:04 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-29 12:44:05 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-10-29 12:44:05 [INFO] [articles:list-create] Fetched articles list
+2025-10-29 12:44:05 [INFO] [articles:list-create] Fetched articles list
+2025-10-29 12:44:06 [INFO] [articles:list-create] Fetched articles list
+2025-10-29 12:44:13 [INFO] [admin:stats] Fetched admin stats
+2025-10-29 12:44:14 [INFO] [admin:stats] Fetched admin stats
+2025-10-29 12:44:28 [INFO] [articles:list-create] Fetched articles list
+2025-10-29 12:44:28 [INFO] [articles:list-create] Fetched articles list
+2025-10-29 12:47:05 [ERROR] [articles:list-create] Error creating article
+2025-10-29 12:47:32 [INFO] [articles:list-create] Created article
+2025-10-29 12:47:33 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-10-29 12:47:33 [INFO] [articles:list-create] Fetched articles list
+2025-10-29 12:47:33 [INFO] [articles:list-create] Fetched articles list
+2025-10-29 12:49:36 [INFO] [articles:by-id] Fetched article by ID
+2025-10-29 12:49:37 [INFO] [articles:by-id] Fetched article by ID
+2025-10-29 12:51:03 [INFO] [articles:by-id] Updated article
+2025-10-29 12:51:05 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-10-29 12:51:43 [INFO] [articles:list-create] Fetched articles list
+2025-10-29 12:52:34 [INFO] [articles:list-create] Fetched articles list
+2025-10-29 13:24:44 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-10-29 13:24:45 [INFO] [articles:list-create] Fetched articles list
+2025-10-29 13:24:45 [INFO] [articles:list-create] Fetched articles list
+2025-10-29 13:24:48 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-29 13:24:50 [INFO] [articles:list-create] Fetched articles list
+2025-10-29 13:24:51 [INFO] [articles:list-create] Fetched articles list
+2025-10-29 13:24:51 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-29 13:24:52 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
+2025-10-29 13:25:08 [INFO] [articles:by-slug] Fetched article by slug
+2025-10-29 13:25:08 [INFO] [articles:by-slug] Fetched article by slug

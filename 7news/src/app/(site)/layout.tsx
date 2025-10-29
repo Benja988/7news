@@ -30,7 +30,7 @@ export default function SiteLayout({
     <>
       <HeaderMobile user={user} scrolled={scrolled} categories={categories} />
       <HeaderDesktop user={user} scrolled={scrolled} categories={categories} />
-      <main className="flex-grow w-full">
+      <main className="flex-grow w-full pt-16 lg:pt-20">
         <div className="mx-auto w-full max-w-8xl">{children}</div>
       </main>
       <Footer />
