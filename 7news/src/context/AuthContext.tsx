@@ -61,7 +61,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     setUser(data.data);
 
-    router.push(ROUTES.HOME);
+    window.location.href = ROUTES.HOME;
   };
 
   // 🔹 Register
@@ -75,7 +75,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const data = await res.json();
     if (!res.ok) throw new Error(data.message || "Registration failed");
 
-    // After successful registration, redirect to login
     router.push(ROUTES.LOGIN);
   };
 
@@ -84,12 +83,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     try {
       await fetch("/api/auth/logout", { method: "POST", credentials: "include" });
       setUser(null);
-      router.push(ROUTES.HOME);
+      window.location.href = ROUTES.HOME;
     } catch (err) {
       console.error("❌ Error logging out:", err);
-      // Even if logout API fails, clear local state
       setUser(null);
-      router.push(ROUTES.HOME);
+      window.location.href = ROUTES.HOME;
     }
   };
 
