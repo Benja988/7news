@@ -55,11 +55,16 @@ export default function FeaturedSection({ featuredArticles, loading }: FeaturedS
 
 // Sub-component for individual featured article cards
 function FeaturedArticleCard({ article, isMain }: { article: Article; isMain: boolean }) {
+  const handleClick = () => {
+    window.open(`/articles/${article.slug}`, '_blank');
+  };
+
   return (
     <div
-      className={`group relative rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 ${
+      className={`group relative rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer ${
         isMain ? "md:col-span-2 md:row-span-2" : ""
       }`}
+      onClick={handleClick}
     >
       {/* Cover Image */}
       {article.coverImage ? (

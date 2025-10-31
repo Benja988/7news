@@ -1,7 +1,7 @@
 // components/ui/HeroSection.tsx
 "use client";
 
-import { useState, useEffect, useCallback, memo } from "react";
+import { useState, useEffect, useCallback, memo, useRef } from "react";
 import CategorySearchBar from "@/components/ui/CategorySearchBar";
 import { NewsCard } from "@/components/ui/NewsCard";
 import { SkeletonCard } from "@/components/ui/SkeletonLoader";
@@ -63,15 +63,32 @@ interface VideoPlayerProps {
   duration?: string;
 }
 
-const VideoPlayer = memo(({ 
-  title, 
-  description, 
-  isLive = true, 
+const VideoPlayer = memo(({
+  title,
+  description,
+  isLive = true,
   viewerCount = 2500,
   channel = "CNN International",
   duration = "15 min ago"
 }: VideoPlayerProps) => {
   const { isPlaying, isMuted, togglePlay, toggleMute } = useVideoPlayer();
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.play().catch(console.error);
+      } else {
+        videoRef.current.pause();
+      }
+    }
+  }, [isPlaying]);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.muted = isMuted;
+    }
+  }, [isMuted]);
 
   return (
     <div className="bg-gray-900 rounded-xl lg:rounded-2xl overflow-hidden shadow-lg h-full group hover:shadow-xl transition-all duration-300">
@@ -80,10 +97,12 @@ const VideoPlayer = memo(({
         
         {/* Actual Video Element - Replace with your video source */}
         <video
+          ref={videoRef}
           className={`absolute inset-0 w-full h-full object-cover ${isPlaying ? 'opacity-100' : 'opacity-90'}`}
           poster="/video-poster.jpg"
           onClick={togglePlay}
           muted={isMuted}
+          playsInline
         >
           <source src="/news-video.mp4" type="video/mp4" />
           Your browser does not support the video tag.
