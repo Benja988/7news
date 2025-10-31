@@ -21,16 +21,4 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  async rewrites() {
-    return [
-      // Handle potential duplicate content issues
-      {
-        source: '/index.html',
-        destination: '/',
-      },
-    ];
-  },
-
-};
-
-export default nextConfig;
+}
