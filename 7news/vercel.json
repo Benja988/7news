@@ -3,6 +3,8 @@
   "buildCommand": "npm run build",
   "outputDirectory": ".next",
   "framework": "nextjs",
-  "trailingSlash": true
-  
+  "trailingSlash": false,
+  "env": {
+    "NODE_ENV": "production"
+  }
 }
