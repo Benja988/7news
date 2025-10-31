@@ -16,6 +16,9 @@ export default function CommentList({ articleId, initialComments = [] }: Comment
       try {
         setLoading(true);
         const res = await fetch(`/api/comments?articleId=${articleId}`);
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
         const data = await res.json();
         setComments(Array.isArray(data.comments) ? data.comments : []);
       } catch (err) {
@@ -25,7 +28,9 @@ export default function CommentList({ articleId, initialComments = [] }: Comment
         setLoading(false);
       }
     };
-    fetchComments();
+    if (articleId) {
+      fetchComments();
+    }
   }, [articleId]);
 
   if (loading) return <p>Loading comments...</p>;

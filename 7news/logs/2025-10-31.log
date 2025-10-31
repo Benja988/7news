@@ -311,3 +311,20 @@
 2025-10-31 18:36:45 [INFO] [articles:list-create] Fetched articles list
 2025-10-31 18:36:45 [INFO] [articles:list-create] Fetched articles list
 2025-10-31 18:36:46 [INFO] [articles:list-create] Fetched articles list
+2025-10-31 20:10:38 [INFO] [articles:list-create] Fetched articles list
+2025-10-31 20:10:39 [INFO] [articles:list-create] Fetched articles list
+2025-10-31 20:10:41 [INFO] [articles:list-create] Fetched articles list
+2025-10-31 20:10:41 [INFO] [articles:list-create] Fetched articles list
+2025-10-31 20:10:42 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-31 20:10:42 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-31 20:11:21 [INFO] [articles:by-slug] Fetched article by slug
+2025-10-31 20:11:21 [INFO] [articles:by-slug] Fetched article by slug
+2025-10-31 20:15:46 [INFO] [articles:by-slug] Fetched article by slug
+2025-10-31 20:16:24 [INFO] [articles:by-slug] Fetched article by slug
+2025-10-31 20:16:24 [INFO] [articles:by-slug] Fetched article by slug
+2025-10-31 20:17:10 [INFO] [articles:list-create] Fetched articles list
+2025-10-31 20:17:10 [INFO] [articles:list-create] Fetched articles list
+2025-10-31 20:17:11 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-31 20:17:11 [ERROR] [articles:by-id] Error fetching article by ID
+2025-10-31 20:17:11 [INFO] [articles:list-create] Fetched articles list
+2025-10-31 20:17:11 [INFO] [articles:list-create] Fetched articles list

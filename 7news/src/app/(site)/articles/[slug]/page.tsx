@@ -48,10 +48,14 @@ export default function ArticlePage() {
   try {
     setCommentsLoading(true);
     const res = await fetch(`/api/comments?articleId=${article._id}`);
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
     const data = await res.json();
-    setComments(data.comments); // ✅ only set the array
+    setComments(Array.isArray(data.comments) ? data.comments : []); // ✅ only set the array
   } catch (err) {
     console.error("Failed to load comments:", err);
+    setComments([]);
   } finally {
     setCommentsLoading(false);
   }
