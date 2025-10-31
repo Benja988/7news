@@ -82,7 +82,9 @@ export default function Header({ user, scrolled, categories, loading = false, is
         const categoryArray = Array.isArray(data)
           ? data
           : data.data || data.categories || [];
-        setHeaderCategories(categoryArray);
+        // Filter out categories with 0 articles
+        const filteredCategories = categoryArray.filter((cat: any) => cat.articleCount > 0);
+        setHeaderCategories(filteredCategories);
       } catch (err) {
         console.error("Failed to load categories for header:", err);
       } finally {

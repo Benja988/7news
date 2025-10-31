@@ -27,33 +27,35 @@ export function NewsCard({ article, variant = 'default', viewMode }: NewsCardPro
 
   if (displayMode === 'list') {
     return (
-      <div className="flex items-start space-x-4 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow">
-        {article.coverImage && (
-          <img
-            src={article.coverImage}
-            alt={article.title}
-            className="w-24 h-24 object-cover rounded-lg flex-shrink-0"
-          />
-        )}
-        <div className="flex-1 min-w-0">
-          <h3 className="font-semibold text-gray-900 dark:text-white line-clamp-2 mb-2">
-            {article.title}
-          </h3>
-          {article.excerpt && (
-            <p className="text-gray-600 dark:text-gray-300 text-sm line-clamp-2 mb-2">
-              {article.excerpt}
-            </p>
+      <Link href={`/articles/${article.slug}`} className="block">
+        <div className="flex items-start space-x-4 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow cursor-pointer">
+          {article.coverImage && (
+            <img
+              src={article.coverImage}
+              alt={article.title}
+              className="w-24 h-24 object-cover rounded-lg flex-shrink-0"
+            />
           )}
-          <div className="flex items-center space-x-4 text-xs text-gray-500 dark:text-gray-400">
-            {article.category && (
-              <span className="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">
-                {article.category.name}
-              </span>
+          <div className="flex-1 min-w-0">
+            <h3 className="font-semibold text-gray-900 dark:text-white line-clamp-2 mb-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              {article.title}
+            </h3>
+            {article.excerpt && (
+              <p className="text-gray-600 dark:text-gray-300 text-sm line-clamp-2 mb-2">
+                {article.excerpt}
+              </p>
             )}
-            <span>{new Date(article.publishedAt).toLocaleDateString()}</span>
+            <div className="flex items-center space-x-4 text-xs text-gray-500 dark:text-gray-400">
+              {article.category && (
+                <span className="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">
+                  {article.category.name}
+                </span>
+              )}
+              <span>{new Date(article.publishedAt).toLocaleDateString()}</span>
+            </div>
           </div>
         </div>
-      </div>
+      </Link>
     );
   }
 

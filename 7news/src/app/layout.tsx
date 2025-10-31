@@ -30,6 +30,9 @@ export const metadata: Metadata = {
   authors: [{ name: "HintFlow Team" }],
   creator: "HintFlow",
   publisher: "HintFlow",
+  alternates: {
+    canonical: "https://hintflow.site",
+  },
   verification: {
     // google: process.env.GOOGLE_SITE_VERIFICATION,
     google: "google-site-verification=J1VswVxKIwfs7fM2Njzd04L5UB845yR6gVvv04TZuI0",
@@ -38,6 +41,40 @@ export const metadata: Metadata = {
     icon: '/favicon.ico',
     shortcut: '/favicon.ico',
     apple: '/favicon.jpg',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://hintflow.site',
+    title: 'HintFlow - Stay Informed',
+    description: 'Your trusted source for breaking news, technology insights, and in-depth analysis on global events, science, business, and culture.',
+    siteName: 'HintFlow',
+    images: [
+      {
+        url: 'https://hintflow.site/logo.png',
+        width: 1200,
+        height: 630,
+        alt: 'HintFlow Logo',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'HintFlow - Stay Informed',
+    description: 'Your trusted source for breaking news, technology insights, and in-depth analysis on global events, science, business, and culture.',
+    images: ['https://hintflow.site/logo.png'],
+    creator: '@hintflow',
   },
 };
 

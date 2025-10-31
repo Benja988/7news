@@ -40,12 +40,15 @@ export default function LatestArticlesSection({
   const groupedArticles: GroupedArticles = [];
   
   if (articles.length > 0 && Array.isArray(categories)) {
+    // Filter categories to only include those with articles > 0
+    const categoriesWithArticles = categories.filter(category => category.articleCount && category.articleCount > 0);
+
     // Group articles with categories
-    categories.forEach(category => {
+    categoriesWithArticles.forEach(category => {
       const categoryArticles = articles.filter(
         article => article.category?._id === category._id
       );
-      
+
       if (categoryArticles.length > 0) {
         groupedArticles.push({
           category,

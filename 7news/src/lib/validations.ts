@@ -24,14 +24,14 @@ export const articleCreateSchema = z.object({
   content: z.string().min(10),
   coverImage: z.string().url().optional().or(z.literal("")),
   category: z.string().min(1),
-  tags: z.array(z.string().min(1).max(30)).max(20).optional().default([]),
+  tags: z.array(z.string().min(1).max(90)).max(80).optional().default([]),
   status: z.enum(["draft","published", "archived"]).optional().default("draft"),
   scheduledPublishAt: z.string().optional(),
   isFeatured: z.boolean().optional().default(false),
   seo: z.object({
-    metaTitle: z.string().max(60).optional(),
-    metaDescription: z.string().max(160).optional(),
-    keywords: z.array(z.string().min(1).max(30)).max(10).optional().default([]),
+    metaTitle: z.string().max(100).optional(),
+    metaDescription: z.string().max(360).optional(),
+    keywords: z.array(z.string().min(1).max(90)).max(70).optional().default([]),
   }).optional(),
 });
 

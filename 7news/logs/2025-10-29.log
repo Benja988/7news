@@ -37,3 +37,5 @@
 2025-10-29 13:24:52 [INFO] [user:me] User profile retrieved: benjaminokumu12@gmail.com
 2025-10-29 13:25:08 [INFO] [articles:by-slug] Fetched article by slug
 2025-10-29 13:25:08 [INFO] [articles:by-slug] Fetched article by slug
+2025-10-29 20:07:08 [WARN] [637ad8d6-aa56-4e2e-b01b-f90d261d17c1] [Auth] No access token found in cookies
+2025-10-29 20:07:08 [WARN] [user:me] Unauthenticated access attempt
